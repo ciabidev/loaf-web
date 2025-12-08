@@ -1,0 +1,77 @@
+<script lang="ts">
+	let { url, urlshort, name, img }: { url: string; urlshort: string; name: string; img?: string } = $props();
+    import LinkIcon from '~icons/tabler/external-link'; 
+</script>
+
+<a class="url-button" target="_blank" href={url}>
+	{#if img}
+		<img src={img} alt={name} class="url-icon icon" />
+	{/if}
+	<div class="url-text">
+		<div class="url-name">{name}</div>
+		<span class="url-short subtext" data-sveltekit-replacestate
+			><LinkIcon
+				style="min-width: 1rem; min-height: 1rem; flex-shrink: 0;"
+				class="icon"
+			/>{urlshort}</span
+		>
+	</div>
+</a>
+
+<style>
+	.url-text {
+		line-height: var(--readable-line-height);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-decoration: none;
+		color: var(--text-color);
+		position: relative;
+        text-decoration: none;
+	}
+
+	.url-name {
+		display: flex;
+        text-decoration: none;
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.url-short {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		font-size: 0.9rem;
+		gap: 5px;
+        text-decoration: underline;
+	}
+
+	.url-icon {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 12px;
+	}
+
+	a.url-button {
+		user-select: none;
+		-webkit-user-select: none; /* Safari / iOS */
+		-ms-user-select: none;
+		flex-shrink: 0;
+		display: flex;
+		min-width: fit-content;
+		flex-basis: content;
+		flex-direction: row;
+		align-items: center;
+		gap: 10px;
+		position: relative;
+		border-radius: var(--border-radius);
+		padding: 7px 9px;
+		width: max-content;
+		text-decoration: none;
+		border: var(--button-stroke) solid 0.0625rem;
+	}
+
+	a.url-button:hover {
+		background: var(--button-default);
+	}
+</style>

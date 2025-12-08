@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,  interactive-widget=resizes-content viewport-fit=cover maximum-scale=1.0 user-scalable=no">
+    <meta name="description" content="Nutrition project for AP Bio class">
+    <meta name="keywords"
+        content="Nutrition, AP Bio, Macromolecules">
+    <meta name="author" content="wheatwhole">
+
+    <meta property="og:title" content="AP Bio - Nutrition">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:description" content="Nutrition project for AP Bio class">
+    <meta property="og:image" content="%sveltekit.assets%/icons/biology.jpg">
+
+    <script>
+      // Apply persisted flavor early to avoid a flash of the default theme.
+      // This runs before SvelteKit hydrates so the correct CSS variables are applied immediately.
+      try {
+        const f = localStorage.getItem('flavor');
+        const t = localStorage.getItem('flavorType');
+        if (f) document.documentElement.setAttribute('data-flavor', f);
+        if (t) document.documentElement.setAttribute('data-flavor-type', t);
+      } catch (e) {
+        // ignore localStorage errors (e.g., in private mode)
+      }
+    </script>
+    %sveltekit.head%
+</head>
+<title>AP Bio - Nutrition</title>
+
+<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager" style="background-color: var(--bg-color);">
+    <div style="display: contents;">%sveltekit.body%</div>
+</body>
+
+<style>
+        #basket {
+            opacity: 0;
+        }
+
+        #basket.loaded {
+            opacity: 1;
+            transition: opacity 0.2s ease-out;
+        }
+    </style>

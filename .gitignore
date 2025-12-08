@@ -1,0 +1,4 @@
+api/.env
+.dev.vars
+*.local
+/cobalt-main
