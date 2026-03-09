@@ -7,13 +7,10 @@
 	import DialogHolder from '$components/dialog/DialogHolder.svelte';
 	let { children }: { children: Snippet } = $props();
 	import NavTab from '$components/navbar/NavTab.svelte';
-	import InfoIcon from '~icons/basil/info-rect-outline'; /* using Unplugin icons we can load icons at meowbalt speeds! */
 	// @ts-ignore (she aint even know it) (WHY DID I WRITE THIS WITHOUT KNOWING WHAT IT MEANT...)
-	import CarbonIcon from '~icons/streamline-flex/3d-coordinate-axis-remix'
-	import MacroIcon from '~icons/streamline-flex/fried-egg-breakfast-remix';
+	import MacroIcon from '~icons/streamline-flex/toaster-remix';
 
 	import FlavorPicker from '$components/navbar/FlavorPicker.svelte';
-	import CarrotIcon from '~icons/streamline-flex/carrot-remix';
 	
 </script>
 
@@ -39,9 +36,7 @@
 	</div>
 
 	<Navbar>
-		<NavTab name={'nutrition'} Icon={CarrotIcon} path={'/'} />
-		<NavTab name={'carbon'} Icon={CarbonIcon} path={'/carbon'} />
-		<NavTab name = {'macros'} Icon={MacroIcon} path={'/macromolecules'} />
+		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
 	</Navbar>
 </div>
 

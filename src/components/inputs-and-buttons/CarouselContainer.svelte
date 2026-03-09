@@ -7,12 +7,12 @@
 
 	let {
 		id,
-		items,
+		items = [],
 		onSelect,
 		defaultSelected = 0
 	}: {
 		id: string;
-		items: CarouselItemType[];
+		items?: CarouselItemType[];
 		onSelect?: (item: CarouselItemType) => void;
 		defaultSelected?: number;
 	} = $props();

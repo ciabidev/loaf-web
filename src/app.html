@@ -17,10 +17,10 @@
     <meta property="og:image" content="%sveltekit.assets%/icons/biology.jpg">
 
     <script>
-      // Apply persisted flavor early to avoid a flash of the default theme.
-      // This runs before SvelteKit hydrates so the correct CSS variables are applied immediately.
+      // Apply persisted flavor early to prevent flash of default theme.
+      // The data attribute triggers the correct CSS variables from flavors.css.
       try {
-        const f = localStorage.getItem('flavor');
+        const f = localStorage.getItem('flavor') || 'rain';
         const t = localStorage.getItem('flavorType');
         if (f) document.documentElement.setAttribute('data-flavor', f);
         if (t) document.documentElement.setAttribute('data-flavor-type', t);

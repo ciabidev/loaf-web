@@ -1,26 +1,29 @@
 import { writable } from 'svelte/store';
-import type { Flavor } from '$lib/types/flavor';
-import { dark_flavors } from '$lib/types/flavor';
+import { registerFlavors, getFlavor, applyFlavor } from '$lib/state/flavor-registry';
+import { builtInFlavors } from '$lib/types/built-in-flavors';
+
+// Initialize registry with built-in flavors
+registerFlavors(builtInFlavors);
 
 // default to the app's baseline flavor. the initial flavor/flavorType is
 // handled in +layout.svelte to avoid SSR flash; stores only need sensible defaults.
-const defaultFlavor = 'rain';
-const defaultFlavorType = dark_flavors.includes(defaultFlavor as Flavor) ? 'dark' : 'light';
+const defaultFlavorName = 'rain';
+const defaultFlavorDef = getFlavor(defaultFlavorName);
+const defaultFlavorType = defaultFlavorDef?.isDark ? 'dark' : 'light';
 
-export const flavor = writable<Flavor>(defaultFlavor);
+export const flavor = writable<string>(defaultFlavorName);
 export const flavorType = writable(defaultFlavorType);
 
-// Initialize from localStorage in the browser so the persisted choice
+// initialize from localStorage in the browser so the persisted choice
 // is applied before any other client-side logic runs. This prevents the
 // default store value from overwriting a user's saved preference.
 if (typeof window !== 'undefined') {
   try {
     const f = localStorage.getItem('flavor');
     const t = localStorage.getItem('flavorType');
-    if (f) flavor.set(f as Flavor);
+    if (f && getFlavor(f)) flavor.set(f);
     if (t) flavorType.set(t);
   } catch (e) {
-    // ignore localStorage errors
   }
 }
 
@@ -29,17 +32,19 @@ if (typeof window !== 'undefined') {
 flavor.subscribe(value => {
   if (typeof window !== 'undefined' && value) {
     try {
+      const flavorDef = getFlavor(value);
+      if (!flavorDef) {
+        console.error(`Flavor "${value}" not found in registry`);
+        return;
+      }
+
       localStorage.setItem('flavor', value);
-      const newFlavorType = dark_flavors.includes(value as Flavor) ? 'dark' : 'light';
+      const newFlavorType = flavorDef.isDark ? 'dark' : 'light';
       flavorType.set(newFlavorType);
       localStorage.setItem('flavorType', newFlavorType);
-      // Also update the DOM attributes directly to ensure immediate UI update
-      if (typeof document !== 'undefined') {
-        document.documentElement.setAttribute('data-flavor', value);
-        document.documentElement.setAttribute('data-flavor-type', newFlavorType);
-      }
+
+      applyFlavor(value);
     } catch (e) {
-      // ignore localStorage errors
     }
   }
 });
