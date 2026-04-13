@@ -1,35 +1,49 @@
+import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import { registerFlavors, getFlavor, applyFlavor } from '$lib/state/flavor-registry';
-import { builtInFlavors } from '$lib/types/built-in-flavors';
-
-// Initialize registry with built-in flavors
-registerFlavors(builtInFlavors);
+import { getFlavor, applyFlavor } from '$lib/state/flavor-registry';
 
 // default to the app's baseline flavor. the initial flavor/flavorType is
 // handled in +layout.svelte to avoid SSR flash; stores only need sensible defaults.
-const defaultFlavorName = 'rain';
-const defaultFlavorDef = getFlavor(defaultFlavorName);
+const defaultFlavor = 'rain';
+const defaultFlavorDef = getFlavor(defaultFlavor);
 const defaultFlavorType = defaultFlavorDef?.isDark ? 'dark' : 'light';
 
-export const flavor = writable<string>(defaultFlavorName);
-export const flavorType = writable(defaultFlavorType);
+let initialFlavor = defaultFlavor;
+let initialFlavorType = defaultFlavorType;
 
-// initialize from localStorage in the browser so the persisted choice
-// is applied before any other client-side logic runs. This prevents the
-// default store value from overwriting a user's saved preference.
-if (typeof window !== 'undefined') {
+if (browser) {
   try {
-    const f = localStorage.getItem('flavor');
-    const t = localStorage.getItem('flavorType');
-    if (f && getFlavor(f)) flavor.set(f);
-    if (t) flavorType.set(t);
+    const storedFlavor = localStorage.getItem('flavor');
+    const storedFlavorType = localStorage.getItem('flavorType');
+    const storedFlavorDef = storedFlavor ? getFlavor(storedFlavor) : undefined;
+
+    if (storedFlavor) {
+      if (storedFlavorDef) {
+        initialFlavorType = storedFlavorDef.isDark ? 'dark' : 'light';
+      }
+    }
+
+    if (storedFlavorType === 'dark' || storedFlavorType === 'light') {
+      initialFlavorType = storedFlavorType;
+    }
   } catch (e) {
+    console.error(e);
   }
 }
 
+export const flavor = writable<string>(initialFlavor);
+export const flavorType = writable(initialFlavorType);
+
 // persist changes to localStorage and keep flavorType in sync.
 // guard with typeof window so this runs only in the browser.
+let didInit = false;
+
 flavor.subscribe(value => {
+  if (!didInit) {
+    didInit = true;
+    return;
+  }
+
   if (typeof window !== 'undefined' && value) {
     try {
       const flavorDef = getFlavor(value);
@@ -38,6 +52,7 @@ flavor.subscribe(value => {
         return;
       }
 
+      console.log('setting flavor to ' + value);
       localStorage.setItem('flavor', value);
       const newFlavorType = flavorDef.isDark ? 'dark' : 'light';
       flavorType.set(newFlavorType);
@@ -45,6 +60,7 @@ flavor.subscribe(value => {
 
       applyFlavor(value);
     } catch (e) {
+      console.error(e);
     }
   }
 });

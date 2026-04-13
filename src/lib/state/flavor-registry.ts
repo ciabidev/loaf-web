@@ -108,7 +108,7 @@ const builtInFlavorsList: FlavorDefinition[] = [
 			'--nav-highlight': '#ffffff',
 			'--nav-active-highlight': '#ffffff'
 		}
-	}
+	},
 ];
 
 // Initialize with built-in flavors
@@ -124,6 +124,12 @@ export function registerFlavor(definition: FlavorDefinition): void {
 	}
 
 	flavors.set(definition.name, definition);
+
+	// If this flavor is already selected via persisted data, apply it now.
+	const root = typeof document !== 'undefined' ? document.documentElement : null;
+	if (root && root.getAttribute('data-flavor') === definition.name) {
+		applyFlavor(definition.name);
+	}
 }
 
 export function registerFlavors(definitions: FlavorDefinition[]): void {
@@ -133,7 +139,11 @@ export function registerFlavors(definitions: FlavorDefinition[]): void {
 }
 
 export function getFlavor(name: string): FlavorDefinition | undefined {
-	return flavors.get(name);
+	// check if the flavor is registered
+	if (!flavors.has(name)) {
+		console.error(`Flavor "${name}" not found in registry`);
+		return;
+	}	return flavors.get(name);
 }
 
 export function unregisterFlavor(name: string): boolean {

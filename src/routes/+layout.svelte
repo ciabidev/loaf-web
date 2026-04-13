@@ -7,11 +7,33 @@
 	import DialogHolder from '$components/dialog/DialogHolder.svelte';
 	let { children }: { children: Snippet } = $props();
 	import NavTab from '$components/navbar/NavTab.svelte';
-	// @ts-ignore (she aint even know it) (WHY DID I WRITE THIS WITHOUT KNOWING WHAT IT MEANT...)
 	import MacroIcon from '~icons/streamline-flex/toaster-remix';
 
 	import FlavorPicker from '$components/navbar/FlavorPicker.svelte';
-	
+	import { registerFlavor } from '$lib/state/flavor-registry';
+
+	registerFlavor({
+		name: 'catppuccin-mocha-blue',
+		description: 'Catppuccin Mocha with blue accents',
+		iconPath: '/flavor_icons/catppuccin-mocha-blue.png',
+		isDark: true,
+		cssVariables: {
+			'--bg-color': '#1e1e2e',
+			'--text-color': '#cdd6f4',
+			'--secondary-text-color': '#1e1e2e',
+			'--main-color': '#89b4fa',
+			'--sub-color': '#89b4fa',
+			'--sub-alt-color': '#181825',
+			'--color-success': '#a6e3a1',
+			'--color-warning': '#f9e2af',
+			'--color-error': '#f38ba8',
+			'--nav-bg': '#11111b',
+			'--nav-hover-bg': '#313244',
+			'--nav-highlight': '#89b4fa',
+			'--nav-active-highlight': '#11111b'
+		}
+	});
+
 </script>
 
 <svelte:head>
@@ -37,6 +59,7 @@
 
 	<Navbar>
 		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
+		<NavTab name = {'404'} Icon={MacroIcon} path={'/404'} />
 	</Navbar>
 </div>
 

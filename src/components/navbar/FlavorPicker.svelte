@@ -1,12 +1,10 @@
 <script lang="ts">		
-import { builtInFlavors } from '$lib/types/built-in-flavors';
 	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
 	import FlavorPickerButton from '$components/navbar/FlavorPickerButton.svelte';
 	import { flavorPickerVisible } from '$lib/state/flavor-picker-visibility';
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import { flavors } from '$lib/state/flavor-registry';
 	import { flavor } from '$lib/state/flavors';	
-	import type { CarouselItemType } from '$lib/types/carousel';
 	const flavor_items = Array.from(flavors, ([name, definition]) => ({
 		title: name,
 		description: definition.description,
