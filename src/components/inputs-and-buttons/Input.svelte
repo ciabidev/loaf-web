@@ -1,9 +1,23 @@
 <script>
 	let isFocused = $state(false);
-	let { placeholder, value = $bindable(''), description = null, Icon = null, width = '100%', min_width='100%', id = null, type = 'text', long = false } = $props();
+	let {
+		placeholder,
+		value = $bindable(''),
+		description = null,
+		Icon = null,
+		width = '100%',
+		min_width = '100%',
+		id = null,
+		type = 'text',
+		long = false
+	} = $props();
 </script>
 
-<div class="input-wrapper" class:focused={isFocused} style="--width: {width}; --min-width: {min_width}">
+<div
+	class="input-wrapper"
+	class:focused={isFocused}
+	style="--width: {width}; --min-width: {min_width}"
+>
 	{#if Icon}
 		<div class="icon">
 			<Icon />
@@ -32,14 +46,14 @@
 			{type}
 		/>
 	{/if}
-
 </div>
-	{#if description}
-		<div class="subtext">{description}</div>
-	{/if}
+{#if description}
+	<div class="subtext">{description}</div>
+{/if}
+
 <style>
 	.input-wrapper {
-		border: var(--popup-stroke) 0.125rem solid;
+		border: var(--input-stroke) 0.125rem solid;
 		border-radius: var(--border-radius);
 		width: var(--width);
 		min-width: var(--min-width);
@@ -53,7 +67,7 @@
 	}
 
 	.input-wrapper.focused {
-		border: var(--text-color) 0.125rem solid;
+		border: var(--input-focus-stroke) 0.125rem solid;
 	}
 
 	.input {

@@ -1,14 +1,6 @@
 <script>
-	let {
-		url,
-		urlshort,
-		name,
-		description,
-		img = null,
-		banner = null,
-		tiny = null,
-	} = $props();
-	
+	let { url, urlshort, name, description, img = null, banner = null, tiny = null } = $props();
+
 	// @ts-ignore
 	import URLButton from '$components/inputs-and-buttons/URLButton.svelte';
 </script>
@@ -20,7 +12,7 @@
 		{/if}
 		<div class="card-content">
 			{#if url}
-			<URLButton {url} {urlshort} {name} {img} />
+				<URLButton {url} {urlshort} {name} {img} />
 			{/if}
 			<div class="card-text">
 				<h2 class="project-name">{name}</h2>
@@ -40,7 +32,7 @@
 		flex-direction: column;
 		gap: 0.75rem;
 	}
-	
+
 	.project-description {
 		font-size: 0.9375rem;
 	}
@@ -53,7 +45,7 @@
 		align-items: flex-start;
 		min-width: fit-content;
 		transition: all 0.3s var(--actions-and-stuff-ahh-transition);
-		border: 0.0938rem inset var(--popup-stroke);
+		border: 0.0938rem inset var(--card-stroke);
 		background: var(--bg-color);
 		box-shadow: var(--button-box-shadow);
 	}

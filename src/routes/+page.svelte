@@ -13,7 +13,10 @@
 	let testInput = $state('');
 	let active1 = $state(0);
 	let active2 = $state(0);
-
+	let toggleEnabled = $state(false);
+	let selected = $state('five');
+	import Toggle from '$components/inputs-and-buttons/Toggle.svelte';
+	import Selector from '$components/inputs-and-buttons/Selector.svelte';
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
 	import { flavors } from '$lib/state/flavor-registry';
@@ -21,9 +24,9 @@
 	const flavor_items = Array.from(flavors, ([name, definition]) => ({
 		title: name,
 		description: definition.description,
-		image: '/flavor_icons/' + name + '.png'
+		image: definition.iconPath
 	}));
-	
+
 	let inf_dialog_1 = () => {
 		createDialog({
 			id: 'inf-dialog',
@@ -40,7 +43,7 @@
 				}
 			]
 		});
-	}
+	};
 
 	let inf_dialog_2 = () => {
 		createDialog({
@@ -58,7 +61,7 @@
 				}
 			]
 		});
-	}
+	};
 
 	let popovervisible = $state(false);
 </script>
@@ -74,10 +77,7 @@
 	</section>
 	<h1>Components</h1>
 	<section id="test-dialog">
-		<button
-			class="button"
-			onclick={inf_dialog_1}>test small dialog</button
-		>
+		<button class="button" onclick={inf_dialog_1}>test small dialog</button>
 	</section>
 	<section id="test-picker-dialog">
 		<button
@@ -113,7 +113,8 @@
 							]
 						});
 					}
-				})}>test picker Dialog</button>
+				})}>test picker Dialog</button
+		>
 	</section>
 	<section id="test-project-card">
 		<ProjectCard
@@ -158,24 +159,56 @@
 		<Codeblock code={"console.log('hello world')"} language="js" />
 	</section>
 	<section id="navbar">
-		<Navbar test={true}>
-		</Navbar>
+		<Navbar test={true}></Navbar>
 	</section>
 	<section id="carousel">
 		<CarouselContainer id="flavor-picker-carousel" items={flavor_items}></CarouselContainer>
 	</section>
 	<section id="popover">
-		<button class="button" onclick={() => popovervisible = !popovervisible}>
+		<button class="button" onclick={() => (popovervisible = !popovervisible)}>
 			{popovervisible ? 'hide' : 'show'}
 		</button>
-		<PopoverContainer id="test-popover" expanded={popovervisible}>
-			hey
-		</PopoverContainer>
+		<PopoverContainer id="test-popover" expanded={popovervisible}>hey</PopoverContainer>
 	</section>
-		
-
+	<section id="toggle">
+		<Toggle
+			enabled={toggleEnabled}
+			onClick={() => {
+				toggleEnabled = !toggleEnabled;
+			}}
+		/>
+	</section>
+	<section id="full-toggle">
+		<Toggle
+			title="Full Toggle"
+			enabled={toggleEnabled}
+			onClick={() => {
+				toggleEnabled = !toggleEnabled;
+			}}
+		/>
+	</section>
+	<section id="selector">
+		<Selector
+			title="Selector"
+			options={[
+				{ value: 'one', text: 'One' },
+				{ value: 'two', text: 'Two' },
+				{ value: 'three', text: 'Three' },
+				{ value: 'four', text: 'Four' },
+				{ value: 'five', text: 'Five' },
+				{ value: 'six', text: 'Six' },
+				{ value: 'seven', text: 'Seven' },
+				{ value: 'eight', text: 'Eight' },
+				{ value: 'nine', text: 'Nine' },
+				{ value: 'ten', text: 'Ten' }
+			]}
+			{selected}
+			onSelect={(value) => {
+				selected = value;
+			}}
+		/>
+	</section>
 </PageContainer>
 
 <style>
-	
 </style>
