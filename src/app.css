@@ -103,18 +103,18 @@
 	font-family: 'Noto Sans Mono', monospace;
 }
 
-/* * {
-  scrollbar-width: none;
-} */
-
-/* ::-webkit-scrollbar {
-  display: none;
-} */
-
-/* 
 * {
   scrollbar-width: none;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+ 
+* {
+  scrollbar-width: none;
+} 
 
 ::-webkit-scrollbar {
   display: none;
@@ -153,7 +153,7 @@
 ::-webkit-scrollbar-button:horizontal:decrement,
 ::-webkit-scrollbar-button:horizontal:increment {
 	display: none !important;
-} */
+} 
 ::selection {
 	color: var(--secondary-text-color);
 	background: var(--main-color);
