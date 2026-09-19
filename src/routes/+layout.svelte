@@ -30,7 +30,7 @@
 			'--color-error': '#f38ba8',
 			'--nav-bg': '#11111b',
 			'--nav-hover-bg': '#313244',
-			'--nav-highlight': '#89b4fa',
+			'--nav-highlight': '#cdd6f4',
 			'--nav-active-highlight': '#11111b'
 		}
 	});
@@ -164,7 +164,7 @@ registerFlavors([
 		{@render children()}
 	</Loaf>
 
-	<Navbar>
+	<Navbar position="bottom">
 		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
 		<NavTab name = {'404'} Icon={MacroIcon} path={'/404'} />
 	</Navbar>

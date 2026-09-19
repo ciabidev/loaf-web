@@ -40,6 +40,7 @@
 	/* we wont use rem since navbar dimensions are constant */
 	--navbar-lift: 1rem;
 	--navbar-height: 5rem;
+	--navbar-width: 5rem;
 	--mobile-navbar-height: 4rem;
 	--navbar-inner-padding: 0.25rem;
 	--navbar-tab-padding: 0.625rem;

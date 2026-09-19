@@ -57,7 +57,6 @@
   href={path}
   aria-selected={isTabCurrentPage}
   class:horizontal={layout === 'horizontal'}
-  class:vertical={layout === 'vertical'}
   style:--icon-color={iconColor ?? 'currentColor'}
   bind:this={tab}
 >
@@ -87,9 +86,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 80px;
-    padding: 0 var(--navbar-tab-padding);
-    height: 90%;
+    gap: 0.1875rem;
+    min-width: var(--navbar-width);
+    height: fit-content;
+    padding: var(--navbar-tab-padding) 0.1875rem;
     color: var(--nav-highlight);
     font-size: var(--navbar-font-size);
     opacity: 0.75;
@@ -98,6 +98,20 @@
   -webkit-user-select: none;  /* Safari / iOS */
   -ms-user-select: none; 
     border-radius: var(--radius-md);
+  }
+
+  :global(.navbar[data-position='top']) a[role="tab"],
+  :global(.navbar[data-position='bottom']) a[role="tab"] {
+    height: auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    :global(.navbar[data-position='top']) a[role="tab"],
+    :global(.navbar[data-position='bottom']) a[role="tab"] {
+      min-width: calc(var(--navbar-width) / 2);
+      height: fit-content;
+      padding: 0.3125rem var(--padding);
+    }
   }
 
   a[role="tab"].horizontal {
@@ -130,10 +144,4 @@
   }
 }
 
- @media only screen and (max-width: 600px) {
-   a[role="tab"] {
-     height: 85%;
-   }
- }
-  
 </style>
