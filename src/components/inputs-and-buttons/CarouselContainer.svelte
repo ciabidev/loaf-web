@@ -153,7 +153,7 @@
 		position: absolute;
 		pointer-events: all;
 		color: var(--text-color);
-		background: var(--bg-color);
+		background: var(--surface);
 		border-radius: 50%;
 		padding: 0.75rem;
 

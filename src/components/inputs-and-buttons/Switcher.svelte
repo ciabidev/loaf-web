@@ -136,7 +136,7 @@
 		left: 0;
 		z-index: 0;
 		border-radius: var(--radius-lg);
-		background-color: var(--main-color);
+		background-color: var(--accent);
 		pointer-events: none;
 		transition:
 			transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),

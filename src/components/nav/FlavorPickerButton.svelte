@@ -13,7 +13,7 @@
 <style>
  #flavor-picker-button {
 	pointer-events: all;
-	background: var(--bg-color);
+	background: var(--surface);
 	padding: 7px;
 	border-radius: 30px;
 	filter: drop-shadow(0 0 3px var(--button-stroke));
@@ -37,7 +37,7 @@
 		justify-content: center;
 		width: 25px;
 		height: 25px;
-		background: var(--sub-alt-color);
+		background: var(--surface-secondary);
 		border-radius: 50%;
 		transition: all 0.2s;
 		will-change: transform, background-color;

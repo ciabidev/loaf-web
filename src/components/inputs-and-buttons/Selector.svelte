@@ -144,7 +144,7 @@
 		padding: 0.25rem 0.5625rem;
 		border: 0.0625rem solid var(--button-stroke);
 		border-radius: calc(var(--radius-md) - var(--switcher-padding));
-		background: var(--bg-color);
+		background: var(--surface);
 		font-size: 0.95rem;
 		font-weight: 500;
 	}

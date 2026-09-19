@@ -17,7 +17,7 @@
 <div class="tags-container">
     {#each tags as tag}
         
-        <button class="tag" style="--color: {tag.color ? tag.color : 'var(--sub-alt-color)'}">
+        <button class="tag" style="--color: {tag.color ? tag.color : 'var(--surface-secondary)'}">
             <span>{tag.name}</span>
         </button>
     {/each}

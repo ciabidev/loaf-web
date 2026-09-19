@@ -35,12 +35,12 @@ registerFlavor({
   iconPath: '/flavor_icons/midnight.png',
   isDark: true,
   cssVariables: {
-    '--bg-color': '#0f1419',
+    '--surface': '#0f1419',
     '--text-color': '#e8eaed',
     '--secondary-text-color': '#ffffff',
-    '--main-color': '#8ab4f8',
-    '--sub-color': '#aecbfa',
-    '--sub-alt-color': '#202124',
+    '--accent': '#8ab4f8',
+    '--accent-secondary': '#aecbfa',
+    '--surface-secondary': '#202124',
     '--color-success': '#81c995',
     '--color-warning': '#fcc934',
     '--color-error': '#f28482',
@@ -58,15 +58,15 @@ Each flavor must define CSS custom properties that are applied to the document r
 
 ### Layout & Colors
 
-- `--bg-color`: Main background color
+- `--surface`: Main background color
 - `--text-color`: Primary text color
-- `--secondary-text-color`: Text color for elements on `--main-color` backgrounds
+- `--secondary-text-color`: Text color for elements on `--accent` backgrounds
 
 ### Accents
 
-- `--main-color`: Primary accent color (used everywhere)
-- `--sub-color`: Secondary accent (links, smaller elements)
-- `--sub-alt-color`: Alternative background (buttons, cards)
+- `--accent`: Primary accent color (used everywhere)
+- `--accent-secondary`: Secondary accent (links, smaller elements)
+- `--surface-secondary`: Alternative background (buttons, cards)
 
 ### Status Colors
 

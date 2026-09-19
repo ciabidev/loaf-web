@@ -1,6 +1,7 @@
 <script lang="ts">
+	import LinkIcon from '~icons/hugeicons/external-link';
+
 	let { url, urlshort, name, img }: { url: string; urlshort: string; name: string; img?: string } = $props();
-    import LinkIcon from '~icons/tabler/external-link'; 
 </script>
 
 <a class="url-button" target="_blank" href={url}>

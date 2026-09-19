@@ -47,7 +47,7 @@
     }
 
     .button-group::-webkit-scrollbar-thumb {
-        background: var(--sub-color);
+        background: var(--accent-secondary);
         border-radius: 0.125rem;
     }
 </style>

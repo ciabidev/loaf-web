@@ -139,7 +139,7 @@
   .navbar-tab.active {
     --active-icon-color: var(--nav-active-highlight);
     animation: 0.3s afterClick cubic-bezier(0.33, 1, 0.68, 1);
-    background: var(--sub-color);
+    background: var(--accent-secondary);
     opacity: 1;
     cursor: default;
     color: var(--nav-active-highlight);

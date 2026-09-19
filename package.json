@@ -37,6 +37,7 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
+		"@iconify-json/hugeicons": "^1.2.35",
 		"@iconify-json/tabler": "^1.2.22",
 		"@iconify/json": "^2.2.379",
 		"@sveltejs/adapter-cloudflare": "^0.0.1",
@@ -70,6 +71,7 @@
 		"esbuild": "0.25.4"
 	},
 	"dependencies": {
+		"@iconify-svelte/hugeicons": "^1.0.20",
 		"@supabase/supabase-js": "^2.57.2",
 		"marked": "^16.2.1",
 		"mdsvex": "^0.12.6",

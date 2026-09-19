@@ -14,7 +14,7 @@
 		width: 100%;
 		height: calc(100% - var(--navbar-height));
 		overflow: hidden;
-		background-color: var(--bg-color);
+		background-color: var(--surface);
 		border-radius: 0;
 		border-bottom-left-radius: calc(var(--radius-md) * 2);
 		border-bottom-right-radius: calc(var(--radius-md) * 2);

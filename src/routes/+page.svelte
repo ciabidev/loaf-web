@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SearchIcon from '~icons/tabler/search';
-	import GridIcon from '~icons/tabler/layout-grid';
-	import LinkIcon from '~icons/tabler/link';
+	import SearchIcon from '~icons/hugeicons/search-01';
+	import GridIcon from '~icons/hugeicons/layout-grid';
+	import LinkIcon from '~icons/hugeicons/link';
 
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import Input from '$components/inputs-and-buttons/Input.svelte';
@@ -285,7 +285,7 @@
 		<Tags
 			tags={[
 				{ name: 'default' },
-				{ name: 'accent', color: 'var(--main-color)' },
+				{ name: 'accent', color: 'var(--accent)' },
 				{ name: 'success', color: 'var(--color-success)' },
 				{ name: 'warning', color: 'var(--color-warning)' },
 				{ name: 'error', color: 'var(--color-error)' }
@@ -355,6 +355,7 @@
 	<section class="gallery-section">
 		<div class="section-heading">
 			<h2>Dropdown menu</h2>
+			<p>Open the selector to see the selected value grouped with its chevron.</p>
 		</div>
 		<Selector
 			title="Compact selector"
@@ -458,7 +459,7 @@
 		overflow: hidden;
 		border: 0.0625rem solid var(--button-stroke);
 		border-radius: var(--radius-md);
-		background: var(--bg-color);
+		background: var(--surface);
 	}
 
 	.responsive-nav-preview :global(.navbar.test) {

@@ -14,7 +14,7 @@
   100% {transform: scale(1.0)}
 }
 	.toast {
-		background-color: var(--bg-color);
+		background-color: var(--surface);
 		padding: 0.5rem 1.9rem;
 		box-shadow: var(--toast-shadow);
 		border-radius: 0.5rem;

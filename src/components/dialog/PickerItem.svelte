@@ -81,7 +81,7 @@
 		content: '';
 		width: 100%;
 		height: 100%;
-		outline: 0.125rem solid var(--main-color);
+		outline: 0.125rem solid var(--accent);
 		outline-offset: 0.125rem;
 		border-radius: inherit;
 	}
