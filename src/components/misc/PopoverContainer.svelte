@@ -29,7 +29,7 @@
     .popover-container {
         padding: var(--padding);
         background: var(--popover-bg);
-        border-radius: calc(var(--border-radius) * 2);
+        border-radius: calc(var(--radius-md) * 2);
         border: var(--button-stroke) solid 0.0625rem;
         display: flex;
         flex-direction: column;

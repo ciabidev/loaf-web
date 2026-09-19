@@ -54,7 +54,7 @@
 <style>
 	.input-wrapper {
 		border: var(--input-stroke) 0.125rem solid;
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-md);
 		width: var(--width);
 		min-width: var(--min-width);
 		max-height: fit-content;

@@ -58,7 +58,7 @@
 		flex-shrink: 0;
 		aspect-ratio: 1/1;
 		object-fit: cover;
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-md);
 	}
 	.carousel-item.active {
 		transform: scale(1.1);

@@ -37,7 +37,7 @@
 		font-size: 0.9375rem;
 	}
 	.card {
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-lg);
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;

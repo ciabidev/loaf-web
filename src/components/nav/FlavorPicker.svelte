@@ -1,6 +1,6 @@
 <script lang="ts">		
 	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
-	import FlavorPickerButton from '$components/navbar/FlavorPickerButton.svelte';
+	import FlavorPickerButton from '$components/nav/FlavorPickerButton.svelte';
 	import { flavorPickerVisible } from '$lib/state/flavor-picker-visibility';
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import { flavors } from '$lib/state/flavor-registry';

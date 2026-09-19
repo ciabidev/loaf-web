@@ -2,7 +2,12 @@
 
   import NavbarLogo from "./NavbarLogo.svelte";
 
-  let { test = false } = $props();
+  interface Props {
+    test?: boolean
+  }
+
+  let {test=false}: Props = $props();
+  
 </script>
 
   <nav class="navbar" class:test={test}>

@@ -54,7 +54,7 @@
         display: flex;
         flex-direction: column;
         background: var(--button-elevated);
-        border-radius: var(--border-radius);
+        border-radius: var(--radius-md);
     }
 
     #tutorial-button {
@@ -120,6 +120,6 @@
         text-decoration: none;
         font-size: 0.8125rem;
         padding: 0.5rem;
-        border-radius: var(--border-radius);
+        border-radius: var(--radius-md);
     }
 </style>

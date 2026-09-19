@@ -46,8 +46,12 @@
 		justify-content: space-between;
 		text-align: start;
 		padding: calc(var(--switcher-padding) * 2) 16px;
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-md);
 		overflow: visible; 
+	}
+
+	.toggle-container.transparent {
+		filter: none;
 	}
 
 	.toggle-container.full {
@@ -85,7 +89,7 @@
 		height: calc(var(--track-height) - 4px); 
 		width: var(--switcher-width); 
 		
-		background: var(--white);
+		background: #ffffff;
 		border-radius: 100px;
 		transform: translateX(0);
 		transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1); 

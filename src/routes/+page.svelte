@@ -5,11 +5,8 @@
 	import { createDialog } from '$lib/state/dialogs';
 	import PageContainer from '$components/misc/PageContainer.svelte';
 	import Codeblock from '$components/misc/Codeblock.svelte';
-	import Navbar from '$components/navbar/Navbar.svelte';
-	import NavTab from '$components/navbar/NavTab.svelte';
-	import InfoIcon from '~icons/basil/info-rect-outline';
-	import StarIcon from '~icons/basil/star-outline';
-	import BoxIcon from '~icons/basil/box-outline';
+	import Navbar from '$components/nav/Navbar.svelte';
+	import Tags from '$components/misc/Tags.svelte';
 	let testInput = $state('');
 	let active1 = $state(0);
 	let active2 = $state(0);
@@ -20,6 +17,8 @@
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
 	import { flavors } from '$lib/state/flavor-registry';
+	// import NavTab from '$components/nav/NavTab.svelte';
+	// import MacroIcon from '~icons/streamline-flex/toaster-remix';
 
 	const flavor_items = Array.from(flavors, ([name, definition]) => ({
 		title: name,
@@ -77,11 +76,10 @@
 	</section>
 	<h1>Components</h1>
 	<section id="test-dialog">
-		<button class="button" onclick={inf_dialog_1}>test small dialog</button>
+		<button onclick={inf_dialog_1}>test small dialog</button>
 	</section>
 	<section id="test-picker-dialog">
 		<button
-			class="button"
 			onclick={() =>
 				createDialog({
 					id: 'picker-dialog',
@@ -130,21 +128,16 @@
 	</section>
 	<section id="test-switcher--defualt">
 		<Switcher>
-			<button class="button" class:active={active1 === 0} onclick={() => (active1 = 0)}>six</button>
-			<button class="button" class:active={active1 === 1} onclick={() => (active1 = 1)}
-				>seven</button
-			>
+			<button class:active={active1 === 0} onclick={() => (active1 = 0)}>six</button>
+			<button class:active={active1 === 1} onclick={() => (active1 = 1)}>seven</button>
 		</Switcher>
 	</section>
 	<section id="test-switcher--big">
 		<Switcher description="This is a description on a big switcher!" full>
-			<button class="button" class:active={active2 === 0} onclick={() => (active2 = 0)}
-				>eight</button
-			>
-			<button class="button" class:active={active2 === 1} onclick={() => (active2 = 1)}>nine</button
-			>
+			<button class:active={active2 === 0} onclick={() => (active2 = 0)}>eight</button>
+			<button class:active={active2 === 1} onclick={() => (active2 = 1)}>nine</button>
 			<button class:active={active2 === 2} onclick={() => (active2 = 2)}
-				><img src="/emotions/angry.png" alt="surprised" /></button
+				>ten</button
 			>
 		</Switcher>
 	</section>
@@ -158,14 +151,12 @@
 	<section id="code-block">
 		<Codeblock code={"console.log('hello world')"} language="js" />
 	</section>
-	<section id="navbar">
-		<Navbar test={true}></Navbar>
-	</section>
+
 	<section id="carousel">
 		<CarouselContainer id="flavor-picker-carousel" items={flavor_items}></CarouselContainer>
 	</section>
 	<section id="popover">
-		<button class="button" onclick={() => (popovervisible = !popovervisible)}>
+		<button onclick={() => (popovervisible = !popovervisible)}>
 			{popovervisible ? 'hide' : 'show'}
 		</button>
 		<PopoverContainer id="test-popover" expanded={popovervisible}>hey</PopoverContainer>
@@ -207,6 +198,39 @@
 				selected = value;
 			}}
 		/>
+	</section>
+	<section id="tags">
+		<Tags
+			tags={[
+				{ name: 'tag1', description: 'this is a tag' },
+				{ name: 'tag2', description: 'this is a tag' },
+				{ name: 'tag3', description: 'this is a tag' },
+				{ name: 'tag4', description: 'this is a tag' },
+				{ name: 'tag5', description: 'this is a tag' },
+				{ name: 'tag6', description: 'this is a tag' },
+				{ name: 'tag7', description: 'this is a tag' },
+				{ name: 'tag8', description: 'this is a tag' },
+				{ name: 'tag9', description: 'this is a tag' },
+				{ name: 'tag10', description: 'this is a tag' }
+			]}
+		/>
+	</section>
+	<section id="navbar" style="height: 80px;">
+		<!-- <Navbar test={true}>
+			<NavTab name={'test'} Icon={MacroIcon} path={'/'} layout={'horizontal'} iconColor={'red'} />
+			<NavTab name={'404'} Icon={MacroIcon} path={'/404'} iconColor={'red'} />
+			<Toggle
+				title="Full Toggle"
+				enabled={toggleEnabled}
+				onClick={() => {
+					toggleEnabled = !toggleEnabled;
+				}}
+			/>
+			<Switcher>
+				<button class:active={active1 === 0} onclick={() => (active1 = 0)}>six</button>
+				<button class:active={active1 === 1} onclick={() => (active1 = 1)}>seven</button>
+			</Switcher>
+		</Navbar> -->
 	</section>
 </PageContainer>
 

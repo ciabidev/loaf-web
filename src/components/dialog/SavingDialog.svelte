@@ -130,7 +130,7 @@
 		padding: 0.75rem 1rem;
 		background: var(--button-default);
 		border: 0.0625rem solid var(--button-stroke);
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-md);
 		color: var(--text-color);
 		text-decoration: none;
 		font-weight: 500;

@@ -1,12 +1,21 @@
 <script lang="ts">
+  import type { Component } from "svelte";
 
-  let { Icon = null, path, name } = $props();
+  interface Props {
+    Icon?: Component;
+    path: string;
+    name: string;
+    layout?: 'vertical' | 'horizontal';
+    iconColor?: string;
+  }
+
+  let { Icon, path, name, layout, iconColor }: Props = $props();
   import { fly } from "svelte/transition";
   import { page } from "$app/state";
 
   let tabPath = $derived(path.split("/")[1]);
 
-  let currentPage = $derived(page.url.pathname.split("/")[1]);
+  let currentPage = $derived(page.url.pathname.split("/").slice(1).join("/"));
 
   let isTabCurrentPage = $derived(tabPath === currentPage);
 
@@ -47,9 +56,14 @@
   class:active={isTabCurrentPage}
   href={path}
   aria-selected={isTabCurrentPage}
+  class:horizontal={layout === 'horizontal'}
+  class:vertical={layout === 'vertical'}
+  style:--icon-color={iconColor ?? 'currentColor'}
   bind:this={tab}
 >
-  <Icon style="font-size: var(--icon-size-mobile); " class="icon" />
+  {#if Icon}
+    <Icon style="font-size: var(--icon-size-mobile); color: var(--active-icon-color, var(--icon-color));" class="icon" />
+  {/if}
   <span>{name}</span>
 </a>
 
@@ -83,21 +97,32 @@
      user-select: none;
   -webkit-user-select: none;  /* Safari / iOS */
   -ms-user-select: none; 
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-md);
+  }
+
+  a[role="tab"].horizontal {
+    flex-direction: row;
+    height: auto;
+    padding: var(--navbar-tab-padding-horizontal) 0;
+    gap: calc(var(--navbar-tab-padding-horizontal) * 1.5);
   }
 
   /* shrinks down for a little then scales back up once it gains the .active class */
   a[role="tab"]:active:hover:not(.active) {
     transform: scale(0.85, 0.85);
+    border: var(--button-stroke) solid 1px;
   }
 
   a[role="tab"].active {
+    --active-icon-color: var(--nav-active-highlight);
     animation: 0.3s afterClick cubic-bezier(0.33, 1, 0.68, 1);
     background: var(--sub-color);
     opacity: 1;
     cursor: default;
     color: var(--nav-active-highlight);
+    --icon-color: var(--nav-active-highlight);
   }
+
 
 @media not all and (hover: none) {
    a[role="tab"]:hover:not(.active) {

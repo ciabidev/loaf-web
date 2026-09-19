@@ -1,16 +1,14 @@
-<script>
-	/** @type {string} */
-	export let label = '';
-	/** @type {string} */
-	export let id = '';
-	/** @type {string} */
-	export let hint = '';
-	/** @type {boolean} */
-	export let long = false;
-	/** @type {boolean} */
-	export let required = false;
-	/** @type {string} */
-	export let value = '';
+<script lang="ts">
+	interface Props {
+		label: string;
+		id: string;
+		hint: string;
+		long: boolean;
+		required: boolean;
+		value: string;
+	}
+	
+	let { label, id, hint, long, required, value }: Props = $props();
 </script>
 
 <div class="field">

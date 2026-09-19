@@ -14,7 +14,7 @@
 		vertical-align: center;
 		flex-direction: row;
 		padding: 0.6rem;
-		border-radius: var(--border-radius);
+		border-radius: var(--radius-md);
 		text-decoration: none;
 		color: var(--text-color);
 		box-shadow: var(--card-stroke) 0 0 0 1px;

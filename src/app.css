@@ -14,8 +14,7 @@
 	--button-default: var(--sub-alt-color); /* button from cobalt was changed to button-default */
 	--button-elevated: var(--button-default);
 	--button-elevated-hover: var(--elevated);
-	--button-hover-filter: brightness(90%);
-	--button-press-filter: brightness(80%);
+
 	--button-box-shadow:
 		var(--shadow-main), 0rem 0rem 0rem 0.0625rem var(--button-stroke); /* for elevated buttons */
 	/* old button-box-shadow: 0 0 0 0.0625rem var(--button-stroke) inset; */
@@ -45,6 +44,7 @@
 	--navbar-inner-padding: 0.25rem;
 	--navbar-tab-padding: 0.625rem;
 	--navbar-font-size: 0.6875rem;
+	--navbar-tab-padding-horizontal: 0.375rem;
 	--icon-size-mobile: 1.375rem;
 	--icon-size-desktop: 1.5625rem;
 
@@ -56,30 +56,37 @@
 		linear-gradient(to right, rgba(128, 128, 128, 0.05) 0.0625rem, transparent 0.0625rem),
 		linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 0.0625rem, transparent 0.0625rem);
 	--grid-bg-size: 0.9375rem 0.9375rem;
-	--border-radius: 0.6875rem;
+	--radius-xs: 4px;
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 24px;
+	--radius-pill: 100px;
 	--readable-line-height: 1.8;
 	--toast-shadow: var(--button-box-shadow);
-	--toggle-bg: var(--input-stroke);
 	--toggle-bg-enabled: var(--main-color);
+		--popup-bg: var(--bg-color);
+
 }
 
 :root,
 [data-flavor-type='light'] {
-	--button-stroke: rgba(0, 0, 0, 0.05);
+	--button-stroke: rgba(0, 0, 0, 0.06);
 	--popup-stroke: rgba(0, 0, 0, 0.08);
-	--input-stroke: rgba(0, 0, 0, 0.08);
-	--popover-glow: rgba(0, 0, 0, 0.05);
+	--toggle-bg: rgba(0, 0, 0, 0.12);
+	--popover-glow: rgba(0, 0, 0, 0.06);
 	--dialog-backdrop: #ffffff4d;
-	--popup-bg: var(--bg-color);
+	--button-hover-filter: brightness(93%);
+	--button-press-filter: brightness(80%);
 }
 
 [data-flavor-type='dark'] {
-	--button-stroke: rgba(200, 200, 200, 0.05);
+	--button-stroke: rgba(200, 200, 200, 0.06);
 	--popup-stroke: rgba(255, 255, 255, 0.08);
-	--input-stroke: rgba(255, 255, 255, 0.08);
-	--popover-glow: rgba(135, 135, 135, 0.12);
+	--toggle-bg: rgba(255, 255, 255, 0.12);
+	--popover-glow: rgba(135, 135, 135, 0.06);
 	--dialog-backdrop: #0000004d;
-	--popup-bg: var(--bg-color);
+	--button-hover-filter: brightness(120%);
+	--button-press-filter: brightness(120%);
 }
 
 @keyframes fadeIn {
@@ -89,18 +96,63 @@
 }
 
 * {
-	scrollbar-width: none;
 	-webkit-user-drag: none;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Noto Sans Mono', monospace;
 }
 
+/* * {
+  scrollbar-width: none;
+} */
 
-::-webkit-scrollbar {
-	display: none;
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+/* 
+* {
+  scrollbar-width: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+	display: block;
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: inherit;
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent;
+	border-radius: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+	background: color-mix(in srgb, var(--text-color) 30%, transparent);
+	border-radius: 999px;
+	border: 0.125rem solid transparent;
+	background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: color-mix(in srgb, var(--text-color) 60%, transparent);
+	background-clip: content-box;
+}
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-button:single-button,
+::-webkit-scrollbar-button:vertical:decrement,
+::-webkit-scrollbar-button:vertical:increment,
+::-webkit-scrollbar-button:horizontal:decrement,
+::-webkit-scrollbar-button:horizontal:increment {
+	display: none !important;
+} */
 ::selection {
 	color: var(--secondary-text-color);
 	background: var(--main-color);
@@ -174,9 +226,7 @@ pre {
 	font-family: Fira Mono;
 	overflow-x: auto;
 	max-width: 100%;
-	scrollbar-width: thin;
 	padding-bottom: 0.3rem;
-	scrollbar-color: var(--code-scrollbar) var(--code-bg);
 }
 
 .subtext {
@@ -313,7 +363,7 @@ h6 {
 }
 
 .paragraph-text img {
-	border-radius: var(--border-radius);
+	border-radius: var(--radius-md);
 	margin-top: 1rem;
 }
 
@@ -417,7 +467,7 @@ button,
 	text-decoration: none;
 	user-select: none;
 	border: none;
-	border-radius: var(--border-radius);
+	border-radius: var(--radius-md);
 	font-size: 0.95rem;
 	text-align: center;
 	cursor: pointer;
@@ -433,11 +483,11 @@ button,
 /* .active - buttons that are currently active (such as when a tab is active) */
 button > img,
 .button > img {
-	border-radius: calc(var(--border-radius) - 0.125rem);
-	-webkit-border-radius: calc(var(--border-radius) - 0.125rem);
-	-moz-border-radius: calc(var(--border-radius) - 0.125rem);
-	-ms-border-radius: calc(var(--border-radius) - 0.125rem);
-	-o-border-radius: calc(var(--border-radius) - 0.125rem);
+	border-radius: calc(var(--radius-md) - 0.125rem);
+	-webkit-border-radius: calc(var(--radius-md) - 0.125rem);
+	-moz-border-radius: calc(var(--radius-md) - 0.125rem);
+	-ms-border-radius: calc(var(--radius-md) - 0.125rem);
+	-o-border-radius: calc(var(--radius-md) - 0.125rem);
 }
 
 .button.active,

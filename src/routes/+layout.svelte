@@ -1,15 +1,16 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import '../app.css';
 	import '../flavors.css';
-	import Navbar from '$components/navbar/Navbar.svelte';
+	import Basket from '$components/layout/Basket.svelte';
+	import Loaf from '$components/layout/Loaf.svelte';
+	import Navbar from '$components/nav/Navbar.svelte';
 	import type { Snippet } from 'svelte';
 	import DialogHolder from '$components/dialog/DialogHolder.svelte';
 	let { children }: { children: Snippet } = $props();
-	import NavTab from '$components/navbar/NavTab.svelte';
+	import NavTab from '$components/nav/NavTab.svelte';
 	import MacroIcon from '~icons/streamline-flex/toaster-remix';
 
-	import FlavorPicker from '$components/navbar/FlavorPicker.svelte';
+	import FlavorPicker from '$components/nav/FlavorPicker.svelte';
 	import { registerFlavor, registerFlavors } from '$lib/state/flavor-registry';
 
 	registerFlavor({
@@ -155,43 +156,16 @@ registerFlavors([
 </svelte:head>
 
 <!-- acts as a "body" tag that we have more control over. Example: when a mobile user reaches end of scroll. then the page starts scrolling to make typing and scrolling easier -->
-<div id="basket" class:loaded={browser}>
+<Basket>
 	<FlavorPicker />
 	<DialogHolder />
 
-	<div id="loaf">
-		<!-- includes main content of the page only -->
+	<Loaf>
 		{@render children()}
-	</div>
+	</Loaf>
 
 	<Navbar>
 		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
 		<NavTab name = {'404'} Icon={MacroIcon} path={'/404'} />
 	</Navbar>
-</div>
-
-<style>
-	#loaf {
-		/* content of the page */
-		/*border: solid red .3125rem;
-   */
-
-		overflow-y: auto;
-		width: 100%;
-		background-color: var(--bg-color);
-		border-bottom-left-radius: calc(var(--border-radius) * 2);
-		border-bottom-right-radius: calc(var(--border-radius) * 2);
-		height: calc(100% - var(--navbar-height));
-	}
-
-	#basket {
-
-		height: 100%;
-		width: 100%;
-		overscroll-behavior-y: none;
-		overflow-y: hidden;
-		display: flex;
-		flex-direction: column;
-		background: var(--nav-bg);
-	}
-</style>
+</Basket>

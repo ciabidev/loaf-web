@@ -73,7 +73,7 @@
 		display: flex;
 		flex-direction: column;
 		box-shadow: none;
-		border-radius: calc(var(--border-radius) / 2 + 0.125rem);
+		border-radius: calc(var(--radius-md) / 2 + 0.125rem);
 		overflow: hidden;
 	}
 
