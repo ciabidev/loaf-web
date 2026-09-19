@@ -150,7 +150,7 @@
         font-size: 0.9063rem;
         font-weight: 500;
         line-height: 1.7;
-        color: var(--gray);
+        color: var(--muted-text-color);
         white-space: pre-wrap;
         user-select: text;
         -webkit-user-select: text;

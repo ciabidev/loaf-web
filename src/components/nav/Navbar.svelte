@@ -3,7 +3,7 @@
 
   interface Props {
     test?: boolean;
-    position?: 'top' | 'right' | 'bottom' | 'left';
+    position?: 'top' | 'right' | 'left-top' | 'left-bottom' | 'bottom' | 'left' | 'right-top' | 'right-bottom';
     children: Snippet;
   }
 
@@ -14,7 +14,7 @@
   <div
     class="navbar-tabs"
     role="tablist"
-    aria-orientation={position === 'left' || position === 'right' ? 'vertical' : 'horizontal'}
+    aria-orientation={position.startsWith('left') || position.startsWith('right') ? 'vertical' : 'horizontal'}
   >
     {@render children()}
   </div>
@@ -28,6 +28,7 @@
   }
 
   .navbar {
+
     overflow: hidden;
     width: 100%;
     height: var(--navbar-height);
@@ -47,32 +48,32 @@
     left: 0;
   }
 
-  .navbar[data-position='bottom'] {
+  .navbar[data-position='bottom']  {
     bottom: 0;
     left: 0;
   }
 
-  .navbar[data-position='left'],
-  .navbar[data-position='right'] {
+  .navbar[data-position^='left'],
+  .navbar[data-position^='right'] {
     top: 0;
     width: calc(var(--navbar-width) + var(--navbar-inner-padding) * 2);
     height: 100%;
     padding: 0;
   }
 
-  .navbar[data-position='left'] {
+  .navbar[data-position^='left'] {
     left: 0;
   }
 
-  .navbar[data-position='right'] {
+  .navbar[data-position^='right'] {
     right: 0;
   }
 
   .navbar-tabs {
     z-index: 1005;
     max-width: 100%;
-    padding: var(--navbar-inner-padding) 0;
     height: fit-content;
+            padding: var(--navbar-inner-padding);
     justify-content: space-between;
   }
 
@@ -82,8 +83,8 @@
     align-items: stretch;
   }
 
-  .navbar[data-position='left'] .navbar-tabs,
-  .navbar[data-position='right'] .navbar-tabs {
+  .navbar[data-position^='left'] .navbar-tabs,
+  .navbar[data-position^='right'] .navbar-tabs {
     flex-direction: column;
     width: 100%;
     max-height: 100%;
@@ -91,7 +92,6 @@
     justify-content: flex-start;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: var(--navbar-inner-padding);
     padding-bottom: var(--navbar-tab-padding);
   }
 
@@ -109,6 +109,38 @@
     .navbar[data-position='bottom'] .navbar-tabs {
       height: fit-content;
       align-items: normal;
+    }
+
+    .navbar[data-position$='-top'],
+    .navbar[data-position$='-bottom'] {
+      left: 0;
+      right: auto;
+      width: 100%;
+      height: var(--mobile-navbar-height);
+    }
+
+    .navbar[data-position$='-top'] {
+      top: 0;
+      bottom: auto;
+    }
+
+    .navbar[data-position$='-bottom'] {
+      top: auto;
+      bottom: 0;
+    }
+
+    .navbar[data-position$='-top'] .navbar-tabs,
+    .navbar[data-position$='-bottom'] .navbar-tabs {
+      flex-direction: row;
+      width: auto;
+      max-width: 100%;
+      height: fit-content;
+      max-height: none;
+      align-items: normal;
+      justify-content: space-between;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: var(--navbar-inner-padding);
     }
   }
 

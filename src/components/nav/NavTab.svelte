@@ -54,6 +54,7 @@
   id="tab"
   draggable="false"
   class:active={isTabCurrentPage}
+  class:navbar-tab={true}
   href={path}
   aria-selected={isTabCurrentPage}
   class:horizontal={layout === 'horizontal'}
@@ -63,7 +64,7 @@
   {#if Icon}
     <Icon style="font-size: var(--icon-size-mobile); color: var(--active-icon-color, var(--icon-color));" class="icon" />
   {/if}
-  <span>{name}</span>
+  <span class="tab-title">{name}</span>
 </a>
 
 <style lang="css">
@@ -80,7 +81,11 @@
     }
   }
 
-  a[role="tab"] {
+  .tab-title {
+    white-space: nowrap;
+  }
+
+  .navbar-tab {
     transition: transform 250ms cubic-bezier(0.33, 1, 0.68, 1);
     display: flex;
     flex-direction: column;
@@ -89,45 +94,49 @@
     gap: 0.1875rem;
     min-width: var(--navbar-width);
     height: fit-content;
-    padding: var(--navbar-tab-padding) 0.1875rem;
+    padding: var(--navbar-tab-padding);
+    text-align: center;
     color: var(--nav-highlight);
     font-size: var(--navbar-font-size);
     opacity: 0.75;
     text-decoration: none;
+    overflow-x: hidden;
      user-select: none;
   -webkit-user-select: none;  /* Safari / iOS */
   -ms-user-select: none; 
     border-radius: var(--radius-md);
   }
 
-  :global(.navbar[data-position='top']) a[role="tab"],
-  :global(.navbar[data-position='bottom']) a[role="tab"] {
+  :global(.navbar[data-position='top']) .navbar-tab,
+  :global(.navbar[data-position='bottom']) .navbar-tab {
     height: auto;
   }
 
   @media screen and (max-width: 600px) {
-    :global(.navbar[data-position='top']) a[role="tab"],
-    :global(.navbar[data-position='bottom']) a[role="tab"] {
-      min-width: calc(var(--navbar-width) / 2);
+    :global(.navbar[data-position='top']) .navbar-tab,
+    :global(.navbar[data-position='bottom']) .navbar-tab,
+    :global(.navbar[data-position$='-top']) .navbar-tab,
+    :global(.navbar[data-position$='-bottom']) .navbar-tab {
       height: fit-content;
       padding: 0.3125rem var(--padding);
     }
   }
 
-  a[role="tab"].horizontal {
+  .navbar-tab.horizontal {
     flex-direction: row;
+    justify-content: flex-start;
     height: auto;
-    padding: var(--navbar-tab-padding-horizontal) 0;
-    gap: calc(var(--navbar-tab-padding-horizontal) * 1.5);
+    padding: var(--navbar-tab-padding-horizontal);
+    gap: calc(var(--navbar-tab-padding-horizontal));
   }
 
   /* shrinks down for a little then scales back up once it gains the .active class */
-  a[role="tab"]:active:hover:not(.active) {
+  .navbar-tab:active:hover:not(.active) {
     transform: scale(0.85, 0.85);
     border: var(--button-stroke) solid 1px;
   }
 
-  a[role="tab"].active {
+  .navbar-tab.active {
     --active-icon-color: var(--nav-active-highlight);
     animation: 0.3s afterClick cubic-bezier(0.33, 1, 0.68, 1);
     background: var(--sub-color);
@@ -139,7 +148,7 @@
 
 
 @media not all and (hover: none) {
-   a[role="tab"]:hover:not(.active) {
+   .navbar-tab:hover:not(.active) {
     background: var(--nav-hover-bg)
   }
 }

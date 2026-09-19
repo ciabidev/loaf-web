@@ -1,149 +1,191 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+	interface SelectOption {
+		value: string;
+		text: string;
+	}
 
-    export let full: boolean = false;
-    export let description: string = '';
+	interface Props {
+		options?: SelectOption[];
+		title?: string;
+		locked?: boolean;
+		full?: boolean;
+		selected?: string;
+		onSelect?: (value: string) => void;
+	}
 
-    let switcherElement: HTMLDivElement;
-    let highlightElement: HTMLDivElement;
+	let {
+		options = [],
+		title = '',
+		locked = false,
+		full = true,
+		selected = $bindable(''),
+		onSelect
+	}: Props = $props();
 
-    onMount(() => {
-        let frame = 0;
+	let isOpen = $state(false);
 
-        const updateHighlight = () => {
-            cancelAnimationFrame(frame);
-            frame = requestAnimationFrame(() => {
-                const activeButton = switcherElement.querySelector('button.active');
+	function toggleMenu() {
+		if (locked) return;
+		isOpen = !isOpen;
+	}
 
-                if (!activeButton) {
-                    highlightElement.hidden = true;
-                    return;
-                }
+	function handleSelection(value: string) {
+		selected = value;
+		isOpen = false;
+		if (onSelect) onSelect(value);
+	}
 
-                const switcherBounds = switcherElement.getBoundingClientRect();
-                const buttonBounds = activeButton.getBoundingClientRect();
-
-                highlightElement.hidden = false;
-                highlightElement.style.width = `${buttonBounds.width}px`;
-                highlightElement.style.height = `${buttonBounds.height}px`;
-                highlightElement.style.transform = `translate(${buttonBounds.left - switcherBounds.left - switcherElement.clientLeft + switcherElement.scrollLeft}px, ${buttonBounds.top - switcherBounds.top - switcherElement.clientTop + switcherElement.scrollTop}px)`;
-            });
-        };
-
-        const mutationObserver = new MutationObserver(updateHighlight);
-        mutationObserver.observe(switcherElement, {
-            attributes: true,
-            attributeFilter: ['class'],
-            childList: true,
-            subtree: true
-        });
-
-        const resizeObserver = new ResizeObserver(updateHighlight);
-        resizeObserver.observe(switcherElement);
-        switcherElement.addEventListener('scroll', updateHighlight);
-        updateHighlight();
-
-        return () => {
-            cancelAnimationFrame(frame);
-            mutationObserver.disconnect();
-            resizeObserver.disconnect();
-            switcherElement.removeEventListener('scroll', updateHighlight);
-        };
-    });
+	let currentLabel = $derived(options.find((opt) => opt.value === selected)?.text || 'Select...');
 </script>
 
-<div class="switcher-parent">
-    <div class="switcher" class:full bind:this={switcherElement}>
-        <div class="highlight" bind:this={highlightElement} aria-hidden="true"></div>
-        <slot></slot>
-    </div>
-    {#if description}
-        <div class="subtext">{description}</div>
-    {/if}
+<div class="selector-wrapper" class:full>
+	<button
+		type="button"
+		class="selector-button"
+		class:locked
+		disabled={locked}
+		aria-haspopup="listbox"
+		aria-expanded={isOpen}
+		onclick={toggleMenu}
+	>
+		{#if title}
+			<h4 class="selector-title">{title}</h4>
+		{/if}
+		<div class="value-wrapper">
+			<span class="current-value">{currentLabel}</span>
+		</div>
+	</button>
+
+	{#if isOpen}
+		<ul class="options-menu" role="listbox">
+			{#each options as option}
+				<li role="none">
+					<button
+						type="button"
+						class="menu-item"
+						role="option"
+						aria-selected={selected === option.value}
+						onclick={() => handleSelection(option.value)}
+					>
+						{option.text}
+					</button>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>
 
 <style>
-    .switcher-parent {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+	.selector-wrapper {
+		position: relative;
+		display: inline-flex;
+		width: fit-content;
+		max-width: 100%;
+	}
 
-    .switcher {
-        position: relative;
-        display: flex;
-        width: auto;
-        height: auto;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        scrollbar-width: none;
-        overflow-x: scroll;
-        max-width: fit-content;
-        border-radius: var(--radius-lg);
-        background: var(--button-default);
-        border: var(--button-stroke) solid 0.0625rem;
-        box-shadow: var(--shadow-main);
-        padding: var(--switcher-padding);
-        gap: calc(var(--switcher-padding) - 0.0938rem);
-    }
+	.selector-button,
+	.options-menu {
+		background: var(--button-default);
+		border: var(--button-stroke) solid 0.0625rem;
+		box-shadow: var(--shadow-main);
+		border-radius: var(--radius-lg);
+		padding: var(--switcher-padding);
+	}
 
-    .switcher.full {
-        max-width: 100%;
-    }
+	.selector-wrapper.full {
+		width: 100%;
+	}
 
-    .switcher :global(button) {
-        white-space: nowrap;
-        width: 100%;
-        /* [base button height] - ([switcher padding] * [padding factor to accommodate for]) */
-        height: calc(2.5rem - var(--switcher-padding) * 2);
-        border-radius: var(--radius-lg);
-        border: 0.0625rem solid transparent; /* without this the border will flash black when :active */
-        box-shadow: none;
-        position: relative;
-        z-index: 1;
-        background-color: transparent;
-        transition:
-            background-color 0.2s ease,
-            filter 0.2s ease,
-            border-color 0.2s ease;
-    }
+	.selector-button {
+		width: 100%;
+		min-width: 12rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: calc(var(--switcher-padding) * 2) 16px;
+		gap: calc(var(--switcher-padding) * 2);
+		color: var(--text-color);
+		text-align: start;
+	}
 
-    .switcher :global(button > *) {
-        position: relative;
-        z-index: 2;
-    }
+	.selector-button:hover {
+		filter: none;
+	}
 
-    .switcher :global(button:not(.active):hover) {
-        background-color: rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-    }
+	.selector-button:active {
+		filter: var(--button-press-filter);
+	}
 
-    .switcher :global(button.active) {
-        pointer-events: none;
-        background-color: transparent;
-    }
+	.selector-title,
+	.current-value {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 
-    .switcher :global(button.active:hover) {
-        filter: none;
-        background-color: transparent;
-    }
+	.selector-title {
+		flex-shrink: 0;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--text-color);
+	}
 
-    .switcher :global(button:active:not(.active)) {
-        border-color: var(--button-stroke);
-        background-color: rgba(0, 0, 0, 0.2);
-    }
+	.current-value {
+		width: fit-content;
+		max-width: 100%;
+		padding: 0.25rem 0.5625rem;
+		border: 0.0625rem solid var(--button-stroke);
+		border-radius: calc(var(--radius-md) - var(--switcher-padding));
+		background: var(--bg-color);
+		font-size: 0.95rem;
+		font-weight: 500;
+	}
 
-    .highlight {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        border-radius: var(--radius-lg);
-        background-color: var(--main-color);
-        pointer-events: none;
-        transition:
-            transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),
-            width 0.25s cubic-bezier(0.33, 1, 0.68, 1),
-            height 0.25s cubic-bezier(0.33, 1, 0.68, 1);
-    }
+	.value-wrapper {
+		display: flex;
+		min-width: 0;
+		justify-content: flex-end;
+	}
+
+	.selector-title + .value-wrapper {
+		margin-left: calc(var(--padding) / 3);
+	}
+
+	.options-menu {
+		position: absolute;
+		top: calc(100% + 0.375rem);
+		left: 0;
+		width: 100%;
+		max-height: 15.625rem;
+		overflow-y: auto;
+		list-style: none;
+		margin: 0;
+		z-index: 100;
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--switcher-padding) - 0.0938rem);
+	}
+
+	.menu-item {
+		width: 100%;
+		text-align: left;
+		justify-content: flex-start;
+		height: calc(2.5rem - var(--switcher-padding) * 2);
+		border-radius: calc(var(--radius-lg) - var(--switcher-padding));
+		border: 0.0625rem solid transparent;
+		box-shadow: none;
+		background: transparent;
+	}
+
+	.menu-item:hover {
+		filter: var(--button-hover-filter);
+	}
+
+	.menu-item[aria-selected='true'] {
+		background: var(--main-color);
+		color: var(--secondary-text-color);
+		pointer-events: none;
+	}
 </style>

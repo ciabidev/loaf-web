@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.css';
-	import '../flavors.css';
 	import Basket from '$components/layout/Basket.svelte';
 	import Loaf from '$components/layout/Loaf.svelte';
 	import Navbar from '$components/nav/Navbar.svelte';
@@ -164,7 +163,7 @@ registerFlavors([
 		{@render children()}
 	</Loaf>
 
-	<Navbar position="bottom">
+	<Navbar position="left-bottom">
 		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
 		<NavTab name = {'404'} Icon={MacroIcon} path={'/404'} />
 	</Navbar>
