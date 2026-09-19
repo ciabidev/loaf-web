@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ChevronDownIcon from '~icons/hugeicons/chevron-down';
+
 	interface SelectOption {
 		value: string;
 		text: string;
@@ -53,6 +55,10 @@
 		{/if}
 		<div class="value-wrapper">
 			<span class="current-value">{currentLabel}</span>
+			<ChevronDownIcon
+				style="width: 1rem; height: 1rem; flex-shrink: 0;"
+				aria-hidden="true"
+			/>
 		</div>
 	</button>
 
@@ -88,7 +94,7 @@
 		background: var(--button-default);
 		border: var(--button-stroke) solid 0.0625rem;
 		box-shadow: var(--shadow-main);
-		border-radius: var(--radius-lg);
+		border-radius: var(--radius-md);
 		padding: var(--switcher-padding);
 	}
 
@@ -145,6 +151,8 @@
 
 	.value-wrapper {
 		display: flex;
+		align-items: center;
+		gap: calc(var(--switcher-padding) / 2);
 		min-width: 0;
 		justify-content: flex-end;
 	}
@@ -184,7 +192,7 @@
 	}
 
 	.menu-item[aria-selected='true'] {
-		background: var(--main-color);
+		background: var(--accent);
 		color: var(--secondary-text-color);
 		pointer-events: none;
 	}
