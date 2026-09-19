@@ -9,16 +9,16 @@
 	--muted-text-color: color-mix(in srgb, var(--text-color) 65%, transparent);
 
 	--focus-ring: var(--accent);
+	--border-color: color-mix(in srgb, var(--text-color) 6%, transparent);
+	--shadow-color: color-mix(in srgb, var(--text-color) 6%, transparent);
+	--shadow-main: 0 0 0.625rem 0 var(--shadow-color);
 
 	/* Button styles */
-	--shadow-main: var(--button-stroke) 0rem 0rem 0.625rem 0rem;
+	--button-stroke: var(--border-color);
 	--button-default: var(--surface-secondary); /* button from cobalt was changed to button-default */
 	--button-elevated: var(--button-default);
 	--button-elevated-hover: var(--elevated);
-
-	--button-box-shadow:
-		var(--shadow-main), 0rem 0rem 0rem 0.0625rem var(--button-stroke); /* for elevated buttons */
-	/* old button-box-shadow: 0 0 0 0.0625rem var(--button-stroke) inset; */
+	--button-box-shadow: var(--shadow-main);
 	--switcher-padding: 0.2188rem;
 
 	/* Dialog styles */
@@ -32,8 +32,8 @@
 
 	/* Card styles */
 	--card: var(--button-default);
-	--card-stroke: var(--button-stroke);
-	--card-box-shadow: var(--button-box-shadow);
+	--card-stroke: var(--border-color);
+	--card-box-shadow: var(--shadow-main);
 	/* Input styles */
 	--input-focus-stroke: var(--text-color);
 
@@ -64,7 +64,7 @@
 	--radius-lg: 24px;
 	--radius-pill: 100px;
 	--readable-line-height: 1.8;
-	--toast-shadow: var(--button-box-shadow);
+	--toast-shadow: var(--shadow-main);
 	--toggle-bg-enabled: var(--accent);
 		--popup-bg: var(--surface);
 
@@ -72,7 +72,6 @@
 
 :root,
 [data-flavor-type='light'] {
-	--button-stroke: rgba(0, 0, 0, 0.06);
 	--popup-stroke: rgba(0, 0, 0, 0.08);
 	--toggle-bg: rgba(0, 0, 0, 0.12);
 	--popover-glow: rgba(0, 0, 0, 0.06);
@@ -82,7 +81,6 @@
 }
 
 [data-flavor-type='dark'] {
-	--button-stroke: rgba(200, 200, 200, 0.06);
 	--popup-stroke: rgba(255, 255, 255, 0.08);
 	--toggle-bg: rgba(255, 255, 255, 0.12);
 	--popover-glow: rgba(135, 135, 135, 0.06);
@@ -535,7 +533,7 @@ button:hover,
 
 .button--elevated {
 	background-color: var(--button-elevated);
-	box-shadow: none;
+	box-shadow: var(--button-box-shadow);
 }
 
 .button--link {

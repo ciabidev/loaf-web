@@ -150,6 +150,11 @@
 			<button disabled>Disabled</button>
 			<a class="button button--link" href="#inputs">Link button</a>
 		</div>
+		<div class="effect-samples">
+			<div class="effect-samples__item effect-samples__item--border">Border only</div>
+			<div class="effect-samples__item effect-samples__item--shadow">Shadow only</div>
+			<div class="effect-samples__item effect-samples__item--both">Border and shadow</div>
+		</div>
 		<div class="component-row">
 			<URLButton
 				url="https://github.com/ciabidev/loaf-web"
@@ -355,7 +360,7 @@
 	<section class="gallery-section">
 		<div class="section-heading">
 			<h2>Dropdown menu</h2>
-			<p>Open the selector to see the selected value grouped with its chevron.</p>
+			<p>Open the selector to see the selected value, chevron, and option hover states.</p>
 		</div>
 		<Selector
 			title="Compact selector"
@@ -403,6 +408,29 @@
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 0.75rem;
+	}
+
+	.effect-samples {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+		gap: 0.75rem;
+		width: 100%;
+	}
+
+	.effect-samples__item {
+		padding: 1rem;
+		border-radius: var(--radius-md);
+		background: var(--button-default);
+	}
+
+	.effect-samples__item--border,
+	.effect-samples__item--both {
+		border: 0.0625rem solid var(--button-stroke);
+	}
+
+	.effect-samples__item--shadow,
+	.effect-samples__item--both {
+		box-shadow: var(--button-box-shadow);
 	}
 
 	.stack {

@@ -67,6 +67,6 @@
 
 	.carousel-item.active img {
 		border: var(--button-stroke) solid 0.0625rem;
-		box-shadow: var(--button-box-shadow);
+		box-shadow: var(--shadow-main);
 	}
 </style>
