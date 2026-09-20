@@ -1,4 +1,4 @@
-import type { Emotion } from "$lib/types/emoticon";
+import type { Emotion } from './emoticon.js';
 
 export type DialogButton = {
     text: string,

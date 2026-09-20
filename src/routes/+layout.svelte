@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '$lib/styles/loaf.css';
 	import Basket from '$components/layout/Basket.svelte';
 	import Loaf from '$components/layout/Loaf.svelte';
 	import Navbar from '$components/nav/Navbar.svelte';
@@ -7,6 +7,7 @@
 	import DialogHolder from '$components/dialog/DialogHolder.svelte';
 	let { children }: { children: Snippet } = $props();
 	import NavTab from '$components/nav/NavTab.svelte';
+	import { page } from '$app/state';
 	import MacroIcon from '~icons/streamline-flex/toaster-remix';
 
 	import FlavorPicker from '$components/nav/FlavorPicker.svelte';
@@ -164,7 +165,7 @@ registerFlavors([
 	</Loaf>
 
 	<Navbar position="left-bottom">
-		<NavTab name = {'test'} Icon={MacroIcon} path={'/'} />
-		<NavTab name = {'404'} Icon={MacroIcon} path={'/404'} />
+		<NavTab name="test" Icon={MacroIcon} path="/" active={page.url.pathname === '/'} />
+		<NavTab name="404" Icon={MacroIcon} path="/404" active={page.status === 404} />
 	</Navbar>
 </Basket>

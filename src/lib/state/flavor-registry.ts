@@ -1,4 +1,4 @@
-import type { FlavorDefinition } from '$lib/types/flavor-definition';
+import type { FlavorDefinition } from '../types/flavor-definition.js';
 
 export const flavors = new Map<string, FlavorDefinition>();
 

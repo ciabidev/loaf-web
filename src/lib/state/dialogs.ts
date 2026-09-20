@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { DialogInfo } from "$lib/types/dialog";
+import type { DialogInfo } from '../types/dialog.js';
 
 // Store holds a single dialog or null
 export const dialog = writable<DialogInfo | null>(null);

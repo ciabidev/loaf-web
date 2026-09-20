@@ -1,18 +1,23 @@
 {
 	"name": "@ciabi/loaf-web",
 	"version": "0.1.0",
+	"description": "A cozy, extensible Svelte component library.",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",
+		"package": "svelte-package",
+		"package:watch": "svelte-package --watch",
+		"prepublishOnly": "npm run check && npm run package && publint",
 		"preview": "vite preview",
-		"start": "node build",
 		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"check": "svelte-kit sync && svelte-check --workspace src --tsconfig ../tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --workspace src --tsconfig ../tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint .",
-		"docs:generate": "node scripts/generate-docs.js",
-		"docs:watch": "nodemon --watch src/routes/api --ext js --exec \"npm run docs:generate\""
+		"lint": "prettier --check . && eslint ."
 	},
 	"files": [
 		"dist",
@@ -29,7 +34,8 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
-		}
+		},
+		"./styles.css": "./dist/styles/loaf.css"
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0"
@@ -38,12 +44,7 @@
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
 		"@iconify-json/hugeicons": "^1.2.35",
-		"@iconify-json/tabler": "^1.2.22",
 		"@iconify/json": "^2.2.379",
-		"@sveltejs/adapter-cloudflare": "^0.0.1",
-		"@sveltejs/adapter-node": "^0.0.18",
-		"@sveltejs/adapter-static": "^0.0.17",
-		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/package": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
@@ -53,7 +54,6 @@
 		"eslint-plugin-svelte": "^3.0.0",
 		"globals": "^16.0.0",
 		"mdsvex": "^0.12.3",
-		"nodemon": "^3.1.10",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"publint": "^0.3.2",
@@ -65,16 +65,17 @@
 		"vite": "^6.2.6"
 	},
 	"keywords": [
-		"svelte"
+		"svelte",
+		"components",
+		"design-system",
+		"ui"
 	],
 	"overrides": {
 		"esbuild": "0.25.4"
 	},
 	"dependencies": {
 		"@iconify-svelte/hugeicons": "^1.0.20",
-		"@supabase/supabase-js": "^2.57.2",
 		"marked": "^16.2.1",
-		"mdsvex": "^0.12.6",
 		"shiki": "^3.12.0"
 	}
 }

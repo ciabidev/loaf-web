@@ -1,35 +1,13 @@
-import { sveltekit } from '@sveltejs/kit/vite'
-import Icons from 'unplugin-icons/vite'
-// vite.config.js
-import { defineConfig, loadEnv } from 'vite'
+import { sveltekit } from '@sveltejs/kit/vite';
+import Icons from 'unplugin-icons/vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(({ mode }) => {
-  // Load environment variables
-  const env = loadEnv(mode, process.cwd(), '')
-
-  return {
-    plugins: [
-      sveltekit(),
-      Icons({
-        // experimental
-        autoInstall: true,
-        compiler: 'svelte'
-      })
-    ],
-    define: {
-      // Make sure environment variables are available
-      'process.env.MONGO_URI': JSON.stringify(env.MONGO_URI)
-    },
-    optimizeDeps: {
-      include: ['mongodb', 'dotenv']
-    },
-    build: {
-      rollupOptions: {
-        external: (id) => {
-          // Don't externalize Node.js built-ins
-          return false
-        }
-      }
-    }
-  }
-})
+export default defineConfig({
+	plugins: [
+		sveltekit(),
+		Icons({
+			autoInstall: true,
+			compiler: 'svelte'
+		})
+	]
+});

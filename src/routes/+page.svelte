@@ -18,8 +18,10 @@
 	import Markdown from '$components/misc/Markdown.svelte';
 	import PageContainer from '$components/misc/PageContainer.svelte';
 	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
+	import Profile from '$components/misc/Profile.svelte';
 	import Tags from '$components/misc/Tags.svelte';
 	import Navbar from '$components/nav/Navbar.svelte';
+	import NavbarLogo from '$components/nav/NavbarLogo.svelte';
 	import NavTab from '$components/nav/NavTab.svelte';
 	import { createDialog } from '$lib/state/dialogs';
 	import { flavors } from '$lib/state/flavor-registry';
@@ -174,7 +176,6 @@
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
 			<h2>Buttons and links</h2>
-			<p>Global button treatments and the URL button component.</p>
 		</div>
 		<div class="component-row">
 			<button>Default</button>
@@ -204,7 +205,7 @@
 	<section class="gallery-section" id="inputs">
 		<div class="section-heading paragraph-text">
 			<h2>Inputs and controls</h2>
-			<p>Text entry, segmented controls, and toggle states.</p>
+			<p>text entry, segmented controls, and toggle states.</p>
 		</div>
 		<div class="stack">
 			<FormField
@@ -296,9 +297,6 @@
 		<div class="section-heading paragraph-text">
 			<h2>Dialogs and popovers</h2>
 			<p>Overlay entry points and inline expanded/collapsed states.</p>
-			<p class="subtext">
-				Hover and open these controls to verify the outer loaf corners keep the navbar color.
-			</p>
 		</div>
 		<div class="component-row">
 			<button onclick={openSmallDialog}>Open small dialog</button>
@@ -342,6 +340,8 @@
 			<Emoticon emotion="unamused" size="small" />
 		</div>
 
+		<Profile name="Loaf" src="/favicon/favicon-96x96.png" />
+
 		<Markdown
 			source={'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three\n\nSpacing stays consistent after a list, too.'}
 		/>
@@ -358,22 +358,19 @@
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
 			<h2>Navigation</h2>
-			<p>
-				Embedded previews exercise fixed and responsive layouts without moving the page to an active
-				tab.
-			</p>
 		</div>
 		<div class="nav-previews">
 			<div class="horizontal-nav-preview">
 				<Navbar test position="bottom">
-					<NavTab name="Gallery" Icon={GridIcon} path="/" />
+					<NavTab name="Gallery" Icon={GridIcon} path="/" active />
 					<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
 					<NavTab name="A very long test route" Icon={LinkIcon} path="/test3" />
 				</Navbar>
 			</div>
 			<div class="vertical-nav-preview">
 				<Navbar test position="left">
-					<NavTab name="Gallery" Icon={GridIcon} path="/" />
+					<NavbarLogo src="/icons/biology.jpg" alt="Ciabi logo" />
+					<NavTab name="Gallery" Icon={GridIcon} path="/" active />
 					<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
 					<NavTab name="A very long test route" Icon={LinkIcon} path="/test3" />
 				</Navbar>
@@ -390,7 +387,7 @@
 					<code>{position}</code>
 					<div class="responsive-nav-preview">
 						<Navbar test {position}>
-							<NavTab name="Gallery" Icon={GridIcon} path="/" />
+							<NavTab name="Gallery" Icon={GridIcon} path="/" active />
 							<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
 						</Navbar>
 					</div>
@@ -402,7 +399,6 @@
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
 			<h2>Dropdown menu</h2>
-			<p>Open the selector to see the selected value, chevron, and option hover states.</p>
 		</div>
 		<Selector
 			title="Compact selector"
@@ -416,9 +412,9 @@
 		/>
 
 		<div class="selector-edge-example">
-			<p class="paragraph-text">Near the viewport edge, this selector opens upward when needed.</p>
+			<p class="paragraph-text">near the viewport edge, this selector opens upward when needed.</p>
 			<Selector
-				title="Viewport-aware selector"
+				title="a flipping selector"
 				full={false}
 				options={[
 					{ value: 'alpha', text: 'Alpha option' },

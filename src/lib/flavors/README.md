@@ -27,7 +27,7 @@ unregisterFlavor(name): Remove a flavor from registry
 ### Basic Example
 
 ```typescript
-import { registerFlavor } from '$lib/state/flavor-registry';
+import { registerFlavor } from '@ciabi/loaf-web';
 
 registerFlavor({
   name: 'midnight',
@@ -85,7 +85,7 @@ Each flavor must define CSS custom properties that are applied to the document r
 To ensure custom flavors are available throughout the application, register them early. Create a file that auto-registers on import:
 ```typescript
 // lib/customFlavors.ts
-import { registerFlavors } from '$lib/state/flavor-registry';
+import { registerFlavors } from '@ciabi/loaf-web';
 export const myCustomFlavors = [/* ... */];
 registerFlavors(myCustomFlavors);
 ```

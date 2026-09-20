@@ -1,5 +1,8 @@
 node_modules
 /cobalt-main
+/cobalt/**
+/cobalt/*
+cobalt/*
 # Output
 .output
 .vercel

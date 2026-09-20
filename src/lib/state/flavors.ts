@@ -1,6 +1,5 @@
-import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
-import { getFlavor, applyFlavor } from '$lib/state/flavor-registry';
+import { getFlavor, applyFlavor } from './flavor-registry.js';
 
 // default to the app's baseline flavor. the initial flavor/flavorType is
 // handled in +layout.svelte to avoid SSR flash; stores only need sensible defaults.
@@ -11,7 +10,7 @@ const defaultFlavorType = defaultFlavorDef?.isDark ? 'dark' : 'light';
 let initialFlavor = defaultFlavor;
 let initialFlavorType = defaultFlavorType;
 
-if (browser) {
+if (typeof window !== 'undefined') {
   try {
     const storedFlavor = localStorage.getItem('flavor');
     const storedFlavorType = localStorage.getItem('flavorType');
