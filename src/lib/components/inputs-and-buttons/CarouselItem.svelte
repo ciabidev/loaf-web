@@ -51,7 +51,7 @@
 		z-index: 10;
 		background: none;
 		max-width: 8.125rem;
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	.carousel-item img {

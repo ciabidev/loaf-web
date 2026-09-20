@@ -130,7 +130,7 @@
     }
 
     .popup-title {
-        color: var(--text-color);
+        color: var(--text);
         font-size: 1.1875rem;
     }
 
@@ -150,7 +150,7 @@
         font-size: 0.9063rem;
         font-weight: 500;
         line-height: 1.7;
-        color: var(--muted-text-color);
+        color: var(--text-muted);
         white-space: pre-wrap;
         user-select: text;
         -webkit-user-select: text;

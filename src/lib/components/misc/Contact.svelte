@@ -16,7 +16,7 @@
 		padding: 0.6rem;
 		border-radius: var(--radius-md);
 		text-decoration: none;
-		color: var(--text-color);
+		color: var(--text);
 		box-shadow: var(--card-stroke) 0 0 0 1px;
 		user-select: none;
 		-webkit-user-select: none; /* Safari / iOS */

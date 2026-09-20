@@ -27,7 +27,7 @@
 		flex-direction: column;
 		justify-content: center;
 		text-decoration: none;
-		color: var(--text-color);
+		color: var(--text);
 		position: relative;
         text-decoration: none;
 	}
@@ -74,6 +74,6 @@
 	}
 
 	a.url-button:hover {
-		background: color-mix(in srgb, var(--text-color) 6%, transparent);
+		background: color-mix(in srgb, var(--text) 6%, transparent);
 	}
 </style>

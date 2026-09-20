@@ -36,14 +36,14 @@ registerFlavor({
   isDark: true,
   cssVariables: {
     '--surface': '#0f1419',
-    '--text-color': '#e8eaed',
-    '--secondary-text-color': '#ffffff',
+    '--text': '#e8eaed',
+    '--text-on-accent': '#ffffff',
     '--accent': '#8ab4f8',
     '--accent-secondary': '#aecbfa',
     '--surface-secondary': '#202124',
-    '--color-success': '#81c995',
-    '--color-warning': '#fcc934',
-    '--color-error': '#f28482',
+    '--success': '#81c995',
+    '--warning': '#fcc934',
+    '--error': '#f28482',
     '--nav-hover-bg': '#8ab4f833',
     '--nav-bg': '#202124',
     '--nav-highlight': '#aecbfa',
@@ -59,8 +59,8 @@ Each flavor must define CSS custom properties that are applied to the document r
 ### Layout & Colors
 
 - `--surface`: Main background color
-- `--text-color`: Primary text color
-- `--secondary-text-color`: Text color for elements on `--accent` backgrounds
+- `--text`: Primary text color
+- `--text-on-accent`: Text color for elements on `--accent` backgrounds
 
 ### Accents
 
@@ -70,9 +70,9 @@ Each flavor must define CSS custom properties that are applied to the document r
 
 ### Status Colors
 
-- `--color-success`: Success states (green by default)
-- `--color-warning`: Warning states (yellow by default)
-- `--color-error`: Error states (red by default)
+- `--success`: Success states (green by default)
+- `--warning`: Warning states (yellow by default)
+- `--error`: Error states (red by default)
 
 ### Navigation
 

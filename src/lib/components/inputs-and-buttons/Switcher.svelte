@@ -107,7 +107,7 @@
 	.switcher :global(button.active) {
 		pointer-events: none;
 		background-color: transparent;
-		color: var(--secondary-text-color);
+		color: var(--text-on-accent);
 		color: var(--on-accent, contrast-color(var(--accent)));
 	}
 

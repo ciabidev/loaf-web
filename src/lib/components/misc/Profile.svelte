@@ -26,7 +26,7 @@
 	}
 
 	.bio-title {
-		color: var(--text-color);
+		color: var(--text);
 		user-select: none;
 		-webkit-user-select: none; /* Safari / iOS */
 		-ms-user-select: none;

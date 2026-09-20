@@ -43,7 +43,7 @@
 	.hint {
 		margin: 0;
 		font-size: 0.9rem;
-		color: var(--muted-text-color, #666);
+		color: var(--text-muted, #666);
 	}
 
 	.input-wrapper {
@@ -55,7 +55,7 @@
 	}
 
 	.required-text {
-		color: red;
+		color: var(--error);
 		font-size: 0.8rem;
 		display: inline-block;
 	}

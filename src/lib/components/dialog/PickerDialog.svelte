@@ -74,7 +74,7 @@
 		flex-direction: row;
 		align-items: center;
 		gap: calc(var(--padding-md) / 2);
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	.popup-title {

@@ -78,8 +78,8 @@ registerFlavor({
 	cssVariables: {
 		'--surface': '#fff8ed',
 		'--surface-secondary': '#f4e8d4',
-		'--text-color': '#342b25',
-		'--secondary-text-color': '#ffffff',
+		'--text': '#342b25',
+		'--text-on-accent': '#ffffff',
 		'--accent': '#db7758'
 	}
 });

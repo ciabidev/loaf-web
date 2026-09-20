@@ -4,13 +4,13 @@
 	/* Default flavor */
 	--surface: #ffffff;
 	--surface-secondary: #eaeef5;
-	--text-color: #282828;
-	--secondary-text-color: #ffffff;
+	--text: #282828;
+	--text-on-accent: #ffffff;
 	--accent: #4273fa;
 	--accent-secondary: #455fa8;
-	--color-success: #40d672;
-	--color-warning: #ffd63a;
-	--color-error: #f7374f;
+	--success: #40d672;
+	--warning: #ffd63a;
+	--error: #f7374f;
 	--nav-bg: #f4f4f4;
 	--nav-hover-bg: #00000033;
 	--nav-highlight: #455fa8;
@@ -19,12 +19,12 @@
 	--code-scrollbar: #636569;
 
 	--elevated: #e3e3e3; /* for buttons and tags */
-	--muted-text-color: color-mix(in srgb, var(--text-color) 50%, transparent);
+	--text-muted: color-mix(in srgb, var(--text) 50%, transparent);
 
 	--focus-ring: var(--accent);
 	--ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
-	--border-color: color-mix(in srgb, var(--text-color) 6%, transparent);
-	--shadow-color: color-mix(in srgb, var(--text-color) 6%, transparent);
+	--border-color: color-mix(in srgb, var(--text) 6%, transparent);
+	--shadow-color: color-mix(in srgb, var(--text) 6%, transparent);
 	--shadow-main: var(--shadow-color) 0px 10px 36px 0px;
 
 	/* Button styles */
@@ -37,7 +37,7 @@
 
 	/* Dialog styles */
 	--popup-padding: 1.125rem;
-	--red: var(--color-error);
+	--red: var(--error);
 	--white: #ffffff;
 	/* Popover styles */
 	--popover-bg: var(--surface-secondary);
@@ -48,7 +48,7 @@
 	--card-stroke: var(--border-color);
 	--card-box-shadow: var(--shadow-main);
 	/* Input styles */
-	--input-focus-stroke: var(--text-color);
+	--input-focus-stroke: var(--text);
 
 	/* Navbar */
 	/* we wont use rem since navbar dimensions are constant */
@@ -157,14 +157,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background: color-mix(in srgb, var(--text-color) 30%, transparent);
+	background: color-mix(in srgb, var(--text) 30%, transparent);
 	border-radius: 999px;
 	border: 0.125rem solid transparent;
 	background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: color-mix(in srgb, var(--text-color) 60%, transparent);
+	background: color-mix(in srgb, var(--text) 60%, transparent);
 	background-clip: content-box;
 }
 ::-webkit-scrollbar-button,
@@ -176,7 +176,7 @@
 	display: none !important;
 }
 ::selection {
-	color: var(--secondary-text-color);
+	color: var(--text-on-accent);
 	color: var(--on-accent, contrast-color(var(--accent)));
 	background: var(--accent);
 }
@@ -197,7 +197,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	height: 100%;
 	width: 100%;
-	color: var(--text-color);
+	color: var(--text);
 }
 
 html {
@@ -229,7 +229,7 @@ a {
 
 input::placeholder,
 textarea::placeholder {
-	color: var(--muted-text-color);
+	color: var(--text-muted);
 }
 img {
 	user-select: none;
@@ -255,24 +255,24 @@ pre {
 .subtext {
 	font-size: 0.7813rem;
 	font-weight: 500;
-	color: var(--muted-text-color);
+	color: var(--text-muted);
 	line-height: 1.4;
 	white-space: pre-line;
 }
 
 .gray {
-	color: var(--muted-text-color);
+	color: var(--text-muted);
 }
 
 .giantahhparagraph {
 	font-size: 1.1875rem;
-	color: var(--muted-text-color);
+	color: var(--text-muted);
 }
 
 .divider {
-	border-top: var(--muted-text-color);
-	color: var(--muted-text-color);
-	background-color: var(--muted-text-color);
+	border-top: var(--text-muted);
+	color: var(--text-muted);
+	background-color: var(--text-muted);
 	border: 0.0625rem;
 	display: block;
 	height: 0.0625rem;
@@ -302,13 +302,13 @@ img {
 
 ::selection {
 	background-color: var(--accent);
-	color: var(--secondary-text-color);
+	color: var(--text-on-accent);
 	color: var(--on-accent, contrast-color(var(--accent)));
 }
 
 ::-moz-selection {
 	background-color: var(--accent);
-	color: var(--secondary-text-color);
+	color: var(--text-on-accent);
 	color: var(--on-accent, contrast-color(var(--accent)));
 }
 
@@ -501,7 +501,7 @@ button,
 		filter 0.2s ease;
 	border: var(--button-stroke) solid 0.0625rem;
 	background-color: var(--button-default);
-	color: var(--text-color);
+	color: var(--text);
 }
 /* dont mix up the :active and .active classes. they are different */
 /* :active - buttons that are currently pressed	*/
@@ -518,7 +518,7 @@ button > img,
 .button.active,
 button.active {
 	background-color: var(--accent);
-	color: var(--secondary-text-color);
+	color: var(--text-on-accent);
 	color: var(--on-accent, contrast-color(var(--accent)));
 }
 
@@ -545,20 +545,20 @@ button:hover,
 /* Button Variants */
 .button--primary {
 	background: var(--accent);
-	color: var(--secondary-text-color);
+	color: var(--text-on-accent);
 	color: var(--on-accent, contrast-color(var(--accent)));
 }
 
 .button--success {
-	background: var(--color-success);
-	color: var(--secondary-text-color);
-	color: var(--on-success, contrast-color(var(--color-success)));
+	background: var(--success);
+	color: var(--text-on-accent);
+	color: var(--on-success, contrast-color(var(--success)));
 }
 
 .button--danger {
-	background: var(--color-error);
-	color: var(--secondary-text-color);
-	color: var(--on-error, contrast-color(var(--color-error)));
+	background: var(--error);
+	color: var(--text-on-accent);
+	color: var(--on-error, contrast-color(var(--error)));
 }
 
 .button--elevated {

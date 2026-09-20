@@ -88,7 +88,7 @@
 		background: none;
 		outline: none;
 		resize: none;
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	@media (pointer: none), (pointer: coarse) {

@@ -77,7 +77,7 @@
 		width: 100%;
 		overflow: hidden;
 		border-radius: var(--radius-lg);
-		color: var(--text-color);
+		color: var(--text);
 		font: inherit;
 		text-align: left;
 		padding: 0;

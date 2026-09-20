@@ -39,7 +39,7 @@
 		box-shadow: var(--shadow-main);
 		font-size: 0.875rem;
 		/* Keep the inherited theme color as a fallback for older browsers. */
-		color: var(--text-color);
+		color: var(--text);
 		color: var(--tag-text, contrast-color(var(--tag-background)));
 		transition: transform 0.2s ease;
 	}

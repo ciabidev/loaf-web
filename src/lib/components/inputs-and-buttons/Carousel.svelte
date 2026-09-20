@@ -137,7 +137,7 @@
 		border: none;
 		padding: 0;
 		box-shadow: none;
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	.carousel-arrows {
@@ -156,7 +156,7 @@
 	.carousel-arrow {
 		position: absolute;
 		pointer-events: all;
-		color: var(--text-color);
+		color: var(--text);
 		background: var(--surface);
 		border-radius: 50%;
 		padding: 0.75rem;

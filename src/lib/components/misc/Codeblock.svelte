@@ -67,13 +67,13 @@
 		align-items: center;
 		padding: var(--padding-xs) var(--padding-md);
 		font-size: 14px;
-		color: var(--text-color);
+		color: var(--text);
 		background: var(--surface-secondary);
 	}
 
 	.copy-btn {
 		padding: 0.25rem 0.5rem;
-		color: var(--text-color);
+		color: var(--text);
 		background: var(--button-default);
 		border: 1px solid var(--button-stroke);
 		border-radius: var(--radius-xs);
@@ -95,7 +95,7 @@
 
 	.code-title {
 		flex: 1;
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	/* Override Shiki's background to match component */

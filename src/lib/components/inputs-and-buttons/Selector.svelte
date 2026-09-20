@@ -151,7 +151,7 @@
 		justify-content: space-between;
 		padding: calc(var(--switcher-padding) * 2) 16px;
 		gap: calc(var(--switcher-padding) * 2);
-		color: var(--text-color);
+		color: var(--text);
 		text-align: start;
 	}
 
@@ -184,7 +184,7 @@
 		flex-shrink: 0;
 		font-size: 0.875rem;
 		font-weight: 500;
-		color: var(--text-color);
+		color: var(--text);
 	}
 
 	.current-value {
@@ -243,7 +243,7 @@
 	}
 
 	.menu-item:hover {
-		color: var(--text-color);
+		color: var(--text);
 	}
 	.menu-item[aria-selected='true'] {
 		background: var(--accent);

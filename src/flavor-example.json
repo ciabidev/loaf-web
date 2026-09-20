@@ -5,14 +5,14 @@
 	isDark: false,
 	cssVariables: {
 		'--surface': '#ffffff',
-		'--text-color': '#282828',
-		'--secondary-text-color': '#ffffff',/* text on the main color */ 
+		'--text': '#282828',
+		'--text-on-accent': '#ffffff',/* text on the main color */ 
 		'--accent': '#4273fa', /* main accent you'll see everywhere */
 		'--accent-secondary': '#455fa8', /* main color's brother, you'll see this on links and smaller stuff; half the time */
 		'--surface-secondary': '#eaeef5', /* for stuff like default buttons and cards; the background on the background */
-		'--color-success': '#40d672', 
-		'--color-warning': '#ffd63a',
-		'--color-error': '#f7374f',
+		'--success': '#40d672', 
+		'--warning': '#ffd63a',
+		'--error': '#f7374f',
 		'--nav-hover-bg': '#00000033', /* for hovering over navbar tabs */
 		'--nav-bg': '#f4f4f4', /* background of the navbar */
 		'--nav-highlight': '#455fa8', /* color of the navbar tab's text */
