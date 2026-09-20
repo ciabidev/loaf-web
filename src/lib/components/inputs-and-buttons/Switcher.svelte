@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { Snippet } from 'svelte';
 
-	export let full: boolean = false;
-	export let description: string = '';
+	let {
+		children,
+		full = false,
+		description = ''
+	}: { children?: Snippet; full?: boolean; description?: string } = $props();
 
 	let switcherElement: HTMLDivElement;
 	let highlightElement: HTMLDivElement;
@@ -55,7 +59,9 @@
 <div class="switcher-parent">
 	<div class="switcher" class:full bind:this={switcherElement}>
 		<div class="highlight" bind:this={highlightElement} aria-hidden="true"></div>
-		<slot></slot>
+		{#if children}
+			{@render children()}
+		{/if}
 	</div>
 	{#if description}
 		<div class="subtext">{description}</div>
@@ -101,6 +107,8 @@
 	.switcher :global(button.active) {
 		pointer-events: none;
 		background-color: transparent;
+		color: var(--secondary-text-color);
+		color: var(--on-accent, contrast-color(var(--accent)));
 	}
 
 	.switcher :global(button) {

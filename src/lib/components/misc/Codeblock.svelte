@@ -1,12 +1,16 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { highlightCode } from '../../state/shiki.js';
-	let copyText = 'Copy';
 
-	export let code = "";
-	export let language = "plaintext";
-	export let filename = "code";
-	let higlighted = '';
+	let {
+		code = '',
+		language = 'plaintext',
+		title = 'code',
+	}: { code?: string; language?: string; title?: string } = $props();
+
+	let copyText = $state('Copy');
+	let highlighted = $state('');
+
 	async function copyCode() {
 		try {
 			await navigator.clipboard.writeText(code);
@@ -17,64 +21,67 @@
 		}
 	}
 
-
 	async function highlight() {
 		if (!code) return;
-		higlighted = await highlightCode(code, language);
+		highlighted = await highlightCode(code, language);
 	}
+
 	// Delay highlighting to avoid interfering with page loading animations
 	onMount(() => {
 		highlight();
 	});
 </script>
 
-<div class="block">
-	<div class="header">
-		<div class="filename">{filename}</div>
-		<button class="copy-btn" onclick={copyCode}>
-			<span class="icon">📋</span>
-			{copyText}
-		</button>
-	</div>
-	{@html higlighted}
+<div class="block-wrapper">
+		<div class="header">
+			<div class="code-title">{title}</div>
+			<button class="copy-btn" onclick={copyCode}>
+				<span class="icon">📋</span>
+				{copyText}
+			</button>
+		</div>
+		<div class="block-container">
+			{@html highlighted}
+		</div>
 </div>
 
 <style>
-	.block {
+	.block-wrapper {
 		max-width: 100%;
-		background-color: var(--code-bg);
-		border-radius: .5rem;
-		padding-left: .5rem;
-		padding-right: .5rem;
-		padding-top: .6rem;
-		padding-bottom: .3rem;
-		-webkit-border-radius: .5rem;
-		-moz-border-radius: .5rem;
-		-ms-border-radius: .5rem;
-		-o-border-radius: .5rem;
 		position: relative;
-		border: 1px inset solid var(--code-stroke);
+		overflow: hidden;
+		background: var(--surface-secondary);
+		border: 1px solid var(--border-color);
+		padding: var(--padding-xs);
+		border-radius: var(--radius-md);
+		display: flex;
+		flex-direction: column;
 	}
+
+
 
 	.header {
 		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: .5rem;
+		padding: var(--padding-xs) var(--padding-md);
+		font-size: 14px;
+		color: var(--text-color);
+		background: var(--surface-secondary);
 	}
 
 	.copy-btn {
-		background-color: var(--code-bg);
-		color: #fff;
-		border: none;
-		border-radius: var(--radius-md);
-		padding: .25rem .5rem;
-		border: 1px solid var(--code-stroke);
-		font-size: .9rem;
+		padding: 0.25rem 0.5rem;
+		color: var(--text-color);
+		background: var(--button-default);
+		border: 1px solid var(--button-stroke);
+		border-radius: var(--radius-xs);
+		font-size: 0.9rem;
 		transition: background-color 0.2s;
 		display: flex;
 		align-items: center;
-		gap: .25rem;
+		gap: 0.25rem;
 		z-index: 2;
 	}
 
@@ -86,27 +93,28 @@
 		filter: brightness(1.25);
 	}
 
-	.filename {
-		font-family: monospace;
-		font-size: .9rem;
+	.code-title {
 		flex: 1;
-		color: #fff;
+		color: var(--text-color);
 	}
 
 	/* Override Shiki's background to match component */
 	:global(.shiki) {
 		background: var(--code-bg) !important;
 		margin: 0;
-		padding: .3rem 0;
-		font-family: 'Fira Mono', monospace;
-		font-size: inherit;
+		padding: 0.75rem;
+		color-scheme: dark;
+		font-size: 0.9rem;
 		line-height: inherit;
 		overflow-x: auto;
+				border-radius: var(--radius-md);
+
 	}
 
 	:global(.shiki code) {
 		background: transparent !important;
 		padding: 0;
+
 		border-radius: 0;
 		font-family: inherit;
 		font-size: inherit;

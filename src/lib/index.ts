@@ -1,7 +1,7 @@
 export { default as Basket } from './components/layout/Basket.svelte';
 export { default as Loaf } from './components/layout/Loaf.svelte';
 
-export { default as Carousel } from './components/inputs-and-buttons/CarouselContainer.svelte';
+export { default as Carousel } from './components/inputs-and-buttons/Carousel.svelte';
 export { default as Input } from './components/inputs-and-buttons/Input.svelte';
 export { default as Selector } from './components/inputs-and-buttons/Selector.svelte';
 export { default as Switcher } from './components/inputs-and-buttons/Switcher.svelte';
@@ -15,7 +15,7 @@ export { default as Emoticon } from './components/misc/Emoticon.svelte';
 export { default as FormField } from './components/misc/FormField.svelte';
 export { default as Markdown } from './components/misc/Markdown.svelte';
 export { default as PageContainer } from './components/misc/PageContainer.svelte';
-export { default as Popover } from './components/misc/PopoverContainer.svelte';
+export { default as Popover } from './components/misc/Popover.svelte';
 export { default as Profile } from './components/misc/Profile.svelte';
 export { default as Tags } from './components/misc/Tags.svelte';
 

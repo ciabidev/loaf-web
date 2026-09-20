@@ -32,7 +32,7 @@
     .button-group {
         display: flex;
         width: 100%;
-        gap: calc(var(--padding) / 2);
+        gap: calc(var(--padding-md) / 2);
         overflow-x: auto;
         border-radius: var(--radius-md);
         min-height: 2.5rem;

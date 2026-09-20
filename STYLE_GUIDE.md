@@ -17,7 +17,7 @@
 - Keep components as small as possible. If you need to add a lot of functionality, consider breaking it into smaller components
     - If you start repeating yourself a lot, consider using components ._.
 - Create seperate container components if its contents may vary a lot in size and form
-    - For example Popovers could have anything in them so we use a PopoverContainer element with <slot></slot>.
+    - For example Popovers could have anything in them so we use a Popover element with <slot></slot>.
 ## CSS
 - Use the [BEM](https://en.bem.info/methodology/quick-start/) methodology for naming classes.
 - Don't use tailwind css

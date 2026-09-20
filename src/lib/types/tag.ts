@@ -4,4 +4,5 @@ export type Tag = {
 	link?: string;
 	iconPath?: string;
 	color?: string;
+	textColor?: string;
 };

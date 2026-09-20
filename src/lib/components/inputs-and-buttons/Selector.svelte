@@ -15,6 +15,7 @@
 		full?: boolean;
 		selected?: string;
 		onSelect?: (value: string) => void;
+		id?: string;
 	}
 
 	let {
@@ -91,7 +92,7 @@
 		<div class="value-wrapper">
 			<span class="current-value">{currentLabel}</span>
 			<span class="selector-chevron" class:open={isOpen}>
-				<ChevronDownIcon aria-hidden="true" />
+				<ChevronDownIcon width="1rem" height="1rem" aria-hidden="true" />
 			</span>
 		</div>
 	</button>
@@ -164,6 +165,7 @@
 
 	.selector-chevron :global(svg) {
 		display: block;
+		flex-shrink: 0;
 	}
 
 	.selector-chevron.open {
@@ -205,7 +207,7 @@
 	}
 
 	.selector-title + .value-wrapper {
-		margin-left: calc(var(--padding) / 3);
+		margin-left: calc(var(--padding-md) / 3);
 	}
 
 	.options-menu {
@@ -238,7 +240,6 @@
 		border-radius: calc(var(--radius-md) - var(--switcher-padding));
 		border: 0.0625rem solid transparent;
 		box-shadow: none;
-		color: var(--muted-text-color);
 	}
 
 	.menu-item:hover {
@@ -246,8 +247,7 @@
 	}
 	.menu-item[aria-selected='true'] {
 		background: var(--accent);
-		color: var(--secondary-text-color);
-		color: var(--text-color);
+		color: var(--on-accent, contrast-color(var(--accent)));
 		pointer-events: none;
 	}
 </style>

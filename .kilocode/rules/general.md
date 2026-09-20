@@ -54,7 +54,7 @@ Use the [**MOIST principle**](https://medium.com/@slavik57/why-should-you-write-
   * If repetition increases, refactor into reusable components.
 * For **variable content**, use **container components**:
 
-  * e.g. `PopoverContainer` with `<slot></slot>` for flexible inner content.
+  * e.g. `Popover` with `<slot></slot>` for flexible inner content.
 
 ---
 

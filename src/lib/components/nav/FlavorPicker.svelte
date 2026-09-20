@@ -1,8 +1,8 @@
 <script lang="ts">		
-	import PopoverContainer from '../misc/PopoverContainer.svelte';
+	import Popover from '../misc/Popover.svelte';
 	import FlavorPickerButton from './FlavorPickerButton.svelte';
 	import { flavorPickerVisible } from '../../state/flavor-picker-visibility.js';
-	import CarouselContainer from '../inputs-and-buttons/CarouselContainer.svelte';
+	import Carousel from '../inputs-and-buttons/Carousel.svelte';
 	import { flavors } from '../../state/flavor-registry.js';
 	import { flavor } from '../../state/flavors.js';	
 	const flavor_items = Array.from(flavors, ([name, definition]) => ({
@@ -16,21 +16,21 @@
 
 <div id="flavor-picker">
 	<FlavorPickerButton />
-		<PopoverContainer
+		<Popover
 			expanded={$flavorPickerVisible}
 			id="flavor-picker"
 			title="flavors"
 			description="pick your favorite"
 		>
-			<CarouselContainer
+			<Carousel
 				onSelect={(item) => {
 					flavor.set(item.title);
 				}}
 				id="flavor-picker-carousel"
 				items={flavor_items}
 				defaultSelected={flavor_items.findIndex((item) => item.title ===  $flavor)}
-			></CarouselContainer>
-		</PopoverContainer>
+			></Carousel>
+		</Popover>
 </div>
 
 <style>

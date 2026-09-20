@@ -4,7 +4,7 @@
 	import LinkIcon from '~icons/hugeicons/link';
 	import PlayIcon from '~icons/hugeicons/play';
 
-	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
+	import Carousel from '$components/inputs-and-buttons/Carousel.svelte';
 	import Input from '$components/inputs-and-buttons/Input.svelte';
 	import Selector from '$components/inputs-and-buttons/Selector.svelte';
 	import Switcher from '$components/inputs-and-buttons/Switcher.svelte';
@@ -17,7 +17,7 @@
 	import FormField from '$components/misc/FormField.svelte';
 	import Markdown from '$components/misc/Markdown.svelte';
 	import PageContainer from '$components/misc/PageContainer.svelte';
-	import PopoverContainer from '$components/misc/PopoverContainer.svelte';
+	import Popover from '$components/misc/Popover.svelte';
 	import Profile from '$components/misc/Profile.svelte';
 	import Tags from '$components/misc/Tags.svelte';
 	import Navbar from '$components/nav/Navbar.svelte';
@@ -100,7 +100,13 @@
 				the web in a cozy bread basket
 			</p>
 		</div>
-		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
+		<Tags
+			tags={[
+				{ name: 'Svelte 5' },
+				{ name: 'responsive' },
+				{ name: 'interactive' }
+			]}
+		/>
 	</header>
 
 	<section class="gallery-section">
@@ -306,14 +312,14 @@
 			</button>
 		</div>
 		<div class="popover-stage">
-			<PopoverContainer
+			<Popover
 				id="gallery-popover"
 				expanded={popoverVisible}
 				title="Popover"
 				description="Popovers can hold arbitrary content."
 			>
 				<button class="button--primary">Popover action</button>
-			</PopoverContainer>
+			</Popover>
 		</div>
 	</section>
 
@@ -327,12 +333,13 @@
 		<Tags
 			tags={[
 				{ name: 'default' },
+				{ name: 'light pastel', color: '#f9e2af' },
+				{ name: 'dark plum', color: '#31243d' },
 				{ name: 'accent', color: 'var(--accent)' },
-				{ name: 'success', color: 'var(--color-success)' },
-				{ name: 'warning', color: 'var(--color-warning)' },
-				{ name: 'error', color: 'var(--color-error)' }
+				{ name: 'custom text', color: '#89b4fa', textColor: '#1e1e2e' }
 			]}
 		/>
+		<p class="subtext">Tag labels choose readable text from their own background color.</p>
 
 		<div class="emotion-row">
 			<Emoticon emotion="happy" size="small" />
@@ -347,12 +354,12 @@
 		/>
 
 		<Codeblock
-			filename="card-example.svelte"
+			title="card-example.svelte"
 			language="svelte"
 			code={'<Card variant="elevated" onclick={() => console.log("clicked")} >\n  Hello from a card\n</Card>'}
 		/>
 
-		<CarouselContainer id="gallery-carousel" items={flavorItems} />
+		<Carousel id="gallery-carousel" items={flavorItems} />
 	</section>
 
 	<section class="gallery-section">

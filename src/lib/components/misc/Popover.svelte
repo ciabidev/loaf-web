@@ -24,11 +24,11 @@
         user-select: none;
         display: flex;
         flex-direction: column;
-        gap: calc(var(--padding) / 2);
+        gap: calc(var(--padding-md) / 2);
     }
 
     .popover-container {
-        padding: var(--padding);
+        padding: var(--padding-md);
         background: var(--popover-bg);
         border-radius: calc(var(--radius-md) * 2);
         border: var(--button-stroke) solid 0.0625rem;

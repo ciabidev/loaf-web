@@ -108,7 +108,7 @@
 		flex-direction: row;
 		position: relative;
 		width: 100%;
-		gap: var(--padding);
+		gap: var(--padding-md);
 		/* SO ITEMS DONT GET CUT OFF AT BEGINNING DAMN THIS TOOK LONG */
 		padding: 1rem 1.5rem;
 

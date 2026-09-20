@@ -12,7 +12,8 @@
 		<div class="url-name">{name}</div>
 		<span class="url-short subtext"
 			><LinkIcon
-				style="min-width: 1rem; min-height: 1rem; flex-shrink: 0;"
+				aria-hidden="true"
+				style="width: 1rem; height: 1rem; flex: 0 0 1rem;"
 				class="icon"
 			/>{urlshort}</span
 		>

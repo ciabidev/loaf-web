@@ -74,7 +74,7 @@
 		"esbuild": "0.25.4"
 	},
 	"dependencies": {
-		"@iconify-svelte/hugeicons": "^1.0.20",
+		"@iconify-svelte/hugeicons": "github:iconify/icons-svelte#hugeicons",
 		"marked": "^16.2.1",
 		"shiki": "^3.12.0"
 	}

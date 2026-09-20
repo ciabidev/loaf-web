@@ -151,7 +151,7 @@
 
 		:global(dialog .dialog-body) {
 			margin-bottom: calc(
-				var(--padding) +
+				var(--padding-md) +
 					calc(env(safe-area-inset-bottom) - 0.9375rem * sign(env(safe-area-inset-bottom)))
 			) !important;
 			box-shadow: 0 0 0 0.125rem var(--popup-stroke) inset;

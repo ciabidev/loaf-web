@@ -108,7 +108,7 @@
     .dialog-inner-container {
         display: flex;
         flex-direction: column;
-        gap: var(--padding);
+        gap: var(--padding-md);
     }
 
     .dialog-inner-container {
@@ -124,9 +124,9 @@
     .small-dialog {
         text-align: center;
         max-width: 21.25rem;
-        width: calc(100% - var(--padding) - var(--popup-padding) * 2);
+        width: calc(100% - var(--padding-md) - var(--popup-padding) * 2);
         max-height: 85%;
-        margin: calc(var(--padding) / 2);
+        margin: calc(var(--padding-md) / 2);
     }
 
     .popup-title {

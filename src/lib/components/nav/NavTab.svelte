@@ -113,7 +113,7 @@
     :global(.navbar[data-position$='-top']) .navbar-tab,
     :global(.navbar[data-position$='-bottom']) .navbar-tab {
       height: fit-content;
-      padding: 0.3125rem var(--padding);
+      padding: 0.3125rem var(--padding-md);
     }
   }
 

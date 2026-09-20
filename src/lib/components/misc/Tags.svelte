@@ -9,7 +9,11 @@
 
 <div class="tags-container">
 	{#each tags as tag}
-		<button class="tag" style="--color: {tag.color ? tag.color : 'var(--surface)'}">
+		<button
+			class="tag"
+			style:--tag-background={tag.color ?? 'var(--surface)'}
+			style:--tag-text={tag.textColor}
+		>
 			<span>{tag.name}</span>
 		</button>
 	{/each}
@@ -30,11 +34,13 @@
 		align-items: center;
 		padding: 0.1875rem 0.5rem;
 		border-radius: var(--radius-md);
-		background: var(--color);
+		background: var(--tag-background);
 		border: var(--button-stroke) solid 0.0625rem;
 		box-shadow: var(--shadow-main);
 		font-size: 0.875rem;
+		/* Keep the inherited theme color as a fallback for older browsers. */
 		color: var(--text-color);
+		color: var(--tag-text, contrast-color(var(--tag-background)));
 		transition: transform 0.2s ease;
 	}
 

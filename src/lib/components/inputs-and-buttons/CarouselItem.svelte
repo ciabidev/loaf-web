@@ -22,7 +22,6 @@
 	};
 
 	$effect(() => {
-		/* Keep the active item visible within the carousel. */
 		if (isActive) {
 			scrollToItem(thisItem);
 		}
@@ -48,7 +47,7 @@
 		flex-direction: column;
 		flex: 0 0 auto; /* don’t shrink the item completely */
 
-		gap: calc(var(--padding) / 2);
+		gap: calc(var(--padding-md) / 2);
 		z-index: 10;
 		background: none;
 		max-width: 8.125rem;

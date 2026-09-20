@@ -17,5 +17,22 @@
 		display: flex;
 		flex-direction: column;
 		background: var(--nav-bg);
+		animation: basket-enter 0.2s ease-out;
+	}
+
+	@keyframes basket-enter {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#basket {
+			animation: none;
+		}
 	}
 </style>
