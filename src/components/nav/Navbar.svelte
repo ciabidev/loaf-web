@@ -35,7 +35,7 @@
     justify-content: center;
     align-items: center;
     overflow-y: hidden;
-    z-index: 100;
+    z-index: 5;
     background-color: var(--nav-bg);
   }
 
@@ -70,7 +70,7 @@
   }
 
   .navbar-tabs {
-    z-index: 1005;
+    z-index: 5;
     max-width: 100%;
     height: fit-content;
             padding: var(--navbar-inner-padding);

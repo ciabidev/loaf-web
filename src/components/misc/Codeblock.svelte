@@ -98,7 +98,7 @@
 		background: var(--code-bg) !important;
 		margin: 0;
 		padding: .3rem 0;
-		font-family: inherit;
+		font-family: 'Fira Mono', monospace;
 		font-size: inherit;
 		line-height: inherit;
 		overflow-x: auto;
@@ -110,5 +110,9 @@
 		border-radius: 0;
 		font-family: inherit;
 		font-size: inherit;
+	}
+
+	:global(.shiki code *) {
+		font-family: inherit;
 	}
 </style>

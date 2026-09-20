@@ -39,7 +39,7 @@
         position: relative;
         gap: 0.375rem;
         top: 0.375rem;
-        z-index: 10;
+        z-index: 900;
         opacity: 0;
         transform: scale(0);
         transform-origin: top right;

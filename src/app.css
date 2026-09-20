@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+Mono:wght@100..900&display=swap&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200..800&family=Fira+Mono:wght@400;500;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
 	--code-bg: #1f2228;
@@ -103,7 +103,7 @@
 	-webkit-user-drag: none;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Noto Sans Mono', monospace;
+	font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 * {
@@ -234,7 +234,7 @@ pre {
 
 .subtext {
 	font-size: 0.7813rem;
-	font-weight: 400;
+	font-weight: 500;
 	color: var(--muted-text-color);
 	line-height: 1.4;
 	white-space: pre-line;
@@ -305,7 +305,8 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 500;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
 	margin-block: 0;
 }
 
@@ -339,7 +340,7 @@ h6 {
 }
 
 .paragraph-text {
-	font-weight: 400;
+	font-weight: 500;
 }
 
 .paragraph-text ul {
