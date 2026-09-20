@@ -27,6 +27,7 @@
 		<textarea
 			bind:value
 			class="input"
+			class:long
 			oninput={() => (isFocused = true)}
 			onfocus={() => (isFocused = true)}
 			onblur={() => (isFocused = false)}
@@ -53,9 +54,11 @@
 
 <style>
 	.input-wrapper {
-		border: var(--input-stroke) 0.125rem solid;
-		border-radius: var(--radius-md);
+		border: var(--border-color) 0.125rem solid;
+		border-radius: var(--radius-lg);
 		width: var(--width);
+		background: var(--surface-secondary);
+		box-shadow: var(--shadow-main);
 		min-width: var(--min-width);
 		max-height: fit-content;
 		display: flex;
@@ -63,11 +66,18 @@
 		gap: 0.3125rem;
 		padding: 0.8125rem 0.9375rem;
 		align-items: center;
-		transition: all 300ms cubic-bezier(1, 0, 0, 1);
+		transition:
+			border-color 300ms cubic-bezier(1, 0, 0, 1),
+			box-shadow 300ms cubic-bezier(1, 0, 0, 1);
+	}
+
+	.input-wrapper:has(textarea) {
+		border-radius: var(--radius-md) !important;
 	}
 
 	.input-wrapper.focused {
-		border: var(--input-focus-stroke) 0.125rem solid;
+		border: var(--accent) 2px solid;
+		box-shadow: 0px 0px 0px 3px color-mix(in srgb, var(--accent) 30%, transparent);
 	}
 
 	.input {
@@ -92,7 +102,7 @@
 
 	.icon {
 		opacity: 0.5;
-		transition: all 300ms cubic-bezier(1, 0, 0, 1);
+		transition: opacity 300ms cubic-bezier(1, 0, 0, 1);
 	}
 
 	.input-wrapper.focused > .icon {

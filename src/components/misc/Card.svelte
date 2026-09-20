@@ -15,10 +15,12 @@
 		img?: string;
 		banner?: string;
 		tiny?: string;
+		pad?: boolean;
 	}
 
 	let {
 		variant = 'flat',
+		pad = true,
 		onclick,
 		children,
 		url,
@@ -36,7 +38,7 @@
 		<div class="banner-container" style:background-image={`url(${banner})`}></div>
 	{/if}
 
-	<div class="card-content">
+	<div class="card-content" class:pad>
 		{#if url && urlshort && name}
 			<URLButton {url} {urlshort} {name} {img} />
 		{/if}
@@ -122,9 +124,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
-		padding: 1rem;
 	}
 
+	.card-content.pad {
+		padding:  0.75rem 1rem;
+	}
 	.card-text {
 		display: flex;
 		flex-direction: column;

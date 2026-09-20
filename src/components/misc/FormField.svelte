@@ -40,7 +40,7 @@
 	.hint {
 		margin: 0;
 		font-size: 0.9rem;
-		color: var(--text-secondary, #666);
+		color: var(--muted-text-color, #666);
 	}
 
 	.input-wrapper {

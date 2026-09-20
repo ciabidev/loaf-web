@@ -3,6 +3,7 @@
 
 	let { children }: { children: Snippet } = $props();
 </script>
+
 <div id="loaf-wrapper">
 	<div id="loaf">
 		{@render children()}
@@ -41,6 +42,39 @@
 	#loaf {
 		height: 100%;
 		overflow-y: auto;
+		animation:
+			loaf-enter-motion var(--loaf-enter-duration, 700ms)
+				var(--loaf-enter-easing, var(--ease-fluid)),
+			loaf-enter-reveal var(--loaf-enter-reveal-duration, 400ms)
+				var(--loaf-enter-easing, var(--ease-fluid));
+	}
+
+	@keyframes loaf-enter-motion {
+		from {
+			transform: translate3d(0, var(--loaf-enter-distance, 1.25rem), 0);
+		}
+
+		to {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	@keyframes loaf-enter-reveal {
+		from {
+			opacity: 0.001;
+			filter: blur(var(--loaf-enter-blur, 0.625rem));
+		}
+
+		to {
+			opacity: 1;
+			filter: blur(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#loaf {
+			animation: none;
+		}
 	}
 
 	@media screen and (max-width: 600px) {

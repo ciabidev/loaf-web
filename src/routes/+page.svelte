@@ -2,6 +2,7 @@
 	import SearchIcon from '~icons/hugeicons/search-01';
 	import GridIcon from '~icons/hugeicons/layout-grid';
 	import LinkIcon from '~icons/hugeicons/link';
+	import PlayIcon from '~icons/hugeicons/play';
 
 	import CarouselContainer from '$components/inputs-and-buttons/CarouselContainer.svelte';
 	import Input from '$components/inputs-and-buttons/Input.svelte';
@@ -54,6 +55,7 @@
 	let lockedToggle = $state(false);
 	let popoverVisible = $state(false);
 	let cardClicks = $state(0);
+	let episodePlaying = $state(false);
 
 	const openSmallDialog = () => {
 		createDialog({
@@ -92,19 +94,17 @@
 	<header class="hero paragraph-text">
 		<div>
 			<h1>Loaf component gallery</h1>
-			<p>Every reusable component and state should get an example here when it is introduced.</p>
+			<p>
+				Every reusable component and state should get an example here when it is introduced. Reload
+				to preview the Loaf container's motion-blur entrance, then switch flavors to verify an
+				immediate theme repaint.
+			</p>
 		</div>
-		<Tags
-			tags={[
-				{ name: 'Svelte 5', color: 'var(--button-default)' },
-				{ name: 'responsive', color: 'var(--button-default)' },
-				{ name: 'interactive', color: 'var(--button-default)' }
-			]}
-		/>
+		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
 	</header>
 
 	<section class="gallery-section">
-		<div class="section-heading">
+		<div class="section-heading paragraph-text">
 			<h2>Cards</h2>
 			<p>Variants, interactions, and custom slotted content.</p>
 		</div>
@@ -122,13 +122,37 @@
 				</Card>
 			{/each}
 		</div>
-
-		<Card variant="bordered">
-			<div class="card-slot-example">
-				<div>
-					<p class="subtext">Slotted content</p>
-					<h3>Build any card layout</h3>
-					<p>A Card can contain regular markup without using its metadata props.</p>
+		<div class="paragraph-text">
+			<h3>Make cards your own</h3>
+			<p>Cards can contain any slotted content, including images, videos, and even other cards.</p>
+		</div>
+		<Card variant="bordered" pad={false} onclick={() => (episodePlaying = !episodePlaying)}>
+			<div class="episode-card">
+				<img
+					class="episode-card__artwork"
+					src="/illustrations/wallpapersden.com_one-piece-4k-elbaf-arc-keyart_3840x2400.jpg"
+					alt="The Straw Hat Pirates in Elbaph"
+				/>
+				<div class="episode-card__shade"></div>
+				<div class="episode-card__content">
+					<div class="episode-card__eyebrow">
+						<span>One Piece</span>
+						<span aria-hidden="true">•</span>
+						<span>Elbaph Arc</span>
+					</div>
+					<h4>The Long-Sought Elbaph! The Big Reunion Banquet</h4>
+					<p class="episode-card__meta">
+						Episode 1156&nbsp; • &nbsp;Season 22, Episode 1&nbsp; • &nbsp;23 min&nbsp; • &nbsp;Apr
+						5, 2026
+					</p>
+					<p class="episode-card__summary">
+						The Straw Hats and Giant Warrior Pirates celebrate their reunion as they finally set
+						sail for Elbaph—but by morning, the Sunny and six crewmates have vanished.
+					</p>
+					<span class="episode-card__action">
+						<PlayIcon aria-hidden="true" />
+						{episodePlaying ? 'Playing episode' : 'Watch episode'}
+					</span>
 				</div>
 			</div>
 		</Card>
@@ -443,23 +467,111 @@
 		gap: 1rem;
 	}
 
-	.card-slot-example {
-		display: flex;
-		align-items: end;
-		justify-content: space-between;
-		gap: 1rem;
+	.episode-card {
+		position: relative;
+		display: block;
+		width: 100%;
+		min-height: clamp(28rem, 58vw, 40rem);
+		overflow: hidden;
+		padding: 0;
+		border: 0;
+		border-radius: calc(var(--radius-lg) - 0.1875rem);
+		background: #07131c;
+		color: #fff;
+		text-align: left;
+		isolation: isolate;
 	}
 
-	.card-slot-example label {
+	.episode-card__artwork,
+	.episode-card__shade {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.episode-card__artwork {
+		object-fit: cover;
+		object-position: center 34%;
+		transition: transform 0.45s ease;
+	}
+
+	.episode-card__shade {
+		background: linear-gradient(
+			to bottom,
+			transparent 42%,
+			rgb(4 10 16 / 0.2) 56%,
+			rgb(4 10 16 / 0.92) 78%,
+			#040a10 100%
+		);
+		pointer-events: none;
+	}
+
+	.episode-card__content {
+		position: absolute;
+		z-index: 1;
+		inset: auto 0 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
-		font-size: 0.875rem;
-		white-space: nowrap;
+		align-items: flex-start;
+		gap: 0.65rem;
+		padding: clamp(1.25rem, 4vw, 2.25rem);
 	}
 
-	.card-slot-example progress {
-		width: 10rem;
+	.episode-card__eyebrow,
+	.episode-card__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin: 0;
+		color: rgb(255 255 255 / 0.76);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.episode-card h4 {
+		max-width: 44rem;
+		margin: 0;
+		font-size: clamp(1.4rem, 4vw, 2.35rem);
+		line-height: 1.08;
+		text-wrap: balance;
+	}
+
+	.episode-card__meta {
+		letter-spacing: 0;
+		text-transform: none;
+	}
+
+	.episode-card__summary {
+		max-width: 48rem;
+		margin: 0;
+		color: rgb(255 255 255 / 0.86);
+		font-size: 0.92rem;
+		line-height: 1.5;
+	}
+
+	.episode-card__action {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.2rem;
+		padding: 0.6rem 0.85rem;
+		border-radius: var(--radius-md);
+		background: rgb(255 255 255 / 0.94);
+		color: #07131c;
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
+
+	.episode-card__action :global(svg) {
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+
+	.episode-card:hover .episode-card__artwork {
+		transform: scale(1.02);
 	}
 
 	.component-row,
@@ -557,13 +669,16 @@
 	}
 
 	@media only screen and (max-width: 37.5rem) {
-		.card-slot-example {
-			align-items: stretch;
-			flex-direction: column;
+		.episode-card {
+			min-height: 34rem;
 		}
 
-		.card-slot-example progress {
-			width: 100%;
+		.episode-card__summary {
+			display: -webkit-box;
+			overflow: hidden;
+			line-clamp: 3;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
 		}
 
 		.component-row,

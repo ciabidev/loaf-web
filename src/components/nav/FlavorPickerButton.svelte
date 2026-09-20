@@ -1,29 +1,27 @@
 <script lang="ts">
 	import { flavor } from '$lib/state/flavors';
-	import { flavorPickerVisible } from "$lib/state/flavor-picker-visibility";
-	import IceCream from '~icons/fluent-emoji-flat/ice-cream';</script>
+	import { flavorPickerVisible } from '$lib/state/flavor-picker-visibility';
+	import IceCream from '~icons/fluent-emoji-flat/ice-cream';
+</script>
 
-<button id="flavor-picker-button" onclick={() => $flavorPickerVisible = !$flavorPickerVisible}>
-	
-<div class="icon-holder">
-	<IceCream />
-</div>
+<button id="flavor-picker-button" onclick={() => ($flavorPickerVisible = !$flavorPickerVisible)}>
+	<div class="icon-holder">
+		<IceCream />
+	</div>
 </button>
 
 <style>
- #flavor-picker-button {
-	pointer-events: all;
-	background: var(--surface);
-	padding: 7px;
-	border-radius: 30px;
-	filter: drop-shadow(0 0 3px var(--button-stroke));
+	#flavor-picker-button {
+		pointer-events: all;
+		background: var(--surface);
+		padding: 7px;
+		border-radius: 30px;
+		filter: drop-shadow(0 0 3px var(--button-stroke));
 
-	transition:
-		background-color 0.2s,
-		transform 0.2s;
+		transition: transform 0.2s;
 
-	will-change: transform, background-color;
-    }
+		will-change: transform;
+	}
 
 	#flavor-picker-button:hover {
 		transform: scale(1.1);
@@ -39,8 +37,6 @@
 		height: 25px;
 		background: var(--surface-secondary);
 		border-radius: 50%;
-		transition: all 0.2s;
-		will-change: transform, background-color;
 		pointer-events: all;
 	}
 </style>

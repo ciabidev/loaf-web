@@ -59,12 +59,9 @@
 	}
 
 	.toggle {
-		/* --- CONFIGURATION: CHANGE WIDER OVAL HERE --- */
-		--switcher-width: 32px;   /* Symmetrical oval width control */
-		--track-height: 26px;     /* Core height boundary */
+		--switcher-width: 32px;   
+		--track-height: 26px;    
 		
-		/* --- AUTOMATED CALCULATIONS --- */
-		/* The multiplier controls the track runway width cleanly */
 		--track-width: calc(var(--switcher-width) * 1.6 + 4px); 
 		
 		box-sizing: border-box;
@@ -75,17 +72,14 @@
 		transition: background 0.25s ease;
 		flex-shrink: 0;
 		
-		/* FIX 1: Enforces perfect absolute pixel coordinates on children */
 		position: relative; 
 	}
 
 	.toggle-switcher {
-		/* FIX 2: Explicitly positions the circle precisely 2px from the top and left */
 		position: absolute;
 		top: 2px;
 		left: 2px;
 		
-		/* FIX 3: Automatically calculates height to match the 2px top/bottom padding bounds */
 		height: calc(var(--track-height) - 4px); 
 		width: var(--switcher-width); 
 		

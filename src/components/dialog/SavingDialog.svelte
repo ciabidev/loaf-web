@@ -134,7 +134,9 @@
 		color: var(--text-color);
 		text-decoration: none;
 		font-weight: 500;
-		transition: all 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			filter 0.2s ease;
 		cursor: pointer;
 	}
 
