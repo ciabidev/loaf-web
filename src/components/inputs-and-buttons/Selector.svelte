@@ -1,5 +1,7 @@
 <script lang="ts">
 	import ChevronDownIcon from '~icons/hugeicons/chevron-down';
+	import { scale } from 'svelte/transition';
+	import { tick } from 'svelte';
 
 	interface SelectOption {
 		value: string;
@@ -25,10 +27,30 @@
 	}: Props = $props();
 
 	let isOpen = $state(false);
+	let opensUpward = $state(false);
+	let selectorWrapper = $state<HTMLDivElement>();
+	let optionsMenu = $state<HTMLUListElement>();
 
-	function toggleMenu() {
+	async function toggleMenu() {
 		if (locked) return;
+
 		isOpen = !isOpen;
+
+		if (isOpen) {
+			await tick();
+			updateMenuDirection();
+		}
+	}
+
+	function updateMenuDirection() {
+		if (!selectorWrapper || !optionsMenu) return;
+
+		const wrapperRect = selectorWrapper.getBoundingClientRect();
+		const gap = 6;
+		const spaceBelow = window.innerHeight - wrapperRect.bottom - gap;
+		const spaceAbove = wrapperRect.top - gap;
+
+		opensUpward = spaceBelow < optionsMenu.offsetHeight && spaceAbove > spaceBelow;
 	}
 
 	function handleSelection(value: string) {
@@ -37,10 +59,23 @@
 		if (onSelect) onSelect(value);
 	}
 
+	$effect(() => {
+		if (!isOpen) return;
+
+		const handleViewportChange = () => updateMenuDirection();
+		window.addEventListener('resize', handleViewportChange);
+		window.addEventListener('scroll', handleViewportChange, true);
+
+		return () => {
+			window.removeEventListener('resize', handleViewportChange);
+			window.removeEventListener('scroll', handleViewportChange, true);
+		};
+	});
+
 	let currentLabel = $derived(options.find((opt) => opt.value === selected)?.text || 'Select...');
 </script>
 
-<div class="selector-wrapper" class:full>
+<div bind:this={selectorWrapper} class="selector-wrapper" class:full>
 	<button
 		type="button"
 		class="selector-button"
@@ -55,15 +90,19 @@
 		{/if}
 		<div class="value-wrapper">
 			<span class="current-value">{currentLabel}</span>
-			<ChevronDownIcon
-				style="width: 1rem; height: 1rem; flex-shrink: 0;"
-				aria-hidden="true"
-			/>
+			<span class="selector-chevron" class:open={isOpen}>
+				<ChevronDownIcon aria-hidden="true" />
+			</span>
 		</div>
 	</button>
 
 	{#if isOpen}
-		<ul class="options-menu" role="listbox">
+		<ul
+			bind:this={optionsMenu}
+			class={opensUpward ? 'options-menu options-menu--open-up' : 'options-menu'}
+			role="listbox"
+			transition:scale={{ duration: 160, start: 0.96, opacity: 0 }}
+		>
 			{#each options as option}
 				<li role="none">
 					<button
@@ -115,12 +154,20 @@
 		text-align: start;
 	}
 
-	.selector-button:hover {
-		filter: none;
+	.selector-chevron {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 0;
+		transition: transform 0.2s ease;
 	}
 
-	.selector-button:active {
-		filter: var(--button-press-filter);
+	.selector-chevron :global(svg) {
+		display: block;
+	}
+
+	.selector-chevron.open {
+		transform: rotate(180deg);
 	}
 
 	.selector-title,
@@ -172,8 +219,15 @@
 		margin: 0;
 		z-index: 100;
 		display: flex;
+		transform-origin: top center;
 		flex-direction: column;
 		gap: calc(var(--switcher-padding) - 0.0938rem);
+	}
+
+	.options-menu--open-up {
+		top: auto;
+		bottom: calc(100% + 0.375rem);
+		transform-origin: bottom center;
 	}
 
 	.menu-item {
@@ -181,19 +235,19 @@
 		text-align: left;
 		justify-content: flex-start;
 		height: calc(2.5rem - var(--switcher-padding) * 2);
-		border-radius: calc(var(--radius-lg) - var(--switcher-padding));
+		border-radius: calc(var(--radius-md) - var(--switcher-padding));
 		border: 0.0625rem solid transparent;
 		box-shadow: none;
-		background: transparent;
+		color: var(--muted-text-color);
 	}
 
 	.menu-item:hover {
-		filter: var(--button-hover-filter);
+		color: var(--text-color);
 	}
-
 	.menu-item[aria-selected='true'] {
 		background: var(--accent);
 		color: var(--secondary-text-color);
+		color: var(--text-color);
 		pointer-events: none;
 	}
 </style>

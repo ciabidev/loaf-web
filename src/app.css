@@ -477,6 +477,7 @@ button,
 	border: var(--button-stroke) solid 0.0625rem;
 	background-color: var(--button-default);
 	color: var(--text-color);
+
 }
 /* dont mix up the :active and .active classes. they are different */
 /* :active - buttons that are currently pressed	*/
@@ -500,6 +501,7 @@ button:active,
 .button:active {
 	filter: var(--button-press-filter);
 	-webkit-filter: var(--button-press-filter);
+	transform: scale(0.98);
 }
 
 *.disabled,
@@ -565,3 +567,7 @@ select:focus-visible {
 * {
 	outline: 0.0625rem solid var(--accent) !important;
 } */
+
+svg {
+	display: block;
+}

@@ -49,6 +49,7 @@
 	let activeSegment = $state(0);
 	let fullActiveSegment = $state(0);
 	let selectedOption = $state('second');
+	let selectedEdgeOption = $state('alpha');
 	let toggleEnabled = $state(false);
 	let lockedToggle = $state(false);
 	let popoverVisible = $state(false);
@@ -105,7 +106,7 @@
 	<section class="gallery-section">
 		<div class="section-heading">
 			<h2>Cards</h2>
-			<p>every example is clickable</p>
+			<p>Variants, interactions, and custom slotted content.</p>
 		</div>
 		<div class="card-grid">
 			{#each cardVariants as card}
@@ -115,19 +116,31 @@
 					description={card.description}
 					tiny="Interactive card"
 					onclick={() => (cardClicks += 1)}
+					banner="/"
 				>
 					<span class="subtext">Click count: {cardClicks}</span>
 				</Card>
 			{/each}
 		</div>
 
+		<Card variant="bordered">
+			<div class="card-slot-example">
+				<div>
+					<p class="subtext">Slotted content</p>
+					<h3>Build any card layout</h3>
+					<p>A Card can contain regular markup without using its metadata props.</p>
+				</div>
+			</div>
+		</Card>
+
 		<Card
 			variant="elevated"
-			name="Project-style card"
+			name="Link Card with a banner"
 			url="https://github.com/ciabidev/loaf-web"
 			urlshort="github.com/ciabidev/loaf-web"
 			description="Cards can still render the existing URL and project metadata layout."
 			img="/favicon/favicon-96x96.png"
+			banner="/illustrations/wallpapersden.com_one-piece-4k-elbaf-arc-keyart_3840x2400.jpg"
 		>
 			<div class="actions">
 				<button class="button button--primary">Primary action</button>
@@ -261,7 +274,9 @@
 		<div class="section-heading">
 			<h2>Dialogs and popovers</h2>
 			<p>Overlay entry points and inline expanded/collapsed states.</p>
-			<p class="subtext">Hover and open these controls to verify the outer loaf corners keep the navbar color.</p>
+			<p class="subtext">
+				Hover and open these controls to verify the outer loaf corners keep the navbar color.
+			</p>
 		</div>
 		<div class="component-row">
 			<button onclick={openSmallDialog}>Open small dialog</button>
@@ -285,7 +300,9 @@
 	<section class="gallery-section">
 		<div class="section-heading">
 			<h2>Content</h2>
-			<p>Tags, rich text, code, images, and carousel content.</p>
+			<p>
+				Tags, rich text, code, images, and a carousel that keeps its active item within the rail.
+			</p>
 		</div>
 		<Tags
 			tags={[
@@ -319,7 +336,10 @@
 	<section class="gallery-section">
 		<div class="section-heading">
 			<h2>Navigation</h2>
-			<p>Embedded previews exercise fixed and responsive navbar layouts.</p>
+			<p>
+				Embedded previews exercise fixed and responsive layouts without moving the page to an active
+				tab.
+			</p>
 		</div>
 		<div class="nav-previews">
 			<div class="horizontal-nav-preview">
@@ -372,6 +392,20 @@
 			]}
 			bind:selected={selectedOption}
 		/>
+
+		<div class="selector-edge-example">
+			<p>Near the viewport edge, this selector opens upward when needed.</p>
+			<Selector
+				title="Viewport-aware selector"
+				full={false}
+				options={[
+					{ value: 'alpha', text: 'Alpha option' },
+					{ value: 'beta', text: 'Beta option' },
+					{ value: 'gamma', text: 'Gamma option' }
+				]}
+				bind:selected={selectedEdgeOption}
+			/>
+		</div>
 	</section>
 </PageContainer>
 
@@ -394,10 +428,38 @@
 		gap: 0.25rem;
 	}
 
+	.selector-edge-example {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		min-height: 12rem;
+	}
+
 	.card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
 		gap: 1rem;
+	}
+
+	.card-slot-example {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.card-slot-example label {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		font-size: 0.875rem;
+		white-space: nowrap;
+	}
+
+	.card-slot-example progress {
+		width: 10rem;
 	}
 
 	.component-row,
@@ -495,6 +557,15 @@
 	}
 
 	@media only screen and (max-width: 37.5rem) {
+		.card-slot-example {
+			align-items: stretch;
+			flex-direction: column;
+		}
+
+		.card-slot-example progress {
+			width: 100%;
+		}
+
 		.component-row,
 		.actions {
 			align-items: stretch;

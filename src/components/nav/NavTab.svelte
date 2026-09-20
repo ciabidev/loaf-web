@@ -22,27 +22,28 @@
   let tab!: HTMLElement;
 
   const scrollToTab = (ele: HTMLElement) => {
-    if (ele) {
-      console.log("ele exists");
-      ele.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "center",
+    const tabList = ele.parentElement;
+
+    if (!tabList) return;
+
+    if (tabList.scrollWidth > tabList.clientWidth) {
+      tabList.scrollTo({
+        left: ele.offsetLeft - (tabList.clientWidth - ele.offsetWidth) / 2,
+        behavior: 'smooth'
+      });
+    }
+
+    if (tabList.scrollHeight > tabList.clientHeight) {
+      tabList.scrollTo({
+        top: ele.offsetTop - (tabList.clientHeight - ele.offsetHeight) / 2,
+        behavior: 'smooth'
       });
     }
   };
 
   $effect(() => {
     if (isTabCurrentPage && tab) {
-      console.log("scrolling");
       scrollToTab(tab);
-    } else {
-      if (!tab) {
-        console.log("tab does not exist");
-      }
-      if (!isTabCurrentPage) {
-        console.log("tab path is not the same as the current page");
-      }
     }
   });
 

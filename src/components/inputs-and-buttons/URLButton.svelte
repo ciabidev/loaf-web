@@ -73,6 +73,6 @@
 	}
 
 	a.url-button:hover {
-		background: var(--button-default);
+		background: color-mix(in srgb, var(--text-color) 6%, transparent);
 	}
 </style>

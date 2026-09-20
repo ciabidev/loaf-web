@@ -4,31 +4,37 @@
 	let {
 		item,
 		isActive,
-		onSelect,
-	}: { item: CarouselItemType; isActive: boolean; onSelect?: (item: CarouselItemType) => void } = $props();
+		onSelect
+	}: { item: CarouselItemType; isActive: boolean; onSelect?: (item: CarouselItemType) => void } =
+		$props();
 
 	let thisItem: HTMLElement;
 
-	const scrollToTab = (ele: HTMLElement) => {
-		if (ele) {
-			console.log('ele exists');
-			ele.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
-				inline: 'center'
-			});
-		}
+	const scrollToItem = (ele: HTMLElement) => {
+		const carousel = ele.parentElement;
+
+		if (!carousel || carousel.scrollWidth <= carousel.clientWidth) return;
+
+		carousel.scrollTo({
+			left: ele.offsetLeft - (carousel.clientWidth - ele.offsetWidth) / 2,
+			behavior: 'smooth'
+		});
 	};
 
 	$effect(() => {
-		/* scroll to tab whenever the item is active */
+		/* Keep the active item visible within the carousel. */
 		if (isActive) {
-			scrollToTab(thisItem);
+			scrollToItem(thisItem);
 		}
 	});
 </script>
 
-<button class="carousel-item" class:active={isActive} bind:this={thisItem} onclick={() => onSelect?.(item)}>
+<button
+	class="carousel-item"
+	class:active={isActive}
+	bind:this={thisItem}
+	onclick={() => onSelect?.(item)}
+>
 	<div class="title">{item.title}</div>
 	<img src={item.image} alt={item.title} />
 	{#if item.description}
@@ -37,11 +43,10 @@
 </button>
 
 <style>
-
 	.carousel-item {
 		display: flex;
 		flex-direction: column;
-		  flex: 0 0 auto;      /* don’t shrink the item completely */
+		flex: 0 0 auto; /* don’t shrink the item completely */
 
 		gap: calc(var(--padding) / 2);
 		z-index: 10;

@@ -59,6 +59,10 @@
 	<button type="button" class="card {variant} interactive" aria-label={name} {onclick}>
 		{@render cardContents()}
 	</button>
+{:else if url}
+	<a class="card {variant} interactive" href={url} aria-label={name}>
+		{@render cardContents()}
+	</a>
 {:else}
 	<div class="card {variant}">
 		{@render cardContents()}
@@ -78,6 +82,10 @@
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease;
+	}
+
+	a.card {
+		text-decoration: none;
 	}
 
 	.card.flat {
@@ -108,10 +116,6 @@
 
 	.card.interactive:hover {
 		filter: var(--button-hover-filter);
-	}
-
-	.card.interactive:active {
-		transform: scale(0.985);
 	}
 
 	.card-content {
