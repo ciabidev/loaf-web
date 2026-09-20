@@ -13,7 +13,7 @@
 	import { registerFlavor, registerFlavors } from '$lib/state/flavor-registry';
 
 	registerFlavor({
-		name: 'Catppuccin Mocha Blue',
+		name: 'Mocha Blue',
 		description: 'Catppuccin Mocha with blue accents',
 		iconPath: '/flavor_icons/catppuccin-mocha-blue.png',
 		isDark: true,

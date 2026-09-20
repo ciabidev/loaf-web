@@ -1,6 +1,6 @@
 {
-	"name": "web",
-	"version": "0.0.1",
+	"name": "@ciabi/loaf-web",
+	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",

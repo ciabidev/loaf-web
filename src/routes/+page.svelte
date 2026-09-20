@@ -93,11 +93,9 @@
 >
 	<header class="hero paragraph-text">
 		<div>
-			<h1>Loaf component gallery</h1>
+			<h1>loaf-web test page</h1>
 			<p>
-				Every reusable component and state should get an example here when it is introduced. Reload
-				to preview the Loaf container's motion-blur entrance, then switch flavors to verify an
-				immediate theme repaint.
+				the web in a cozy bread basket
 			</p>
 		</div>
 		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
@@ -345,7 +343,7 @@
 		</div>
 
 		<Markdown
-			source={'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three'}
+			source={'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three\n\nSpacing stays consistent after a list, too.'}
 		/>
 
 		<Codeblock

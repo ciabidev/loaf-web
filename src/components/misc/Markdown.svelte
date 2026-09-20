@@ -16,4 +16,8 @@
         max-width: 100%;
         gap: 0.85rem;
     }
+
+	.markdown > :global(*) {
+		margin-block: 0;
+	}
 </style>
