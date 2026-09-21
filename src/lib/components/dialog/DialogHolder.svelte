@@ -90,7 +90,7 @@
 		width: 100%;
 		z-index: -1;
 
-		background-color: var(--dialog-backdrop);
+		background-color: var(--loaf-dialog-backdrop);
 
 		backdrop-filter: blur(0.4375rem);
 		-webkit-backdrop-filter: blur(0.4375rem);
@@ -111,19 +111,19 @@
 	}
 
 	:global(.dialog-body) {
-		--popup-padding: 1.125rem;
+		--loaf-popup-padding: 1.125rem;
 
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 
-		background: var(--popup-bg);
-		box-shadow: 0 0 0 0.125rem var(--popup-stroke) inset;
+		background: var(--loaf-popup-bg);
+		box-shadow: 0 0 0 0.125rem var(--loaf-popup-stroke) inset;
 		border-radius: 1.8125rem;
 
-		filter: drop-shadow(0 0 2.5rem var(--button-default));
+		filter: drop-shadow(0 0 2.5rem var(--loaf-button-default));
 
-		padding: var(--popup-padding);
+		padding: var(--loaf-popup-padding);
 
 		position: relative;
 		will-change: transform, opacity, filter;
@@ -151,10 +151,10 @@
 
 		:global(dialog .dialog-body) {
 			margin-bottom: calc(
-				var(--padding-md) +
+				var(--loaf-padding-md) +
 					calc(env(safe-area-inset-bottom) - 0.9375rem * sign(env(safe-area-inset-bottom)))
 			) !important;
-			box-shadow: 0 0 0 0.125rem var(--popup-stroke) inset;
+			box-shadow: 0 0 0 0.125rem var(--loaf-popup-stroke) inset;
 		}
 	}
 

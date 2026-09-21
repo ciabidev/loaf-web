@@ -14,16 +14,16 @@
 		vertical-align: center;
 		flex-direction: row;
 		padding: 0.6rem;
-		border-radius: var(--radius-md);
+		border-radius: var(--loaf-radius-md);
 		text-decoration: none;
-		color: var(--text);
-		box-shadow: var(--card-stroke) 0 0 0 1px;
+		color: var(--loaf-text);
+		box-shadow: var(--loaf-card-stroke) 0 0 0 1px;
 		user-select: none;
 		-webkit-user-select: none; /* Safari / iOS */
 		-ms-user-select: none;
 	}
 
 	.contact:hover {
-		background: var(--button-default);
+		background: var(--loaf-button-default);
 	}
 </style>

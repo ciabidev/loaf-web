@@ -75,7 +75,8 @@
 	},
 	"dependencies": {
 		"@iconify-svelte/hugeicons": "github:iconify/icons-svelte#hugeicons",
-		"marked": "^16.2.1",
+		"dompurify": "^3.4.15",
+		"marked": "^16.4.2",
 		"shiki": "^3.12.0"
 	}
 }

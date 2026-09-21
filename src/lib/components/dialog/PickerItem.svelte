@@ -76,7 +76,7 @@
 		display: flex;
 		flex-direction: column;
 		box-shadow: none;
-		border-radius: calc(var(--radius-md) / 2 + 0.125rem);
+		border-radius: calc(var(--loaf-radius-md) / 2 + 0.125rem);
 		overflow: hidden;
 	}
 
@@ -84,7 +84,7 @@
 		content: '';
 		width: 100%;
 		height: 100%;
-		outline: 0.125rem solid var(--accent);
+		outline: 0.125rem solid var(--loaf-accent);
 		outline-offset: 0.125rem;
 		border-radius: inherit;
 	}
@@ -107,7 +107,7 @@
 		height: 100%;
 		position: absolute;
 		z-index: 1;
-		background: var(--button-default);
+		background: var(--loaf-button-default);
 		border-radius: inherit;
 	}
 
@@ -131,7 +131,7 @@
 
 	.picker-type {
 		position: absolute;
-		color: var(--white);
+		color: var(--loaf-white);
 		background: rgba(0, 0, 0, 0.5);
 		width: 1.5rem;
 		height: 1.5rem;
@@ -157,7 +157,7 @@
 		left: 0;
 		right: 0;
 		background: rgba(0, 0, 0, 0.7);
-		color: var(--white);
+		color: var(--loaf-white);
 		padding: 0.25rem 0.375rem;
 		font-size: 0.75rem;
 		text-align: center;

@@ -42,11 +42,11 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: var(--padding-md);
+		gap: var(--loaf-padding-md);
 		justify-content: space-between;
 		text-align: start;
-		padding: calc(var(--switcher-padding) * 2) 16px;
-		border-radius: var(--radius-md);
+		padding: calc(var(--loaf-switcher-padding) * 2) 16px;
+		border-radius: var(--loaf-radius-md);
 		overflow: visible; 
 	}
 
@@ -68,7 +68,7 @@
 		width: var(--track-width);
 		height: var(--track-height);
 		border-radius: 100px;
-		background: var(--toggle-bg);
+		background: var(--loaf-toggle-bg);
 		transition: background 0.25s ease;
 		flex-shrink: 0;
 		
@@ -90,7 +90,7 @@
 	}
 
 	.toggle.enabled {
-		background: var(--toggle-bg-enabled);
+		background: var(--loaf-toggle-bg-enabled);
 	}
 
 	/* FIX 4: Perfectly scales the slide path to stop precisely 2px away from the right edge */

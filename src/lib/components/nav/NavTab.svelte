@@ -57,7 +57,7 @@
   bind:this={tab}
 >
   {#if Icon}
-    <Icon style="font-size: var(--icon-size-mobile); color: var(--active-icon-color, var(--icon-color));" class="icon" />
+    <Icon style="font-size: var(--loaf-icon-size-mobile); color: var(--active-icon-color, var(--icon-color));" class="icon" />
   {/if}
   <span class="tab-title">{name}</span>
 </a>
@@ -87,19 +87,19 @@
     justify-content: center;
     align-items: center;
     gap: 0.1875rem;
-    min-width: var(--navbar-width);
+    min-width: var(--loaf-navbar-width);
     height: fit-content;
-    padding: var(--navbar-tab-padding);
+    padding: var(--loaf-navbar-tab-padding);
     text-align: center;
-    color: var(--nav-highlight);
-    font-size: var(--navbar-font-size);
+    color: var(--loaf-nav-highlight);
+    font-size: var(--loaf-navbar-font-size);
     opacity: 0.75;
     text-decoration: none;
     overflow-x: hidden;
      user-select: none;
   -webkit-user-select: none;  /* Safari / iOS */
   -ms-user-select: none; 
-    border-radius: var(--radius-md);
+    border-radius: var(--loaf-radius-md);
   }
 
   :global(.navbar[data-position='top']) .navbar-tab,
@@ -113,7 +113,7 @@
     :global(.navbar[data-position$='-top']) .navbar-tab,
     :global(.navbar[data-position$='-bottom']) .navbar-tab {
       height: fit-content;
-      padding: 0.3125rem var(--padding-md);
+      padding: 0.3125rem var(--loaf-padding-md);
     }
   }
 
@@ -121,30 +121,30 @@
     flex-direction: row;
     justify-content: flex-start;
     height: auto;
-    padding: var(--navbar-tab-padding-horizontal);
-    gap: calc(var(--navbar-tab-padding-horizontal));
+    padding: var(--loaf-navbar-tab-padding-horizontal);
+    gap: calc(var(--loaf-navbar-tab-padding-horizontal));
   }
 
   /* shrinks down for a little then scales back up once it gains the .active class */
   .navbar-tab:active:hover:not(.active) {
     transform: scale(0.85, 0.85);
-    border: var(--button-stroke) solid 1px;
+    border: var(--loaf-button-stroke) solid 1px;
   }
 
   .navbar-tab.active {
-    --active-icon-color: var(--nav-active-highlight);
+    --active-icon-color: var(--loaf-nav-active-highlight);
     animation: 0.3s afterClick cubic-bezier(0.33, 1, 0.68, 1);
-    background: var(--accent-secondary);
+    background: var(--loaf-accent-secondary);
     opacity: 1;
     cursor: default;
-    color: var(--nav-active-highlight);
-    --icon-color: var(--nav-active-highlight);
+    color: var(--loaf-nav-active-highlight);
+    --icon-color: var(--loaf-nav-active-highlight);
   }
 
 
 @media not all and (hover: none) {
    .navbar-tab:hover:not(.active) {
-    background: var(--nav-hover-bg)
+    background: var(--loaf-nav-hover-bg)
   }
 }
 

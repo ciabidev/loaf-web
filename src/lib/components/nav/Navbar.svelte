@@ -31,12 +31,12 @@
 
     overflow: hidden;
     width: 100%;
-    height: var(--navbar-height);
+    height: var(--loaf-navbar-height);
     justify-content: center;
     align-items: center;
     overflow-y: hidden;
     z-index: 5;
-    background-color: var(--nav-bg);
+    background-color: var(--loaf-nav-bg);
   }
 
   .navbar:not(.test) {
@@ -56,7 +56,7 @@
   .navbar[data-position^='left'],
   .navbar[data-position^='right'] {
     top: 0;
-    width: calc(var(--navbar-width) + var(--navbar-inner-padding) * 2);
+    width: calc(var(--loaf-navbar-width) + var(--loaf-navbar-inner-padding) * 2);
     height: 100%;
     padding: 0;
   }
@@ -73,7 +73,7 @@
     z-index: 5;
     max-width: 100%;
     height: fit-content;
-            padding: var(--navbar-inner-padding);
+            padding: var(--loaf-navbar-inner-padding);
     justify-content: space-between;
   }
 
@@ -92,7 +92,7 @@
     justify-content: flex-start;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-bottom: var(--navbar-tab-padding);
+    padding-bottom: var(--loaf-navbar-tab-padding);
   }
 
   .navbar > * {
@@ -102,7 +102,7 @@
   @media screen and (max-width: 600px) {
     .navbar[data-position='top'],
     .navbar[data-position='bottom'] {
-      height: var(--mobile-navbar-height);
+      height: var(--loaf-mobile-navbar-height);
     }
 
     .navbar[data-position='top'] .navbar-tabs,
@@ -116,7 +116,7 @@
       left: 0;
       right: auto;
       width: 100%;
-      height: var(--mobile-navbar-height);
+      height: var(--loaf-mobile-navbar-height);
     }
 
     .navbar[data-position$='-top'] {
@@ -140,14 +140,14 @@
       justify-content: space-between;
       overflow-x: auto;
       overflow-y: hidden;
-      padding-bottom: var(--navbar-inner-padding);
+      padding-bottom: var(--loaf-navbar-inner-padding);
     }
   }
 
   @media screen and (max-height: 500px) {
     .navbar[data-position='top'],
     .navbar[data-position='bottom'] {
-      height: var(--mobile-navbar-height);
+      height: var(--loaf-mobile-navbar-height);
     }
   }
 </style>

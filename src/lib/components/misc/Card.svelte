@@ -76,8 +76,8 @@
 		display: block;
 		width: 100%;
 		overflow: hidden;
-		border-radius: var(--radius-lg);
-		color: var(--text);
+		border-radius: var(--loaf-radius-lg);
+		color: var(--loaf-text);
 		font: inherit;
 		text-align: left;
 		padding: 0;
@@ -91,25 +91,25 @@
 	}
 
 	.card.flat {
-		background: var(--card);
+		background: var(--loaf-card);
 		border: none;
 		box-shadow: none;
 	}
 
 	.card.bordered {
-		background: var(--card);
-		border: 0.1875rem solid var(--card-stroke);
+		background: var(--loaf-card);
+		border: 0.1875rem solid var(--loaf-card-stroke);
 	}
 
 	.card.elevated {
-		background: var(--card);
-		border: 0.0625rem solid var(--card-stroke);
-		box-shadow: var(--card-box-shadow);
+		background: var(--loaf-card);
+		border: 0.0625rem solid var(--loaf-card-stroke);
+		box-shadow: var(--loaf-card-box-shadow);
 	}
 
 	.card.ghost {
 		background: transparent;
-		border: 0.125rem dashed var(--card-stroke);
+		border: 0.125rem dashed var(--loaf-card-stroke);
 	}
 
 	.card.interactive {
@@ -117,7 +117,7 @@
 	}
 
 	.card.interactive:hover {
-		filter: var(--button-hover-filter);
+		filter: var(--loaf-button-hover-filter);
 	}
 
 	.card-content {

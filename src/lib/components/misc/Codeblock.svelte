@@ -50,10 +50,10 @@
 		max-width: 100%;
 		position: relative;
 		overflow: hidden;
-		background: var(--surface-secondary);
-		border: 1px solid var(--border-color);
-		padding: var(--padding-xs);
-		border-radius: var(--radius-md);
+		background: var(--loaf-surface-secondary);
+		border: 1px solid var(--loaf-border-color);
+		padding: var(--loaf-padding-xs);
+		border-radius: var(--loaf-radius-md);
 		display: flex;
 		flex-direction: column;
 	}
@@ -65,18 +65,18 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding: var(--padding-xs) var(--padding-md);
+		padding: var(--loaf-padding-xs) var(--loaf-padding-md);
 		font-size: 14px;
-		color: var(--text);
-		background: var(--surface-secondary);
+		color: var(--loaf-text);
+		background: var(--loaf-surface-secondary);
 	}
 
 	.copy-btn {
 		padding: 0.25rem 0.5rem;
-		color: var(--text);
-		background: var(--button-default);
-		border: 1px solid var(--button-stroke);
-		border-radius: var(--radius-xs);
+		color: var(--loaf-text);
+		background: var(--loaf-button-default);
+		border: 1px solid var(--loaf-button-stroke);
+		border-radius: var(--loaf-radius-xs);
 		font-size: 0.9rem;
 		transition: background-color 0.2s;
 		display: flex;
@@ -95,19 +95,19 @@
 
 	.code-title {
 		flex: 1;
-		color: var(--text);
+		color: var(--loaf-text);
 	}
 
 	/* Override Shiki's background to match component */
 	:global(.shiki) {
-		background: var(--code-bg) !important;
+		background: var(--loaf-code-bg) !important;
 		margin: 0;
 		padding: 0.75rem;
 		color-scheme: dark;
 		font-size: 0.9rem;
 		line-height: inherit;
 		overflow-x: auto;
-				border-radius: var(--radius-md);
+				border-radius: var(--loaf-radius-md);
 
 	}
 

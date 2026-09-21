@@ -108,7 +108,7 @@
 		flex-direction: row;
 		position: relative;
 		width: 100%;
-		gap: var(--padding-md);
+		gap: var(--loaf-padding-md);
 		/* SO ITEMS DONT GET CUT OFF AT BEGINNING DAMN THIS TOOK LONG */
 		padding: 1rem 1.5rem;
 
@@ -137,7 +137,7 @@
 		border: none;
 		padding: 0;
 		box-shadow: none;
-		color: var(--text);
+		color: var(--loaf-text);
 	}
 
 	.carousel-arrows {
@@ -156,8 +156,8 @@
 	.carousel-arrow {
 		position: absolute;
 		pointer-events: all;
-		color: var(--text);
-		background: var(--surface);
+		color: var(--loaf-text);
+		background: var(--loaf-surface);
 		border-radius: 50%;
 		padding: 0.75rem;
 

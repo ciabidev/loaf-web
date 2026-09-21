@@ -13,10 +13,10 @@
 <style>
 	#flavor-picker-button {
 		pointer-events: all;
-		background: var(--surface);
+		background: var(--loaf-surface);
 		padding: 7px;
 		border-radius: 30px;
-		filter: drop-shadow(0 0 3px var(--button-stroke));
+		filter: drop-shadow(0 0 3px var(--loaf-button-stroke));
 
 		transition: transform 0.2s;
 
@@ -35,7 +35,7 @@
 		justify-content: center;
 		width: 25px;
 		height: 25px;
-		background: var(--surface-secondary);
+		background: var(--loaf-surface-secondary);
 		border-radius: 50%;
 		pointer-events: all;
 	}

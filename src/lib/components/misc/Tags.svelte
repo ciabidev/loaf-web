@@ -11,7 +11,7 @@
 	{#each tags as tag}
 		<button
 			class="tag"
-			style:--tag-background={tag.color ?? 'var(--surface)'}
+			style:--tag-background={tag.color ?? 'var(--loaf-surface)'}
 			style:--tag-text={tag.textColor}
 		>
 			<span>{tag.name}</span>
@@ -33,13 +33,13 @@
 		gap: 0.1875rem;
 		align-items: center;
 		padding: 0.1875rem 0.5rem;
-		border-radius: var(--radius-md);
+		border-radius: var(--loaf-radius-md);
 		background: var(--tag-background);
-		border: var(--button-stroke) solid 0.0625rem;
-		box-shadow: var(--shadow-main);
+		border: var(--loaf-button-stroke) solid 0.0625rem;
+		box-shadow: var(--loaf-shadow-main);
 		font-size: 0.875rem;
 		/* Keep the inherited theme color as a fallback for older browsers. */
-		color: var(--text);
+		color: var(--loaf-text);
 		color: var(--tag-text, contrast-color(var(--tag-background)));
 		transition: transform 0.2s ease;
 	}

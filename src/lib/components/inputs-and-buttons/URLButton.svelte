@@ -22,12 +22,12 @@
 
 <style>
 	.url-text {
-		line-height: var(--readable-line-height);
+		line-height: var(--loaf-readable-line-height);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		text-decoration: none;
-		color: var(--text);
+		color: var(--loaf-text);
 		position: relative;
         text-decoration: none;
 	}
@@ -66,14 +66,14 @@
 		align-items: center;
 		gap: 10px;
 		position: relative;
-		border-radius: var(--radius-md);
+		border-radius: var(--loaf-radius-md);
 		padding: 7px 9px;
 		width: max-content;
 		text-decoration: none;
-		border: var(--button-stroke) solid 0.0625rem;
+		border: var(--loaf-button-stroke) solid 0.0625rem;
 	}
 
 	a.url-button:hover {
-		background: color-mix(in srgb, var(--text) 6%, transparent);
+		background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
 	}
 </style>

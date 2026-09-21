@@ -18,7 +18,7 @@
 		justify-content: center;
 		min-height: 100%;
 		overscroll-behavior: none;
-		padding: var(--padding-md);
+		padding: var(--loaf-padding-md);
 	}
 
 	.page-main {

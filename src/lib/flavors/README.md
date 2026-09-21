@@ -35,19 +35,19 @@ registerFlavor({
   iconPath: '/flavor_icons/midnight.png',
   isDark: true,
   cssVariables: {
-    '--surface': '#0f1419',
-    '--text': '#e8eaed',
-    '--text-on-accent': '#ffffff',
-    '--accent': '#8ab4f8',
-    '--accent-secondary': '#aecbfa',
-    '--surface-secondary': '#202124',
-    '--success': '#81c995',
-    '--warning': '#fcc934',
-    '--error': '#f28482',
-    '--nav-hover-bg': '#8ab4f833',
-    '--nav-bg': '#202124',
-    '--nav-highlight': '#aecbfa',
-    '--nav-active-highlight': '#ffffff'
+    '--loaf-surface': '#0f1419',
+    '--loaf-text': '#e8eaed',
+    '--loaf-text-on-accent': '#ffffff',
+    '--loaf-accent': '#8ab4f8',
+    '--loaf-accent-secondary': '#aecbfa',
+    '--loaf-surface-secondary': '#202124',
+    '--loaf-success': '#81c995',
+    '--loaf-warning': '#fcc934',
+    '--loaf-error': '#f28482',
+    '--loaf-nav-hover-bg': '#8ab4f833',
+    '--loaf-nav-bg': '#202124',
+    '--loaf-nav-highlight': '#aecbfa',
+    '--loaf-nav-active-highlight': '#ffffff'
   }
 });
 ```
@@ -58,28 +58,28 @@ Each flavor must define CSS custom properties that are applied to the document r
 
 ### Layout & Colors
 
-- `--surface`: Main background color
-- `--text`: Primary text color
-- `--text-on-accent`: Text color for elements on `--accent` backgrounds
+- `--loaf-surface`: Main background color
+- `--loaf-text`: Primary text color
+- `--loaf-text-on-accent`: Text color for elements on `--loaf-accent` backgrounds
 
 ### Accents
 
-- `--accent`: Primary accent color (used everywhere)
-- `--accent-secondary`: Secondary accent (links, smaller elements)
-- `--surface-secondary`: Alternative background (buttons, cards)
+- `--loaf-accent`: Primary accent color (used everywhere)
+- `--loaf-accent-secondary`: Secondary accent (links, smaller elements)
+- `--loaf-surface-secondary`: Alternative background (buttons, cards)
 
 ### Status Colors
 
-- `--success`: Success states (green by default)
-- `--warning`: Warning states (yellow by default)
-- `--error`: Error states (red by default)
+- `--loaf-success`: Success states (green by default)
+- `--loaf-warning`: Warning states (yellow by default)
+- `--loaf-error`: Error states (red by default)
 
 ### Navigation
 
-- `--nav-bg`: Navigation bar background
-- `--nav-hover-bg`: Navigation item hover state
-- `--nav-highlight`: Navigation highlight color
-- `--nav-active-highlight`: Active navigation item color
+- `--loaf-nav-bg`: Navigation bar background
+- `--loaf-nav-hover-bg`: Navigation item hover state
+- `--loaf-nav-highlight`: Navigation highlight color
+- `--loaf-nav-active-highlight`: Active navigation item color
 
 ## Registering Flavors at Startup
 To ensure custom flavors are available throughout the application, register them early. Create a file that auto-registers on import:

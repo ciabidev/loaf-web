@@ -16,7 +16,7 @@
 		overflow-y: hidden;
 		display: flex;
 		flex-direction: column;
-		background: var(--nav-bg);
+		background: var(--loaf-nav-bg);
 		animation: basket-enter 0.2s ease-out;
 	}
 

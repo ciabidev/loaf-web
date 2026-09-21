@@ -108,7 +108,7 @@
     .dialog-inner-container {
         display: flex;
         flex-direction: column;
-        gap: var(--padding-md);
+        gap: var(--loaf-padding-md);
     }
 
     .dialog-inner-container {
@@ -124,13 +124,13 @@
     .small-dialog {
         text-align: center;
         max-width: 21.25rem;
-        width: calc(100% - var(--padding-md) - var(--popup-padding) * 2);
+        width: calc(100% - var(--loaf-padding-md) - var(--loaf-popup-padding) * 2);
         max-height: 85%;
-        margin: calc(var(--padding-md) / 2);
+        margin: calc(var(--loaf-padding-md) / 2);
     }
 
     .popup-title {
-        color: var(--text);
+        color: var(--loaf-text);
         font-size: 1.1875rem;
     }
 
@@ -143,14 +143,14 @@
     }
 
     .warn-red :global(svg) {
-        stroke: var(--red);
+        stroke: var(--loaf-red);
     }
 
     .body-text {
         font-size: 0.9063rem;
         font-weight: 500;
         line-height: 1.7;
-        color: var(--text-muted);
+        color: var(--loaf-text-muted);
         white-space: pre-wrap;
         user-select: text;
         -webkit-user-select: text;

@@ -12,7 +12,7 @@
 		align-items: center;
 		flex-direction: column;
 		justify-content: safe center;
-		color: var(--nav-highlight);
+		color: var(--loaf-nav-highlight);
 		font-size: 13px;
 		padding: 13px 3px;
 		opacity: 1;

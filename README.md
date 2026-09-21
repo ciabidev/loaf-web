@@ -76,11 +76,11 @@ registerFlavor({
 	iconPath: '/flavors/warm-toast.png',
 	isDark: false,
 	cssVariables: {
-		'--surface': '#fff8ed',
-		'--surface-secondary': '#f4e8d4',
-		'--text': '#342b25',
-		'--text-on-accent': '#ffffff',
-		'--accent': '#db7758'
+		'--loaf-surface': '#fff8ed',
+		'--loaf-surface-secondary': '#f4e8d4',
+		'--loaf-text': '#342b25',
+		'--loaf-text-on-accent': '#ffffff',
+		'--loaf-accent': '#db7758'
 	}
 });
 ```

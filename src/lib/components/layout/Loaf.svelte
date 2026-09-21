@@ -13,30 +13,30 @@
 <style>
 	#loaf-wrapper {
 		width: 100%;
-		height: calc(100% - var(--navbar-height));
+		height: calc(100% - var(--loaf-navbar-height));
 		overflow: hidden;
-		background-color: var(--surface);
+		background-color: var(--loaf-surface);
 		border-radius: 0;
-		border-bottom-left-radius: calc(var(--radius-md) * 2);
-		border-bottom-right-radius: calc(var(--radius-md) * 2);
+		border-bottom-left-radius: calc(var(--loaf-radius-md) * 2);
+		border-bottom-right-radius: calc(var(--loaf-radius-md) * 2);
 	}
 
 	:global(#basket:has(> .navbar[data-position='top']:not(.test))) #loaf-wrapper {
-		margin-top: var(--navbar-height);
-		border-radius: calc(var(--radius-md) * 2) calc(var(--radius-md) * 2) 0 0;
+		margin-top: var(--loaf-navbar-height);
+		border-radius: calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2) 0 0;
 	}
 
 	:global(#basket:has(> .navbar[data-position^='left']:not(.test))) #loaf-wrapper {
-		width: calc(100% - var(--navbar-width) - var(--navbar-inner-padding) * 2);
+		width: calc(100% - var(--loaf-navbar-width) - var(--loaf-navbar-inner-padding) * 2);
 		height: 100%;
-		margin-left: calc(var(--navbar-width) + var(--navbar-inner-padding) * 2);
-		border-radius: calc(var(--radius-md) * 2) 0 0 calc(var(--radius-md) * 2);
+		margin-left: calc(var(--loaf-navbar-width) + var(--loaf-navbar-inner-padding) * 2);
+		border-radius: calc(var(--loaf-radius-md) * 2) 0 0 calc(var(--loaf-radius-md) * 2);
 	}
 
 	:global(#basket:has(> .navbar[data-position^='right']:not(.test))) #loaf-wrapper {
-		width: calc(100% - var(--navbar-width) - var(--navbar-inner-padding) * 2);
+		width: calc(100% - var(--loaf-navbar-width) - var(--loaf-navbar-inner-padding) * 2);
 		height: 100%;
-		border-radius: 0 calc(var(--radius-md) * 2) calc(var(--radius-md) * 2) 0;
+		border-radius: 0 calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2) 0;
 	}
 
 	#loaf {
@@ -44,9 +44,9 @@
 		overflow-y: auto;
 		animation:
 			loaf-enter-motion var(--loaf-enter-duration, 700ms)
-				var(--loaf-enter-easing, var(--ease-fluid)),
+				var(--loaf-enter-easing, var(--loaf-ease-fluid)),
 			loaf-enter-reveal var(--loaf-enter-reveal-duration, 400ms)
-				var(--loaf-enter-easing, var(--ease-fluid));
+				var(--loaf-enter-easing, var(--loaf-ease-fluid));
 	}
 
 	@keyframes loaf-enter-motion {
@@ -81,18 +81,18 @@
 		:global(#basket:has(> .navbar[data-position$='-top']:not(.test))) #loaf-wrapper,
 		:global(#basket:has(> .navbar[data-position$='-bottom']:not(.test))) #loaf-wrapper {
 			width: 100%;
-			height: calc(100% - var(--mobile-navbar-height));
+			height: calc(100% - var(--loaf-mobile-navbar-height));
 			margin-left: 0;
 		}
 
 		:global(#basket:has(> .navbar[data-position$='-top']:not(.test))) #loaf-wrapper {
-			margin-top: var(--mobile-navbar-height);
-			border-radius: calc(var(--radius-md) * 2) calc(var(--radius-md) * 2) 0 0;
+			margin-top: var(--loaf-mobile-navbar-height);
+			border-radius: calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2) 0 0;
 		}
 
 		:global(#basket:has(> .navbar[data-position$='-bottom']:not(.test))) #loaf-wrapper {
 			margin-top: 0;
-			border-radius: 0 0 calc(var(--radius-md) * 2) calc(var(--radius-md) * 2);
+			border-radius: 0 0 calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2);
 		}
 	}
 </style>

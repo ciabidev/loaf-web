@@ -43,7 +43,7 @@
     .emotion {
         width: 1em;
         height: 1em;
-        border-radius: var(--radius-md); 
+        border-radius: var(--loaf-radius-md);
     }
 
     .emotion.small {

@@ -186,9 +186,9 @@
 		<div class="component-row">
 			<button>Default</button>
 			<button class="button--primary">Primary</button>
-			<button class="button--success">Success</button>
+			<button class="button--loaf-success">Success</button>
 			<button class="button--danger">Danger</button>
-			<button class="button--elevated">Elevated</button>
+			<button class="button--loaf-elevated">Elevated</button>
 			<button disabled>Disabled</button>
 			<a class="button button--link" href="#inputs">Link button</a>
 		</div>
@@ -335,7 +335,7 @@
 				{ name: 'default' },
 				{ name: 'light pastel', color: '#f9e2af' },
 				{ name: 'dark plum', color: '#31243d' },
-				{ name: 'accent', color: 'var(--accent)' },
+				{ name: 'accent', color: 'var(--loaf-accent)' },
 				{ name: 'custom text', color: '#89b4fa', textColor: '#1e1e2e' }
 			]}
 		/>
@@ -446,7 +446,7 @@
 	.gallery-section {
 		gap: 1rem;
 		padding-block: 0.5rem 1.5rem;
-		border-bottom: 0.0625rem solid var(--button-stroke);
+		border-bottom: 0.0625rem solid var(--loaf-button-stroke);
 	}
 
 	.section-heading {
@@ -476,7 +476,7 @@
 		overflow: hidden;
 		padding: 0;
 		border: 0;
-		border-radius: calc(var(--radius-lg) - 0.1875rem);
+		border-radius: calc(var(--loaf-radius-lg) - 0.1875rem);
 		background: #07131c;
 		color: #fff;
 		text-align: left;
@@ -559,7 +559,7 @@
 		gap: 0.5rem;
 		margin-top: 0.2rem;
 		padding: 0.6rem 0.85rem;
-		border-radius: var(--radius-md);
+		border-radius: var(--loaf-radius-md);
 		background: rgb(255 255 255 / 0.94);
 		color: #07131c;
 		font-size: 0.875rem;
@@ -594,18 +594,18 @@
 
 	.effect-samples__item {
 		padding: 1rem;
-		border-radius: var(--radius-md);
-		background: var(--button-default);
+		border-radius: var(--loaf-radius-md);
+		background: var(--loaf-button-default);
 	}
 
 	.effect-samples__item--border,
 	.effect-samples__item--both {
-		border: 0.0625rem solid var(--button-stroke);
+		border: 0.0625rem solid var(--loaf-button-stroke);
 	}
 
 	.effect-samples__item--shadow,
 	.effect-samples__item--both {
-		box-shadow: var(--button-box-shadow);
+		box-shadow: var(--loaf-button-box-shadow);
 	}
 
 	.stack {
@@ -628,18 +628,18 @@
 	.horizontal-nav-preview,
 	.vertical-nav-preview {
 		overflow: hidden;
-		border: 0.0625rem solid var(--button-stroke);
-		border-radius: var(--radius-md);
-		background: var(--nav-bg);
+		border: 0.0625rem solid var(--loaf-button-stroke);
+		border-radius: var(--loaf-radius-md);
+		background: var(--loaf-nav-bg);
 	}
 
 	.horizontal-nav-preview {
 		width: min(100%, 30rem);
-		height: var(--navbar-height);
+		height: var(--loaf-navbar-height);
 	}
 
 	.vertical-nav-preview {
-		width: calc(var(--navbar-width) + var(--navbar-inner-padding) * 2);
+		width: calc(var(--loaf-navbar-width) + var(--loaf-navbar-inner-padding) * 2);
 		height: 22rem;
 	}
 
@@ -660,9 +660,9 @@
 		position: relative;
 		height: 15rem;
 		overflow: hidden;
-		border: 0.0625rem solid var(--button-stroke);
-		border-radius: var(--radius-md);
-		background: var(--surface);
+		border: 0.0625rem solid var(--loaf-button-stroke);
+		border-radius: var(--loaf-radius-md);
+		background: var(--loaf-surface);
 	}
 
 	.responsive-nav-preview :global(.navbar.test) {

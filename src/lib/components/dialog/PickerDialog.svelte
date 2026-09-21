@@ -54,7 +54,7 @@
 		--picker-item-gap: 0.25rem;
 		--picker-item-area: calc(var(--picker-item-size) + var(--picker-item-gap));
 
-		gap: var(--padding-md);
+		gap: var(--loaf-padding-md);
 		max-height: calc(90% - env(safe-area-inset-bottom) - env(safe-area-inset-top));
 		width: auto;
 	}
@@ -73,8 +73,8 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: calc(var(--padding-md) / 2);
-		color: var(--text);
+		gap: calc(var(--loaf-padding-md) / 2);
+		color: var(--loaf-text);
 	}
 
 	.popup-title {

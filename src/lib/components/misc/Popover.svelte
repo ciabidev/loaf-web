@@ -24,19 +24,19 @@
         user-select: none;
         display: flex;
         flex-direction: column;
-        gap: calc(var(--padding-md) / 2);
+        gap: calc(var(--loaf-padding-md) / 2);
     }
 
     .popover-container {
-        padding: var(--padding-md);
-        background: var(--popover-bg);
-        border-radius: calc(var(--radius-md) * 2);
-        border: var(--button-stroke) solid 0.0625rem;
+        padding: var(--loaf-padding-md);
+        background: var(--loaf-popover-bg);
+        border-radius: calc(var(--loaf-radius-md) * 2);
+        border: var(--loaf-button-stroke) solid 0.0625rem;
         display: flex;
         flex-direction: column;
         border-radius: 1.125rem;
-        filter: drop-shadow(0 0 0.5rem var(--popover-glow))
-            drop-shadow(0 0 0.625rem var(--popover-glow));
+        filter: drop-shadow(0 0 0.5rem var(--loaf-popover-glow))
+            drop-shadow(0 0 0.625rem var(--loaf-popover-glow));
         position: relative;
         gap: 0.375rem;
         top: 0.375rem;

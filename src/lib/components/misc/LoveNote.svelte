@@ -10,7 +10,7 @@
 
 <style>
   .lovenote-container {
-    bottom: calc(var(--navbar-height) + 0.625rem);
+    bottom: calc(var(--loaf-navbar-height) + 0.625rem);
     order: 2;
     z-index: 50;
     position: fixed;
@@ -38,7 +38,7 @@
     } */
 
     .lovenote-container {
-      bottom: calc(var(--mobile-navbar-height) + 0.9375rem);
+      bottom: calc(var(--loaf-mobile-navbar-height) + 0.9375rem);
     }
   }
 </style>

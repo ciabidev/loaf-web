@@ -85,7 +85,7 @@
 		scrollbar-width: none;
 		overflow-x: scroll;
 		max-width: fit-content;
-		border-radius: var(--radius-lg);
+		border-radius: var(--loaf-radius-lg);
 	}
 
 	.switcher.full {
@@ -97,25 +97,25 @@
 	}
 
 	.switcher {
-		background: var(--button-default);
-		border: var(--button-stroke) solid 0.0625rem;
-		box-shadow: var(--shadow-main);
-		padding: var(--switcher-padding);
-		gap: calc(var(--switcher-padding) - 0.0938rem);
+		background: var(--loaf-button-default);
+		border: var(--loaf-button-stroke) solid 0.0625rem;
+		box-shadow: var(--loaf-shadow-main);
+		padding: var(--loaf-switcher-padding);
+		gap: calc(var(--loaf-switcher-padding) - 0.0938rem);
 	}
 
 	.switcher :global(button.active) {
 		pointer-events: none;
 		background-color: transparent;
-		color: var(--text-on-accent);
-		color: var(--on-accent, contrast-color(var(--accent)));
+		color: var(--loaf-text-on-accent);
+		color: var(--loaf-on-accent, contrast-color(var(--loaf-accent)));
 	}
 
 	.switcher :global(button) {
 		width: 100%;
 		/* [base button height] - ([switcher padding] * [padding factor to accommodate for]) */
-		height: calc(2.5rem - var(--switcher-padding) * 2);
-		border-radius: var(--radius-lg);
+		height: calc(2.5rem - var(--loaf-switcher-padding) * 2);
+		border-radius: var(--loaf-radius-lg);
 		border: transparent; /* without this the border will flash black when :active */
 		box-shadow: none;
 		position: relative;
@@ -135,7 +135,7 @@
 	}
 
 	.switcher :global(button:active:not(.active)) {
-		border-color: var(--button-stroke);
+		border-color: var(--loaf-button-stroke);
 	}
 
 	.highlight {
@@ -143,8 +143,8 @@
 		top: 0;
 		left: 0;
 		z-index: 0;
-		border-radius: var(--radius-lg);
-		background-color: var(--accent);
+		border-radius: var(--loaf-radius-lg);
+		background-color: var(--loaf-accent);
 		pointer-events: none;
 		transition:
 			transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),

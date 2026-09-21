@@ -32,9 +32,9 @@
     .button-group {
         display: flex;
         width: 100%;
-        gap: calc(var(--padding-md) / 2);
+        gap: calc(var(--loaf-padding-md) / 2);
         overflow-x: auto;
-        border-radius: var(--radius-md);
+        border-radius: var(--loaf-radius-md);
         min-height: 2.5rem;
     }
 
@@ -47,7 +47,7 @@
     }
 
     .button-group::-webkit-scrollbar-thumb {
-        background: var(--accent-secondary);
+        background: var(--loaf-accent-secondary);
         border-radius: 0.125rem;
     }
 </style>

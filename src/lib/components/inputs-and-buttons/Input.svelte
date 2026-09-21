@@ -54,11 +54,11 @@
 
 <style>
 	.input-wrapper {
-		border: var(--border-color) 0.125rem solid;
-		border-radius: var(--radius-lg);
+		border: var(--loaf-border-color) 0.125rem solid;
+		border-radius: var(--loaf-radius-lg);
 		width: var(--width);
-		background: var(--surface-secondary);
-		box-shadow: var(--shadow-main);
+		background: var(--loaf-surface-secondary);
+		box-shadow: var(--loaf-shadow-main);
 		min-width: var(--min-width);
 		max-height: fit-content;
 		display: flex;
@@ -72,12 +72,12 @@
 	}
 
 	.input-wrapper:has(textarea) {
-		border-radius: var(--radius-md) !important;
+		border-radius: var(--loaf-radius-md) !important;
 	}
 
 	.input-wrapper.focused {
-		border: var(--accent) 2px solid;
-		box-shadow: 0px 0px 0px 3px color-mix(in srgb, var(--accent) 30%, transparent);
+		border: var(--loaf-accent) 2px solid;
+		box-shadow: 0px 0px 0px 3px color-mix(in srgb, var(--loaf-accent) 30%, transparent);
 	}
 
 	.input {
@@ -88,7 +88,7 @@
 		background: none;
 		outline: none;
 		resize: none;
-		color: var(--text);
+		color: var(--loaf-text);
 	}
 
 	@media (pointer: none), (pointer: coarse) {

@@ -47,11 +47,11 @@
 		flex-direction: column;
 		flex: 0 0 auto; /* don’t shrink the item completely */
 
-		gap: calc(var(--padding-md) / 2);
+		gap: calc(var(--loaf-padding-md) / 2);
 		z-index: 10;
 		background: none;
 		max-width: 8.125rem;
-		color: var(--text);
+		color: var(--loaf-text);
 	}
 
 	.carousel-item img {
@@ -62,7 +62,7 @@
 		flex-shrink: 0;
 		aspect-ratio: 1/1;
 		object-fit: cover;
-		border-radius: var(--radius-md);
+		border-radius: var(--loaf-radius-md);
 	}
 	.carousel-item.active {
 		transform: scale(1.1);
@@ -70,7 +70,7 @@
 	}
 
 	.carousel-item.active img {
-		border: var(--button-stroke) solid 0.0625rem;
-		box-shadow: var(--shadow-main);
+		border: var(--loaf-button-stroke) solid 0.0625rem;
+		box-shadow: var(--loaf-shadow-main);
 	}
 </style>
