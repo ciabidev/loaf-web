@@ -5,7 +5,7 @@
 `@ciabi/loaf-web` has not been published yet, so its npm package settings do not exist. a package
 owner has to make the first `0.1.0` publication interactively from a clean, tagged commit:
 
-1. enable 2FA on the npm account that owns the `@ciabi` scope.
+1. before starting make sure u have enabled 2FA on the npm account that owns the `@ciabi` scope.
 2. run the full local audit: `npm ci`, `npm run quality`, and `npm run smoke:consumer`.
 3. commit changes. the yml workflow should take care of the rest
 4. create a github release with version tag and changelog entry i havent created a style guide for changelogs yet so dont ask me

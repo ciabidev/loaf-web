@@ -92,7 +92,6 @@
 </script>
 
 <PageContainer
-	containerId="component-gallery-container"
 	pageId="component-gallery"
 	maxWidth="68rem"
 >

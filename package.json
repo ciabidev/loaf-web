@@ -1,6 +1,6 @@
 {
 	"name": "@ciabi/loaf-web",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "a cozy, extensible Svelte component library.",
 	"author": "wheatwhole",
 	"license": "MIT",

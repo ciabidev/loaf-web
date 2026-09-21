@@ -2,43 +2,23 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	let {
-		containerId,
-		pageId,
-		maxWidth,
-		children
-	}: { containerId: string; pageId: string; maxWidth: string; children: Snippet } = $props();
+	let { pageId, maxWidth, children }: { pageId: string; maxWidth: string; children: Snippet } = $props();
 </script>
 
-<div id={containerId} class="page-container">
-	<main id={pageId} class="page-main" style="--max-width: {maxWidth}">
-		{@render children()}
-	</main>
-</div>
+<main id={pageId} class="page-container" style="--max-width: {maxWidth}">
+	{@render children()}
+</main>
 
 <style>
 	.page-container {
-		width: 100%;
-		display: flex;
-		justify-content: center;
+		width: min(calc(var(--max-width) + var(--loaf-padding-md) * 2), 100%);
 		min-height: 100%;
-		overscroll-behavior: none;
+		margin-inline: auto;
 		padding: var(--loaf-padding-md);
-	}
-
-	.page-main {
-		width: var(--max-width);
-		max-width: 100%; /* super responsive, on smaller devices the page naturally expands to fill the screen */
-		gap: 1.25rem;
+		overscroll-behavior: none;
 		display: flex;
+		gap: 1.25rem;
 		flex-direction: column;
 	}
 
-	@media only screen and (max-height: 25rem) {
-		.page-container {
-			justify-content: center;
-			align-items: center;
-			height: max-content;
-		}
-	}
 </style>
