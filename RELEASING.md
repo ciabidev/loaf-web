@@ -8,7 +8,7 @@ owner has to make the first `0.1.0` publication interactively from a clean, tagg
 1. enable 2FA on the npm account that owns the `@ciabi` scope.
 2. run the full local audit: `npm ci`, `npm run quality`, and `npm run smoke:consumer`.
 3. commit changes. the yml workflow should take care of the rest
-
+4. create a github release with version tag and changelog entry i havent created a style guide for changelogs yet so dont ask me
 ### if you havent set up the yaml workflow with npm
 3. sign in with `npm login`, then run `npm publish --access public` and finish the 2FA prompt.
    don't create or commit an npm token.
