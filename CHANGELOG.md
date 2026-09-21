@@ -13,4 +13,5 @@ before 1.0, breaking changes may ship in a minor version.
 - add focused interaction tests, packed-consumer verification, and release automation.
 
 # 0.1.1 - fixed "missing prop use" error in Selector
-- thats all folks 
+
+- thats all folks
