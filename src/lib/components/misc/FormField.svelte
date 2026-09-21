@@ -19,7 +19,7 @@
 		<label for={id}>{label}</label>
 	{/if}
 	{#if required && !value.trim()}
-		<div class="required-text">Required</div>
+		<div class="required-text">required</div>
 	{/if}
 	{#if hint}
 		<div class="hint">{hint}</div>

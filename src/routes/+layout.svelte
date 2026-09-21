@@ -8,14 +8,14 @@
 	let { children }: { children: Snippet } = $props();
 	import NavTab from '$components/nav/NavTab.svelte';
 	import { page } from '$app/state';
-	import MacroIcon from '~icons/streamline-flex/toaster-remix';
+	import MacroIcon from '$components/icons/ice-cream.svelte';
 
 	import FlavorPicker from '$components/nav/FlavorPicker.svelte';
 	import { registerFlavor, registerFlavors } from '$lib/state/flavor-registry';
 
 	registerFlavor({
 		name: 'Mocha Blue',
-		description: 'Catppuccin Mocha with blue accents',
+		description: 'catppuccin mocha with blue accents',
 		iconPath: '/flavor_icons/catppuccin-mocha-blue.png',
 		isDark: true,
 		cssVariables: {
@@ -38,7 +38,7 @@
 	registerFlavors([
 		{
 			name: 'rain',
-			description: '☀️ blue theme',
+			description: '☀️ just a blue theme',
 			iconPath: '/flavor_icons/rain.png',
 			isDark: false,
 			cssVariables: {
@@ -101,7 +101,7 @@
 		},
 		{
 			name: 'fire nation',
-			description: "🌙 Uncle Iroh's favorite tea flavor",
+			description: "🌙 uncle iroh's favorite tea flavor",
 			iconPath: '/flavor_icons/fire-nation.png',
 			isDark: true,
 			cssVariables: {
@@ -165,7 +165,7 @@
 	</Loaf>
 
 	<Navbar position="left-bottom">
-		<NavTab name="test" Icon={MacroIcon} path="/" active={page.url.pathname === '/'} />
+		<NavTab name="gallery" Icon={MacroIcon} path="/" active={page.url.pathname === '/'} />
 		<NavTab name="404" Icon={MacroIcon} path="/404" active={page.status === 404} />
 	</Navbar>
 </Basket>

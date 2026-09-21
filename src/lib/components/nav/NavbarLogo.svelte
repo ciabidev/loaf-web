@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { src, alt = 'Logo' }: { src: string; alt?: string } = $props();
+	let { src, alt = 'logo' }: { src: string; alt?: string } = $props();
 </script>
 
 <div class="logo" aria-label={alt}>

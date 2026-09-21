@@ -7,14 +7,14 @@
 		title = 'code'
 	}: { code?: string; language?: string; title?: string } = $props();
 
-	let copyText = $state('Copy');
+	let copyText = $state('copy');
 	let highlighted = $state('');
 
 	async function copyCode() {
 		try {
 			await navigator.clipboard.writeText(code);
-			copyText = 'Copied!';
-			setTimeout(() => (copyText = 'Copy'), 2000);
+			copyText = 'copied!';
+			setTimeout(() => (copyText = 'copy'), 2000);
 		} catch (err) {
 			console.error('Failed to copy: ', err);
 		}

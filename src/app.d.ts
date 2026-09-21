@@ -9,6 +9,5 @@ declare global {
 		// interface Platform {}
 	}
 }
-import 'unplugin-icons/types/svelte';
 
 export {};

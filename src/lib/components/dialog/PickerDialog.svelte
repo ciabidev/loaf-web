@@ -28,9 +28,9 @@
 		<div class="popup-header">
 			<div class="popup-title-container">
 				<!-- Icon would go here -->
-				<h2 class="popup-title">Select Option</h2>
+				<h2 class="popup-title">select an option</h2>
 			</div>
-			<div class="subtext popup-description">Choose from the available options below</div>
+			<div class="subtext popup-description">choose from the options below</div>
 		</div>
 		<div class="picker-body">
 			{#if items}

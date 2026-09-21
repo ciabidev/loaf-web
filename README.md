@@ -1,37 +1,37 @@
 # loaf-web
 
-A cozy, extensible component library for Svelte 5.
+a cozy, extensible component library for Svelte 5.
 
-## Install
+## install
 
 ```sh
 npm install @ciabi/loaf-web
 ```
 
-just import the component stylesheet once near the root of your app to get started
+just import the component stylesheet once near the root of your app to get started.
 
 ```ts
 import '@ciabi/loaf-web/styles.css';
 ```
 
-The core stylesheet defines component tokens and shared component classes without changing page
-sizing, overflow, resets, scrollbars, or loading web fonts. Optional styles are separate:
+the core stylesheet defines component tokens and shared component classes without changing page
+sizing, overflow, resets, scrollbars, or loading web fonts. the optional styles are separate:
 
 ```ts
 import '@ciabi/loaf-web/reset.css'; // Full-page shell, element reset, and scrollbar styling
 import '@ciabi/loaf-web/fonts.css'; // Opt-in Google Fonts request
 ```
 
-Applications that want the complete opinionated setup can import the bundle instead:
+if you want the complete setup, import the bundle instead:
 
 ```ts
 import '@ciabi/loaf-web/app.css'; // Core components + reset + hosted fonts
 ```
 
-Without `fonts.css`, `--loaf-text-font` and `--loaf-code-font` use system font stacks. Override
-either custom property to use self-hosted fonts.
+without `fonts.css`, `--loaf-text-font` and `--loaf-code-font` use system font stacks. override
+either custom property if you want to use self-hosted fonts.
 
-Then import components from the package root:
+then import components from the package root:
 
 ```svelte
 <script lang="ts">
@@ -40,14 +40,14 @@ Then import components from the package root:
 	let enabled = $state(false);
 </script>
 
-<Card name="Cozy settings">
+<Card name="cozy settings">
 	<Toggle {enabled} onClick={() => (enabled = !enabled)} />
 </Card>
 ```
 
-## App layout
+## app layout
 
-The layout pieces are composable. Add only the features an app needs:
+the layout pieces are composable. add only what your app needs:
 
 ```svelte
 <script lang="ts">
@@ -71,11 +71,13 @@ The layout pieces are composable. Add only the features an app needs:
 </Basket>
 ```
 
-Routing stays in the consuming app. Pass `active` to the current `NavTab` instead of coupling the component library to a specific router.
+routing stays in the consuming app. pass `active` to the current `NavTab` instead of coupling the
+component library to a specific router.
 
-## Themes
+## themes
 
-Components use CSS custom properties, so an app can override individual design tokens or register complete flavors:
+components use CSS custom properties, so you can override individual design tokens or register
+complete flavors:
 
 ```ts
 import { registerFlavor } from '@ciabi/loaf-web';
@@ -95,11 +97,11 @@ registerFlavor({
 });
 ```
 
-`registerFlavor` stores a copy of the definition. Use `getFlavor` or `listFlavors` to inspect
-registered flavors, `applyFlavor` to apply one to the document root, and `unregisterFlavor` for
-cleanup. Returned definitions are copies, so consumers cannot mutate the registry accidentally.
+`registerFlavor` stores a copy of the definition. use `getFlavor` or `listFlavors` to inspect
+registered flavors, `applyFlavor` to apply one to the document root, and `unregisterFlavor` to
+clean one up. returned definitions are copies, so you can't accidentally mutate the registry.
 
-## Supported public API
+## supported public API
 
 - Layout: `Basket`, `Loaf`, `PageContainer`
 - Navigation: `FlavorPicker`, `Navbar`, `NavbarLogo`, `NavTab`
@@ -110,25 +112,25 @@ cleanup. Returned definitions are copies, so consumers cannot mutate the registr
 - Flavor picker state: `flavorPickerVisible`, `openFlavorPicker`
 - Public prop/configuration types: `CarouselItemType`, `DialogButton`, `DialogInfo`, `DialogPickerItem`, `PickerDialog`, `SmallDialog`, `SmallDialogIcons`, `Emotion`, `FlavorDefinition`, `Tag`
 
-Only package-root exports and the documented stylesheet subpaths are supported. Files below
-`dist/` are implementation details and should not be imported directly.
+only package-root exports and the documented stylesheet subpaths are supported. files below `dist/`
+are implementation details, so don't import them directly.
 
-## Versioning
+## versioning
 
-This project follows SemVer. While the package is in `0.x`, breaking public API changes may ship in
-a minor release and fixes in a patch release. Starting with `1.0.0`, breaking changes require a new
-major version. See [CHANGELOG.md](./CHANGELOG.md) for release notes.
+this project follows SemVer. while the package is in `0.x`, breaking public API changes may ship in
+a minor release and fixes in a patch release. starting with `1.0.0`, breaking changes require a new
+major version. see [CHANGELOG.md](./CHANGELOG.md) for release notes.
 
-## Development
+## development
 
 ```sh
 npm install
 npm run dev
 ```
 
-The root route is the component gallery and manual regression page.
+the root route is the component gallery and manual regression page.
 
-Build and validate the publishable package with:
+build and validate the publishable package with:
 
 ```sh
 npm run package

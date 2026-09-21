@@ -70,7 +70,7 @@
 			onclick={() => scroll('left')}
 			class:hidden={!showLeftScroll}
 			aria-disabled={activeItem === 0}
-			aria-label="Previous"
+			aria-label="previous"
 		>
 			<LeftArrow class="icon" />
 		</button>
@@ -79,7 +79,7 @@
 			onclick={() => scroll('right')}
 			class:hidden={!showRightScroll}
 			aria-disabled={activeItem === items.length - 1}
-			aria-label="Next"
+			aria-label="next"
 		>
 			<RightArrow class="icon" />
 		</button>

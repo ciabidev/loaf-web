@@ -8,13 +8,13 @@
 	<div class="error">
 		<Emotion emotion="confused" size="large" />
 		<h1>where am i</h1>
-		<span class="giantahhparagraph">{page.error?.message || '404 - page not found'}</span>
+		<span class="giantahhparagraph">{page.error?.message || '404 - page not found rn'}</span>
 	</div>
 {:else}
 	<div class="error">
 		<Emotion emotion="awkward" size="large" />
 		<h1>error {page.status}</h1>
-		<span class="giantahhparagraph">{page.error?.message || 'unknown error'}</span>
+		<span class="giantahhparagraph">{page.error?.message || 'some unknown error happened'}</span>
 	</div>
 {/if}
 

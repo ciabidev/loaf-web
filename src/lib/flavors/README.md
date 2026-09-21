@@ -1,18 +1,19 @@
-# Flavor System (Themes)
+# flavor system (themes)
 
-the Flavor system provides an extensible, developer-friendly way to register and manage themes in the application. Previously, themes were hardcoded in CSS files. now, they are fully registerable and extensible.
+the flavor system provides a way to register and manage themes in the application. themes used to be
+hardcoded in css files. now, they're registerable and extensible.
 
-## Overview
+## overview
 
-the flavor system consists of:
+the flavor system has:
 
-- **Flavor Registry**: Central registry that manages all available flavors
-- **Flavor Definitions**: TypeScript definitions that describe a flavor's properties
-- **Built-in Flavors**: Pre-configured themes that ship with the app
+- **flavor registry**: keeps track of every available flavor
+- **flavor definitions**: TypeScript definitions that describe a flavor
+- **built-in flavors**: pre-configured themes that ship with the app
 
-## `flavor-registry.ts` Functions
+## `flavor-registry.ts` functions
 
-Functions for managing registration and retrieval of flavors:
+use these functions to register and retrieve flavors:
 
 ```typescript
 registerFlavor(definition): Register a single flavor
@@ -23,12 +24,12 @@ applyFlavor(name): Apply flavor CSS to DOM
 unregisterFlavor(name): Remove a flavor from registry
 ```
 
-The registry itself is intentionally private. Definitions returned by `getFlavor` and
-`listFlavors` are copies; update a flavor by registering a new definition with the same name.
+the registry is intentionally private. definitions returned by `getFlavor` and `listFlavors` are
+copies; update a flavor by registering a new definition with the same name.
 
-## Using Custom Flavors
+## using custom flavors
 
-### Basic Example
+### basic example
 
 ```typescript
 import { registerFlavor } from '@ciabi/loaf-web';
@@ -56,38 +57,40 @@ registerFlavor({
 });
 ```
 
-## CSS Variables
+## CSS variables
 
-Each flavor must define CSS custom properties that are applied to the document root. Standard variables include:
+each flavor must define CSS custom properties that get applied to the document root. the standard
+variables are:
 
-### Layout & Colors
+### layout & colors
 
 - `--loaf-surface`: Main background color
 - `--loaf-text`: Primary text color
 - `--loaf-text-on-accent`: Text color for elements on `--loaf-accent` backgrounds
 
-### Accents
+### accents
 
 - `--loaf-accent`: Primary accent color (used everywhere)
 - `--loaf-accent-secondary`: Secondary accent (links, smaller elements)
 - `--loaf-surface-secondary`: Alternative background (buttons, cards)
 
-### Status Colors
+### status colors
 
 - `--loaf-success`: Success states (green by default)
 - `--loaf-warning`: Warning states (yellow by default)
 - `--loaf-error`: Error states (red by default)
 
-### Navigation
+### navigation
 
 - `--loaf-nav-bg`: Navigation bar background
 - `--loaf-nav-hover-bg`: Navigation item hover state
 - `--loaf-nav-highlight`: Navigation highlight color
 - `--loaf-nav-active-highlight`: Active navigation item color
 
-## Registering Flavors at Startup
+## registering flavors at startup
 
-To ensure custom flavors are available throughout the application, register them early. Create a file that auto-registers on import:
+to make custom flavors available everywhere, register them early. create a file that registers them
+when imported:
 
 ```typescript
 // lib/customFlavors.ts
@@ -98,4 +101,4 @@ export const myCustomFlavors = [
 registerFlavors(myCustomFlavors);
 ```
 
-Then import this module in the consuming app's root layout to trigger registration at startup.
+then import this module in the consuming app's root layout to register everything at startup.

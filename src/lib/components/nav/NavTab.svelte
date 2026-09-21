@@ -95,6 +95,7 @@
 		opacity: 0.75;
 		text-decoration: none;
 		overflow-x: hidden;
+		overflow-y: hidden;
 		user-select: none;
 		-webkit-user-select: none; /* Safari / iOS */
 		-ms-user-select: none;

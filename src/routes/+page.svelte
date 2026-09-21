@@ -1,8 +1,8 @@
 <script lang="ts">
-	import SearchIcon from '~icons/hugeicons/search-01';
-	import GridIcon from '~icons/hugeicons/layout-grid';
-	import LinkIcon from '~icons/hugeicons/link';
-	import PlayIcon from '~icons/hugeicons/play';
+	import GridIcon from '$components/icons/grid.svelte';
+	import LinkIcon from '$components/icons/link.svelte';
+	import PlayIcon from '$components/icons/play.svelte';
+	import SearchIcon from '$components/icons/search.svelte';
 
 	import Carousel from '$components/inputs-and-buttons/Carousel.svelte';
 	import Input from '$components/inputs-and-buttons/Input.svelte';
@@ -28,10 +28,10 @@
 	type CardVariant = 'flat' | 'bordered' | 'elevated' | 'ghost';
 
 	const cardVariants: Array<{ variant: CardVariant; description: string }> = [
-		{ variant: 'flat', description: 'A filled surface without a border or shadow.' },
-		{ variant: 'bordered', description: 'A flat surface with a strong border.' },
-		{ variant: 'elevated', description: 'A thin border and shadow lift this card.' },
-		{ variant: 'ghost', description: 'A transparent surface with a dashed outline.' }
+		{ variant: 'flat', description: 'filled surface. no border or shadow.' },
+		{ variant: 'bordered', description: 'flat surface with a stronger border.' },
+		{ variant: 'elevated', description: 'a thin border and shadow make it pop a bit.' },
+		{ variant: 'ghost', description: 'transparent surface with a dashed outline.' }
 	];
 
 	const responsiveNavbarPositions = [
@@ -59,17 +59,17 @@
 	let episodePlaying = $state(false);
 	let selectedPickerItem = $state('None');
 	const markdownExample =
-		'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three\n\nSpacing stays consistent after a list, too.';
+		'## markdown example\nthis component renders **formatted text**, links, and lists.\n- one\n- two\n- three\n\nspacing stays consistent after a list, too.';
 	const codeExample = '<Card variant="elevated">\n  Hello from a card\n</Card>';
 
 	const openSmallDialog = () => {
 		createDialog({
 			id: 'component-gallery-small-dialog',
 			type: 'small',
-			title: 'Small dialog',
-			bodyText: 'Dialogs can contain a title, body, emoticon, and one or more actions.',
+			title: 'small dialog',
+			bodyText: 'dialogs can have a title, body text, an emoticon, and one or more actions.',
 			emoticon: 'happy',
-			buttons: [{ text: 'Continue', main: true, action: () => {} }]
+			buttons: [{ text: 'continue', main: true, action: () => {} }]
 		});
 	};
 
@@ -78,14 +78,14 @@
 			id: 'component-gallery-picker-dialog',
 			type: 'picker',
 			items: [
-				{ type: 'photo', url: '/emotions/happy.png', text: 'Happy' },
-				{ type: 'photo', url: '/emotions/confused.png', text: 'Confused' },
-				{ type: 'photo', url: '/emotions/surprised.png', text: 'Surprised' },
-				{ type: 'photo', url: '/emotions/unamused.png', text: 'Unamused' }
+				{ type: 'photo', url: '/emotions/happy.png', text: 'happy' },
+				{ type: 'photo', url: '/emotions/confused.png', text: 'confused' },
+				{ type: 'photo', url: '/emotions/surprised.png', text: 'surprised' },
+				{ type: 'photo', url: '/emotions/unamused.png', text: 'unamused' }
 			],
-			buttons: [{ text: 'Done', main: true, action: () => {} }],
+			buttons: [{ text: 'done', main: true, action: () => {} }],
 			onSelect: (item) => {
-				selectedPickerItem = item.text ?? item.url ?? 'Unnamed item';
+				selectedPickerItem = item.text ?? item.url ?? 'unnamed item';
 			}
 		});
 	};
@@ -98,7 +98,7 @@
 >
 	<header class="hero paragraph-text">
 		<div>
-			<h1>loaf-web test page</h1>
+			<h1>loaf-web component gallery</h1>
 			<p>the web in a cozy bread basket</p>
 		</div>
 		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
@@ -106,8 +106,8 @@
 
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
-			<h2>Cards</h2>
-			<p>Variants, interactions, and custom slotted content.</p>
+			<h2>cards</h2>
+			<p>variants, interactions, and custom slotted content.</p>
 		</div>
 		<div class="card-grid">
 			{#each cardVariants as card (card.variant)}
@@ -115,17 +115,17 @@
 					variant={card.variant}
 					name={`${card.variant[0].toUpperCase()}${card.variant.slice(1)} card`}
 					description={card.description}
-					tiny="Interactive card"
+					tiny="click me"
 					onclick={() => (cardClicks += 1)}
 					banner="/"
 				>
-					<span class="subtext">Click count: {cardClicks}</span>
+					<span class="subtext">clicked {cardClicks} times</span>
 				</Card>
 			{/each}
 		</div>
 		<div class="paragraph-text">
-			<h3>Make cards your own</h3>
-			<p>Cards can contain any slotted content, including images, videos, and even other cards.</p>
+			<h3>make cards your own</h3>
+			<p>put whatever you want inside a card: images, videos, or even more cards.</p>
 		</div>
 		<Card variant="bordered" pad={false} onclick={() => (episodePlaying = !episodePlaying)}>
 			<div class="episode-card">
@@ -160,43 +160,43 @@
 
 		<Card
 			variant="elevated"
-			name="Link Card with a banner"
+			name="link card with a banner"
 			url="https://github.com/ciabidev/loaf-web"
 			urlshort="github.com/ciabidev/loaf-web"
-			description="Cards can still render the existing URL and project metadata layout."
+			description="cards can still show a url and project metadata."
 			img="/favicon/favicon-96x96.png"
 			banner="/illustrations/wallpapersden.com_one-piece-4k-elbaf-arc-keyart_3840x2400.jpg"
 		>
 			<div class="actions">
-				<button class="button button--primary">Primary action</button>
-				<button>Secondary action</button>
+				<button class="button button--primary">primary action</button>
+				<button>secondary action</button>
 			</div>
 		</Card>
 	</section>
 
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
-			<h2>Buttons and links</h2>
+			<h2>buttons and links</h2>
 		</div>
 		<div class="component-row">
-			<button>Default</button>
-			<button class="button--primary">Primary</button>
-			<button class="button--loaf-success">Success</button>
-			<button class="button--danger">Danger</button>
-			<button class="button--loaf-elevated">Elevated</button>
-			<button disabled>Disabled</button>
-			<a class="button button--link" href="#inputs">Link button</a>
+			<button>default</button>
+			<button class="button--primary">primary</button>
+			<button class="button--loaf-success">success</button>
+			<button class="button--danger">danger</button>
+			<button class="button--loaf-elevated">elevated</button>
+			<button disabled>disabled</button>
+			<a class="button button--link" href="#inputs">link button</a>
 		</div>
 		<div class="effect-samples">
-			<div class="effect-samples__item effect-samples__item--border">Border only</div>
-			<div class="effect-samples__item effect-samples__item--shadow">Shadow only</div>
-			<div class="effect-samples__item effect-samples__item--both">Border and shadow</div>
+			<div class="effect-samples__item effect-samples__item--border">border only</div>
+			<div class="effect-samples__item effect-samples__item--shadow">shadow only</div>
+			<div class="effect-samples__item effect-samples__item--both">border and shadow</div>
 		</div>
 		<div class="component-row">
 			<URLButton
 				url="https://github.com/ciabidev/loaf-web"
 				urlshort="github.com/ciabidev/loaf-web"
-				name="Loaf web"
+				name="loaf web"
 				img="/favicon/favicon-96x96.png"
 			/>
 			<Contact Icon={LinkIcon} href="https://github.com/ciabidev/loaf-web" />
@@ -205,69 +205,69 @@
 
 	<section class="gallery-section" id="inputs">
 		<div class="section-heading paragraph-text">
-			<h2>Inputs and controls</h2>
+			<h2>inputs and controls</h2>
 			<p>text entry, segmented controls, and toggle states.</p>
 		</div>
 		<div class="stack">
-			<p class="subtext">Selectors support click, Enter/Space, arrow-key navigation, and Escape.</p>
+			<p class="subtext">selectors support clicks, Enter/Space, arrow keys, and Escape.</p>
 			<FormField
-				label="Text input"
+				label="text input"
 				id="gallery-text-input"
-				hint="Includes an icon and reactive description."
+				hint="includes an icon and a live description."
 				long={false}
 				required={true}
 				value={textInput}
 			>
 				<Input
 					id="gallery-text-input"
-					placeholder="Type something"
+					placeholder="type something"
 					Icon={SearchIcon}
 					bind:value={textInput}
-					description={textInput ? `Current value: ${textInput}` : null}
+					description={textInput ? `current value: ${textInput}` : null}
 				/>
 			</FormField>
 
-			<Input placeholder="Enter markdownhere" long bind:value={longInput} />
+			<Input placeholder="enter markdown here" long bind:value={longInput} />
 			<h3 class="paragraph-text">see live markdown rendering below!</h3>
 			<Markdown source={longInput} />
-			<Switcher description="Content-width segmented control">
-				<button class:active={activeSegment === 0} onclick={() => (activeSegment = 0)}>First</button
+			<Switcher description="content-width segmented control">
+				<button class:active={activeSegment === 0} onclick={() => (activeSegment = 0)}>first</button
 				>
 				<button class:active={activeSegment === 1} onclick={() => (activeSegment = 1)}
-					>Second</button
+					>second</button
 				>
-				<button class:active={activeSegment === 2} onclick={() => (activeSegment = 2)}>Third</button
+				<button class:active={activeSegment === 2} onclick={() => (activeSegment = 2)}>third</button
 				>
 			</Switcher>
 
-			<Switcher full description="Full-width segmented control">
+			<Switcher full description="full-width segmented control">
 				<button class:active={fullActiveSegment === 0} onclick={() => (fullActiveSegment = 0)}
-					>Alpha</button
+					>alpha</button
 				>
 				<button class:active={fullActiveSegment === 1} onclick={() => (fullActiveSegment = 1)}
-					>Beta</button
+					>beta</button
 				>
 				<button class:active={fullActiveSegment === 2} onclick={() => (fullActiveSegment = 2)}
-					>Gamma</button
+					>gamma</button
 				>
 			</Switcher>
 
 			<Selector
-				title="Selector"
+				title="selector"
 				options={[
-					{ value: 'first', text: 'First option' },
-					{ value: 'second', text: 'Second option' },
-					{ value: 'third', text: 'Third option' }
+					{ value: 'first', text: 'first option' },
+					{ value: 'second', text: 'second option' },
+					{ value: 'third', text: 'third option' }
 				]}
 				bind:selected={selectedOption}
 			/>
 			<Selector
-				title="Compact selector"
+				title="compact selector"
 				full={false}
 				options={[
-					{ value: 'first', text: 'First option' },
-					{ value: 'second', text: 'Second option' },
-					{ value: 'third', text: 'Third option' }
+					{ value: 'first', text: 'first option' },
+					{ value: 'second', text: 'second option' },
+					{ value: 'third', text: 'third option' }
 				]}
 				bind:selected={selectedOption}
 			/>
@@ -279,14 +279,14 @@
 					}}
 				/>
 				<Toggle
-					title="Labeled toggle"
+					title="labeled toggle"
 					enabled={toggleEnabled}
 					onClick={() => {
 						toggleEnabled = !toggleEnabled;
 					}}
 				/>
 				<Toggle
-					title="Locked toggle"
+					title="locked toggle"
 					enabled={lockedToggle}
 					locked
 					onClick={() => {
@@ -295,7 +295,7 @@
 				/>
 			</div>
 			<Toggle
-				title="Full-width toggle"
+				title="full-width toggle"
 				enabled={toggleEnabled}
 				full
 				onClick={() => {
@@ -307,35 +307,33 @@
 
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
-			<h2>Dialogs and popovers</h2>
-			<p>Overlay entry points and inline expanded/collapsed states.</p>
+			<h2>dialogs and popovers</h2>
+			<p>overlay entry points and inline expanded/collapsed states.</p>
 		</div>
 		<div class="component-row">
-			<button onclick={openSmallDialog}>Open small dialog</button>
-			<button onclick={openPickerDialog}>Open picker dialog</button>
+			<button onclick={openSmallDialog}>open small dialog</button>
+			<button onclick={openPickerDialog}>open picker dialog</button>
 			<button onclick={() => (popoverVisible = !popoverVisible)}>
-				{popoverVisible ? 'Close popover' : 'Open popover'}
+				{popoverVisible ? 'close popover' : 'open popover'}
 			</button>
 		</div>
-		<p class="subtext">Last picker selection: {selectedPickerItem}</p>
+		<p class="subtext">last picker selection: {selectedPickerItem}</p>
 		<div class="popover-stage">
 			<Popover
 				id="gallery-popover"
 				expanded={popoverVisible}
-				title="Popover"
-				description="Popovers can hold arbitrary content."
+				title="popover"
+				description="popovers can hold whatever content you give them."
 			>
-				<button class="button--primary">Popover action</button>
+				<button class="button--primary">popover action</button>
 			</Popover>
 		</div>
 	</section>
 
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
-			<h2>Content</h2>
-			<p>
-				Tags, rich text, code, images, and a carousel that keeps its active item within the rail.
-			</p>
+			<h2>content</h2>
+			<p>tags, rich text, code, images, and a carousel that keeps its active item in view.</p>
 		</div>
 		<Tags
 			tags={[
@@ -346,7 +344,7 @@
 				{ name: 'custom text', color: '#89b4fa', textColor: '#1e1e2e' }
 			]}
 		/>
-		<p class="subtext">Tag labels choose readable text from their own background color.</p>
+		<p class="subtext">tag labels pick a readable text color from their background.</p>
 
 		<div class="emotion-row">
 			<Emoticon emotion="happy" size="small" />
@@ -365,29 +363,29 @@
 
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
-			<h2>Navigation</h2>
+			<h2>navigation</h2>
 		</div>
 		<div class="nav-previews">
 			<div class="horizontal-nav-preview">
 				<Navbar test position="bottom">
-					<NavTab name="Gallery" Icon={GridIcon} path="/" active />
-					<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
-					<NavTab name="A very long test route" Icon={LinkIcon} path="/test3" />
+					<NavTab name="gallery" Icon={GridIcon} path="/" active />
+					<NavTab name="test route" Icon={LinkIcon} path="/test2" />
+					<NavTab name="a very long test route" Icon={LinkIcon} path="/test3" />
 				</Navbar>
 			</div>
 			<div class="vertical-nav-preview">
 				<Navbar test position="left">
 					<NavbarLogo src="/icons/biology.jpg" alt="Ciabi logo" />
-					<NavTab name="Gallery" Icon={GridIcon} path="/" active />
-					<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
-					<NavTab name="A very long test route" Icon={LinkIcon} path="/test3" />
+					<NavTab name="gallery" Icon={GridIcon} path="/" active />
+					<NavTab name="test route" Icon={LinkIcon} path="/test2" />
+					<NavTab name="a very long test route" Icon={LinkIcon} path="/test3" />
 				</Navbar>
 			</div>
 		</div>
 
 		<div class="section-heading paragraph-text">
-			<h3>Responsive side positions</h3>
-			<p>Resize below 600px to see each side navbar move to its named top or bottom edge.</p>
+			<h3>responsive side positions</h3>
+			<p>resize below 600px to see each side navbar move to its named edge.</p>
 		</div>
 		<div class="responsive-nav-grid">
 			{#each responsiveNavbarPositions as position (position)}
@@ -395,12 +393,26 @@
 					<code>{position}</code>
 					<div class="responsive-nav-preview">
 						<Navbar test {position}>
-							<NavTab name="Gallery" Icon={GridIcon} path="/" active />
-							<NavTab name="Test route" Icon={LinkIcon} path="/test2" />
+							<NavTab name="gallery" Icon={GridIcon} path="/" active />
+							<NavTab name="test route" Icon={LinkIcon} path="/test2" />
 						</Navbar>
 					</div>
 				</div>
 			{/each}
+		</div>
+
+		<div class="section-heading paragraph-text">
+			<h3>overflowing tabs</h3>
+			<p>tabs still scroll to the active item, but the browser scrollbar stays hidden.</p>
+		</div>
+		<div class="scrollable-nav-preview">
+			<Navbar test position="bottom">
+				<NavTab name="first" Icon={GridIcon} path="/first" />
+				<NavTab name="second" Icon={LinkIcon} path="/second" />
+				<NavTab name="active tab" Icon={GridIcon} path="/active" active />
+				<NavTab name="fourth" Icon={LinkIcon} path="/fourth" />
+				<NavTab name="fifth" Icon={GridIcon} path="/fifth" />
+			</Navbar>
 		</div>
 	</section>
 </PageContainer>
@@ -588,7 +600,8 @@
 	}
 
 	.horizontal-nav-preview,
-	.vertical-nav-preview {
+	.vertical-nav-preview,
+	.scrollable-nav-preview {
 		overflow: hidden;
 		border: 0.0625rem solid var(--loaf-button-stroke);
 		border-radius: var(--loaf-radius-md);
@@ -603,6 +616,11 @@
 	.vertical-nav-preview {
 		width: calc(var(--loaf-navbar-width) + var(--loaf-navbar-inner-padding) * 2);
 		height: 22rem;
+	}
+
+	.scrollable-nav-preview {
+		width: min(100%, 18rem);
+		height: var(--loaf-navbar-height);
 	}
 
 	.responsive-nav-grid {

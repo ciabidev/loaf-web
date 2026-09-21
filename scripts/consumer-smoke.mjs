@@ -17,7 +17,7 @@ const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixtureRoot = mkdtempSync(join(tmpdir(), 'loaf-web-consumer-'));
 const consumerRoot = join(fixtureRoot, 'consumer');
 const forbiddenImport =
-	/(?:from\s*|import\s*\(\s*|import\s+)["'](?:\$app|\$lib|\$components|~icons|@iconify-svelte)(?:\/|["'])/;
+	/(?:from\s*|import\s*\(\s*|import\s+)["'](?:\$app|\$lib|\$components)(?:\/|["'])/;
 const offline = process.env.npm_config_offline === 'true';
 
 function getOfflineDependencies(rootPackages) {

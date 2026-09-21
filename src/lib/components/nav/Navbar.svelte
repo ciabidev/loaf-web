@@ -84,6 +84,11 @@
 		height: fit-content;
 		padding: var(--loaf-navbar-inner-padding);
 		justify-content: space-between;
+		scrollbar-width: none;
+	}
+
+	.navbar-tabs::-webkit-scrollbar {
+		display: none;
 	}
 
 	.navbar[data-position='top'] .navbar-tabs,
