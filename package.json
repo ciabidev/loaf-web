@@ -29,7 +29,8 @@
 		"check": "svelte-kit sync && svelte-check --workspace src --tsconfig ../tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --workspace src --tsconfig ../tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint .",
+		"format:check": "prettier --check .",
+		"lint": "eslint .",
 		"test": "vitest run --passWithNoTests",
 		"quality": "npm run lint && npm run check && npm run test && npm run package && publint && npm run build",
 		"smoke:consumer": "node scripts/consumer-smoke.mjs"
