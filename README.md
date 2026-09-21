@@ -74,7 +74,8 @@ the layout pieces are composable. add only what your app needs:
 routing stays in the consuming app. pass `active` to the current `NavTab` instead of coupling the
 component library to a specific router.
 
-## themes
+## flavors/themes
+themes in loaf-web are called **Flavors**
 
 components use CSS custom properties, so you can override individual design tokens or register
 complete flavors:
@@ -100,6 +101,19 @@ registerFlavor({
 `registerFlavor` stores a copy of the definition. use `getFlavor` or `listFlavors` to inspect
 registered flavors, `applyFlavor` to apply one to the document root, and `unregisterFlavor` to
 clean one up. returned definitions are copies, so you can't accidentally mutate the registry.
+### saving/loading flavors
+loaf-web does save flavors but does not automatically load them. to load flavors on start, add this js snippet near the root of your app:
+```js
+			try {
+				const f = localStorage.getItem('flavor') || 'none' // or whatever fallback flavor u want;
+				const t = localStorage.getItem('flavorType');
+				if (f) document.documentElement.setAttribute('data-flavor', f);
+				if (t) document.documentElement.setAttribute('data-flavor-type', t);
+			} catch (e) {
+				// ignore localStorage errors (e.g., in private mode)
+			}
+```
+we are thinking of adding support for custom flavor loading later but for now u gotta do this gimmicky fix lol
 
 ## supported public API
 
