@@ -1,26 +1,28 @@
 import type { FlavorDefinition } from '../types/flavor-definition.js';
 
-export const flavors = new Map<string, FlavorDefinition>();
+const flavors = new Map<string, FlavorDefinition>();
 
-// Built-in flavors that come with the application
-
-
-// Initialize with built-in flavors
+function copyFlavor(definition: FlavorDefinition): FlavorDefinition {
+	return {
+		...definition,
+		cssVariables: { ...definition.cssVariables }
+	};
+}
 
 export function registerFlavor(definition: FlavorDefinition): void {
-	if (!definition.name || definition.name.trim().length === 0) {
+	if (!definition.name.trim()) {
 		throw new Error('Flavor name cannot be empty');
 	}
 
-	if (!definition.cssVariables || Object.keys(definition.cssVariables).length === 0) {
+	if (Object.keys(definition.cssVariables).length === 0) {
 		throw new Error(`Flavor "${definition.name}" must have CSS variables`);
 	}
 
-	flavors.set(definition.name, definition);
+	flavors.set(definition.name, copyFlavor(definition));
 
 	// If this flavor is already selected via persisted data, apply it now.
 	const root = typeof document !== 'undefined' ? document.documentElement : null;
-	if (root && root.getAttribute('data-flavor') === definition.name) {
+	if (root?.getAttribute('data-flavor') === definition.name) {
 		applyFlavor(definition.name);
 	}
 }
@@ -31,32 +33,31 @@ export function registerFlavors(definitions: FlavorDefinition[]): void {
 	}
 }
 
+export function listFlavors(): FlavorDefinition[] {
+	return Array.from(flavors.values(), copyFlavor);
+}
+
 export function getFlavor(name: string): FlavorDefinition | undefined {
-	// check if the flavor is registered
-	if (!flavors.has(name)) {
-		console.error(`Flavor "${name}" not found in registry`);
-		return;
-	}	return flavors.get(name);
+	const definition = flavors.get(name);
+	return definition ? copyFlavor(definition) : undefined;
 }
 
 export function unregisterFlavor(name: string): boolean {
 	return flavors.delete(name);
 }
 
-export function applyFlavor(name: string): void {
-	const definition = getFlavor(name);
-	if (!definition) {
-		console.error(`Flavor "${name}" not found in registry`);
-		return;
-	}
+export function applyFlavor(name: string): boolean {
+	const definition = flavors.get(name);
+	if (!definition) return false;
 
 	const root = typeof document !== 'undefined' ? document.documentElement : null;
-	if (root) {
-		Object.entries(definition.cssVariables).forEach(([key, value]) => {
-			root.style.setProperty(key, value);
-		});
+	if (!root) return false;
 
-		root.setAttribute('data-flavor', name);
-		root.setAttribute('data-flavor-type', definition.isDark ? 'dark' : 'light');
+	for (const [key, value] of Object.entries(definition.cssVariables)) {
+		root.style.setProperty(key, value);
 	}
+
+	root.setAttribute('data-flavor', name);
+	root.setAttribute('data-flavor-type', definition.isDark ? 'dark' : 'light');
+	return true;
 }

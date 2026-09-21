@@ -1,62 +1,66 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-    let { expanded, id, title, description, children }: { expanded: boolean; id: string; title?: string; description?: string; children: Snippet } = $props();
+	let {
+		expanded,
+		id,
+		title,
+		description,
+		children
+	}: { expanded: boolean; id: string; title?: string; description?: string; children: Snippet } =
+		$props();
 </script>
 
-<div id={id + "-popover"} class="popover-container" aria-hidden={!expanded} class:expanded>
-    <div id={id + "-header"} class="popover-header">
-        {#if title}
-            <h3>{title}</h3>
-        {/if}
-        {#if description}
-            <div class="popover-description">{description}</div>
-        {/if}
-    </div>
-    {@render children()}
-    
+<div id={id + '-popover'} class="popover-container" aria-hidden={!expanded} class:expanded>
+	<div id={id + '-header'} class="popover-header">
+		{#if title}
+			<h3>{title}</h3>
+		{/if}
+		{#if description}
+			<div class="popover-description">{description}</div>
+		{/if}
+	</div>
+	{@render children()}
 </div>
 
 <style>
-    
+	.popover-header {
+		user-select: none;
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--loaf-padding-md) / 2);
+	}
 
-    .popover-header {
-        user-select: none;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--loaf-padding-md) / 2);
-    }
+	.popover-container {
+		padding: var(--loaf-padding-md);
+		background: var(--loaf-popover-bg);
+		border-radius: calc(var(--loaf-radius-md) * 2);
+		border: var(--loaf-button-stroke) solid 0.0625rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 1.125rem;
+		filter: drop-shadow(0 0 0.5rem var(--loaf-popover-glow))
+			drop-shadow(0 0 0.625rem var(--loaf-popover-glow));
+		position: relative;
+		gap: 0.375rem;
+		top: 0.375rem;
+		z-index: 900;
+		opacity: 0;
+		transform: scale(0);
+		transform-origin: top right;
+		transition:
+			transform 0.3s cubic-bezier(0.53, 0.05, 0.23, 1.15),
+			opacity 0.25s cubic-bezier(0.53, 0.05, 0.23, 0.99);
 
-    .popover-container {
-        padding: var(--loaf-padding-md);
-        background: var(--loaf-popover-bg);
-        border-radius: calc(var(--loaf-radius-md) * 2);
-        border: var(--loaf-button-stroke) solid 0.0625rem;
-        display: flex;
-        flex-direction: column;
-        border-radius: 1.125rem;
-        filter: drop-shadow(0 0 0.5rem var(--loaf-popover-glow))
-            drop-shadow(0 0 0.625rem var(--loaf-popover-glow));
-        position: relative;
-        gap: 0.375rem;
-        top: 0.375rem;
-        z-index: 900;
-        opacity: 0;
-        transform: scale(0);
-        transform-origin: top right;
-        transition:
-            transform 0.3s cubic-bezier(0.53, 0.05, 0.23, 1.15),
-            opacity 0.25s cubic-bezier(0.53, 0.05, 0.23, 0.99);
+		will-change: transform, opacity;
 
-        will-change: transform, opacity;
+		pointer-events: all;
+		max-width: 100%;
+		max-height: 100% !important;
+	}
 
-        pointer-events: all;
-        max-width: 100%;
-        max-height: 100% !important;
-    }
-
-    .popover-container.expanded {
-        opacity: 1;
-        transform: scale(1);
-    }
+	.popover-container.expanded {
+		opacity: 1;
+		transform: scale(1);
+	}
 </style>

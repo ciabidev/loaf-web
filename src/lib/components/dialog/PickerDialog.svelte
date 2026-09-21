@@ -21,31 +21,30 @@
 	} = $props();
 
 	let close: () => void = $state(() => {});
-
 </script>
 
 <DialogContainer {id} {dismissable} bind:close>
 	<div class="dialog-body picker-dialog" class:three-columns={items && items.length <= 3}>
-			<div class="popup-header">
-				<div class="popup-title-container">
-					<!-- Icon would go here -->
-					<h2 class="popup-title">Select Option</h2>
-				</div>
-				<div class="subtext popup-description">Choose from the available options below</div>
+		<div class="popup-header">
+			<div class="popup-title-container">
+				<!-- Icon would go here -->
+				<h2 class="popup-title">Select Option</h2>
 			</div>
-			<div class="picker-body">
-				{#if items}
-					{#each items as item, i}
-						{#if item?.url}
-							<PickerItem {item} number={i + 1} {onSelect} />
-						{/if}
-					{/each}
-				{/if}
-			</div>
-			{#if buttons}
-				<DialogButtons {buttons} closeFunc={close} />
+			<div class="subtext popup-description">Choose from the available options below</div>
+		</div>
+		<div class="picker-body">
+			{#if items}
+				{#each items as item, i (item)}
+					{#if item?.url}
+						<PickerItem {item} number={i + 1} {onSelect} />
+					{/if}
+				{/each}
 			{/if}
 		</div>
+		{#if buttons}
+			<DialogButtons {buttons} closeFunc={close} />
+		{/if}
+	</div>
 </DialogContainer>
 
 <style>
@@ -58,8 +57,6 @@
 		max-height: calc(90% - env(safe-area-inset-bottom) - env(safe-area-inset-top));
 		width: auto;
 	}
-
-
 
 	.popup-header {
 		display: flex;

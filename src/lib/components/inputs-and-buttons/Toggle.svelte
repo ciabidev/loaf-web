@@ -19,23 +19,21 @@
 </script>
 
 <button
-    class="button toggle-container"
-    class:transparent = {!title}
-    role="switch"
-    aria-checked={enabled}
-    onclick={onClick}
-    class:full
-    class:locked
->   
-
-    {#if title}
-        <h4 class="toggle-title">{title}</h4>
-    {/if}   
-    <div class="toggle" class:enabled>
-        <div class="toggle-switcher"></div>
-    </div>
+	class="button toggle-container"
+	class:transparent={!title}
+	role="switch"
+	aria-checked={enabled}
+	onclick={onClick}
+	class:full
+	class:locked
+>
+	{#if title}
+		<h4 class="toggle-title">{title}</h4>
+	{/if}
+	<div class="toggle" class:enabled>
+		<div class="toggle-switcher"></div>
+	</div>
 </button>
-
 
 <style>
 	.toggle-container {
@@ -47,7 +45,7 @@
 		text-align: start;
 		padding: calc(var(--loaf-switcher-padding) * 2) 16px;
 		border-radius: var(--loaf-radius-md);
-		overflow: visible; 
+		overflow: visible;
 	}
 
 	.toggle-container.transparent {
@@ -59,11 +57,11 @@
 	}
 
 	.toggle {
-		--switcher-width: 32px;   
-		--track-height: 26px;    
-		
-		--track-width: calc(var(--switcher-width) * 1.6 + 4px); 
-		
+		--switcher-width: 32px;
+		--track-height: 26px;
+
+		--track-width: calc(var(--switcher-width) * 1.6 + 4px);
+
 		box-sizing: border-box;
 		width: var(--track-width);
 		height: var(--track-height);
@@ -71,22 +69,22 @@
 		background: var(--loaf-toggle-bg);
 		transition: background 0.25s ease;
 		flex-shrink: 0;
-		
-		position: relative; 
+
+		position: relative;
 	}
 
 	.toggle-switcher {
 		position: absolute;
 		top: 2px;
 		left: 2px;
-		
-		height: calc(var(--track-height) - 4px); 
-		width: var(--switcher-width); 
-		
+
+		height: calc(var(--track-height) - 4px);
+		width: var(--switcher-width);
+
 		background: #ffffff;
 		border-radius: 100px;
 		transform: translateX(0);
-		transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1); 
+		transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 	}
 
 	.toggle.enabled {
@@ -120,8 +118,4 @@
 		border: none;
 		padding: 0;
 	}
-
-
-
-
 </style>

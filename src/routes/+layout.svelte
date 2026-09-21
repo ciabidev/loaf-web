@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '$lib/styles/loaf.css';
+	import '$lib/styles/app.css';
 	import Basket from '$components/layout/Basket.svelte';
 	import Loaf from '$components/layout/Loaf.svelte';
 	import Navbar from '$components/nav/Navbar.svelte';
@@ -35,113 +35,113 @@
 		}
 	});
 
-registerFlavors([
-	{
-		name: 'rain',
-		description: '☀️ blue theme',
-		iconPath: '/flavor_icons/rain.png',
-		isDark: false,
-		cssVariables: {
-			'--loaf-surface': '#ffffff',
-			'--loaf-text': '#282828',
-			'--loaf-text-on-accent': '#ffffff',
-			'--loaf-accent': '#4273fa',
-			'--loaf-accent-secondary': '#455fa8',
-			'--loaf-surface-secondary': '#eaeef5',
-			'--loaf-success': '#40d672',
-			'--loaf-warning': '#ffd63a',
-			'--loaf-error': '#f7374f',
-			'--loaf-nav-hover-bg': '#00000033',
-			'--loaf-nav-bg': '#f4f4f4',
-			'--loaf-nav-highlight': '#455fa8',
-			'--loaf-nav-active-highlight': '#ffffff'
+	registerFlavors([
+		{
+			name: 'rain',
+			description: '☀️ blue theme',
+			iconPath: '/flavor_icons/rain.png',
+			isDark: false,
+			cssVariables: {
+				'--loaf-surface': '#ffffff',
+				'--loaf-text': '#282828',
+				'--loaf-text-on-accent': '#ffffff',
+				'--loaf-accent': '#4273fa',
+				'--loaf-accent-secondary': '#455fa8',
+				'--loaf-surface-secondary': '#eaeef5',
+				'--loaf-success': '#40d672',
+				'--loaf-warning': '#ffd63a',
+				'--loaf-error': '#f7374f',
+				'--loaf-nav-hover-bg': '#00000033',
+				'--loaf-nav-bg': '#f4f4f4',
+				'--loaf-nav-highlight': '#455fa8',
+				'--loaf-nav-active-highlight': '#ffffff'
+			}
+		},
+		{
+			name: 'desert oasis',
+			description: '☀️ katara taught aang waterbending here',
+			iconPath: '/flavor_icons/desert-oasis.png',
+			isDark: false,
+			cssVariables: {
+				'--loaf-surface': '#fffaee',
+				'--loaf-text': '#2d3748',
+				'--loaf-text-on-accent': '#ffffff',
+				'--loaf-accent': '#95b643',
+				'--loaf-accent-secondary': '#2b63ff',
+				'--loaf-surface-secondary': '#ecd8a6',
+				'--loaf-success': '#16a34a',
+				'--loaf-warning': '#ca8a04',
+				'--loaf-error': '#dc2626',
+				'--loaf-nav-hover-bg': '#fed7aa33',
+				'--loaf-nav-bg': '#ffffff',
+				'--loaf-nav-highlight': '#2b63ff',
+				'--loaf-nav-active-highlight': '#000000'
+			}
+		},
+		{
+			name: 'shounen',
+			description: '☀️ reading one for the first time',
+			iconPath: '/flavor_icons/manga.png',
+			isDark: false,
+			cssVariables: {
+				'--loaf-surface': '#ffffff',
+				'--loaf-text': '#111111',
+				'--loaf-text-on-accent': '#ffffff',
+				'--loaf-accent': '#e63946',
+				'--loaf-accent-secondary': '#000000',
+				'--loaf-surface-secondary': '#f4f4f4',
+				'--loaf-success': '#40d672',
+				'--loaf-warning': '#ffd63a',
+				'--loaf-error': '#f7374f',
+				'--loaf-nav-hover-bg': '#00000033',
+				'--loaf-nav-bg': '#f4f4f4',
+				'--loaf-nav-highlight': '#000000',
+				'--loaf-nav-active-highlight': '#ffffff'
+			}
+		},
+		{
+			name: 'fire nation',
+			description: "🌙 Uncle Iroh's favorite tea flavor",
+			iconPath: '/flavor_icons/fire-nation.png',
+			isDark: true,
+			cssVariables: {
+				'--loaf-surface': '#2b1a1a',
+				'--loaf-text': '#fcefe3',
+				'--loaf-text-on-accent': '#ffffff',
+				'--loaf-accent': '#d6453d',
+				'--loaf-accent-secondary': '#EDB308',
+				'--loaf-surface-secondary': '#442626',
+				'--loaf-success': '#f4b860',
+				'--loaf-warning': '#ff914d',
+				'--loaf-error': '#e84a5f',
+				'--loaf-nav-hover-bg': '#d6453d33',
+				'--loaf-nav-bg': '#442626',
+				'--loaf-nav-highlight': '#EDB308',
+				'--loaf-nav-active-highlight': '#000000'
+			}
+		},
+		{
+			name: 'earth',
+			description: '☀️',
+			iconPath: '/flavor_icons/earth.png',
+			isDark: false,
+			cssVariables: {
+				'--loaf-surface': '#ffffff',
+				'--loaf-text': '#000000',
+				'--loaf-text-on-accent': '#ffffff',
+				'--loaf-accent': '#38885c',
+				'--loaf-accent-secondary': '#43af73',
+				'--loaf-surface-secondary': '#faeed7',
+				'--loaf-success': '#40d672',
+				'--loaf-warning': '#ffd63a',
+				'--loaf-error': '#f7374f',
+				'--loaf-nav-hover-bg': '#00000033',
+				'--loaf-nav-bg': '#000000',
+				'--loaf-nav-highlight': '#ffffff',
+				'--loaf-nav-active-highlight': '#ffffff'
+			}
 		}
-	},
-	{
-		name: 'desert oasis',
-		description: '☀️ katara taught aang waterbending here',
-		iconPath: '/flavor_icons/desert-oasis.png',
-		isDark: false,
-		cssVariables: {
-			'--loaf-surface': '#fffaee',
-			'--loaf-text': '#2d3748',
-			'--loaf-text-on-accent': '#ffffff',
-			'--loaf-accent': '#95b643',
-			'--loaf-accent-secondary': '#2b63ff',
-			'--loaf-surface-secondary': '#ecd8a6',
-			'--loaf-success': '#16a34a',
-			'--loaf-warning': '#ca8a04',
-			'--loaf-error': '#dc2626',
-			'--loaf-nav-hover-bg': '#fed7aa33',
-			'--loaf-nav-bg': '#ffffff',
-			'--loaf-nav-highlight': '#2b63ff',
-			'--loaf-nav-active-highlight': '#000000'
-		}
-	},
-	{
-		name: 'shounen',
-		description: '☀️ reading one for the first time',
-		iconPath: '/flavor_icons/manga.png',
-		isDark: false,
-		cssVariables: {
-			'--loaf-surface': '#ffffff',
-			'--loaf-text': '#111111',
-			'--loaf-text-on-accent': '#ffffff',
-			'--loaf-accent': '#e63946',
-			'--loaf-accent-secondary': '#000000',
-			'--loaf-surface-secondary': '#f4f4f4',
-			'--loaf-success': '#40d672',
-			'--loaf-warning': '#ffd63a',
-			'--loaf-error': '#f7374f',
-			'--loaf-nav-hover-bg': '#00000033',
-			'--loaf-nav-bg': '#f4f4f4',
-			'--loaf-nav-highlight': '#000000',
-			'--loaf-nav-active-highlight': '#ffffff'
-		}
-	},
-	{
-		name: 'fire nation',
-		description: '🌙 Uncle Iroh\'s favorite tea flavor',
-		iconPath: '/flavor_icons/fire-nation.png',
-		isDark: true,
-		cssVariables: {
-			'--loaf-surface': '#2b1a1a',
-			'--loaf-text': '#fcefe3',
-			'--loaf-text-on-accent': '#ffffff',
-			'--loaf-accent': '#d6453d',
-			'--loaf-accent-secondary': '#EDB308',
-			'--loaf-surface-secondary': '#442626',
-			'--loaf-success': '#f4b860',
-			'--loaf-warning': '#ff914d',
-			'--loaf-error': '#e84a5f',
-			'--loaf-nav-hover-bg': '#d6453d33',
-			'--loaf-nav-bg': '#442626',
-			'--loaf-nav-highlight': '#EDB308',
-			'--loaf-nav-active-highlight': '#000000'
-		}
-	},
-	{
-		name: 'earth',
-		description: '☀️',
-		iconPath: '/flavor_icons/earth.png',
-		isDark: false,
-		cssVariables: {
-			'--loaf-surface': '#ffffff',
-			'--loaf-text': '#000000',
-			'--loaf-text-on-accent': '#ffffff',
-			'--loaf-accent': '#38885c',
-			'--loaf-accent-secondary': '#43af73',
-			'--loaf-surface-secondary': '#faeed7',
-			'--loaf-success': '#40d672',
-			'--loaf-warning': '#ffd63a',
-			'--loaf-error': '#f7374f',
-			'--loaf-nav-hover-bg': '#00000033',
-			'--loaf-nav-bg': '#000000',
-			'--loaf-nav-highlight': '#ffffff',
-			'--loaf-nav-active-highlight': '#ffffff'
-		}
-	},
-]);
+	]);
 </script>
 
 <svelte:head>

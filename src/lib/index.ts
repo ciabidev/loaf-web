@@ -25,20 +25,17 @@ export { default as NavbarLogo } from './components/nav/NavbarLogo.svelte';
 export { default as NavTab } from './components/nav/NavTab.svelte';
 
 export { default as DialogHolder } from './components/dialog/DialogHolder.svelte';
-export { createDialog, dialog, killDialog } from './state/dialogs.js';
+export { createDialog, killDialog } from './state/dialogs.js';
 export {
 	applyFlavor,
-	flavors,
 	getFlavor,
+	listFlavors,
 	registerFlavor,
 	registerFlavors,
 	unregisterFlavor
 } from './state/flavor-registry.js';
 export { flavor, flavorType } from './state/flavors.js';
-export {
-	flavorPickerVisible,
-	openFlavorPicker
-} from './state/flavor-picker-visibility.js';
+export { flavorPickerVisible, openFlavorPicker } from './state/flavor-picker-visibility.js';
 
 export type { CarouselItemType } from './types/carousel.js';
 export type {
@@ -51,5 +48,4 @@ export type {
 } from './types/dialog.js';
 export type { Emotion } from './types/emoticon.js';
 export type { FlavorDefinition } from './types/flavor-definition.js';
-export type { Optional } from './types/generic.js';
 export type { Tag } from './types/tag.js';

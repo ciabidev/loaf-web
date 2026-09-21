@@ -8,7 +8,7 @@
 </script>
 
 <div class="tags-container">
-	{#each tags as tag}
+	{#each tags as tag (tag)}
 		<button
 			class="tag"
 			style:--tag-background={tag.color ?? 'var(--loaf-surface)'}

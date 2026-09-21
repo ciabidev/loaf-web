@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ChevronDownIcon from '@iconify-svelte/hugeicons/chevron-down';
+	import ChevronDownIcon from '../icons/chevron-down.svelte';
 	import { scale } from 'svelte/transition';
 	import { tick } from 'svelte';
 
@@ -104,7 +104,7 @@
 			role="listbox"
 			transition:scale={{ duration: 160, start: 0.96, opacity: 0 }}
 		>
-			{#each options as option}
+			{#each options as option (option.value)}
 				<li role="none">
 					<button
 						type="button"

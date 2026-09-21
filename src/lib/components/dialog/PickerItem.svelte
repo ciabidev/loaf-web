@@ -13,17 +13,6 @@
 
 	let imageLoaded = $state(false);
 
-	const validUrl = $derived.by(() => {
-		if (!item.url) return false;
-
-		try {
-			new URL(item.url);
-			return true;
-		} catch {
-			return false;
-		}
-	});
-
 	const loaded = () => {
 		imageLoaded = true;
 	};
@@ -34,9 +23,6 @@
 	onclick={() => {
 		if (onSelect) {
 			onSelect(item);
-		} else if (validUrl) {
-			// Handle download here
-			console.log('Download:', item.url);
 		}
 	}}
 >

@@ -1,7 +1,8 @@
 <script lang="ts">
-	import LinkIcon from '@iconify-svelte/hugeicons/external-link';
+	import LinkIcon from '../icons/external-link.svelte';
 
-	let { url, urlshort, name, img }: { url: string; urlshort: string; name: string; img?: string } = $props();
+	let { url, urlshort, name, img }: { url: string; urlshort: string; name: string; img?: string } =
+		$props();
 </script>
 
 <a class="url-button" target="_blank" href={url}>
@@ -29,12 +30,12 @@
 		text-decoration: none;
 		color: var(--loaf-text);
 		position: relative;
-        text-decoration: none;
+		text-decoration: none;
 	}
 
 	.url-name {
 		display: flex;
-        text-decoration: none;
+		text-decoration: none;
 		font-weight: 600;
 		font-size: 0.9rem;
 	}
@@ -45,7 +46,7 @@
 		align-items: center;
 		font-size: 0.9rem;
 		gap: 5px;
-        text-decoration: underline;
+		text-decoration: underline;
 	}
 
 	.url-icon {

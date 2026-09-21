@@ -1,65 +1,51 @@
 import { writable } from 'svelte/store';
-import { getFlavor, applyFlavor } from './flavor-registry.js';
+import { applyFlavor, getFlavor } from './flavor-registry.js';
 
-// default to the app's baseline flavor. the initial flavor/flavorType is
-// handled in +layout.svelte to avoid SSR flash; stores only need sensible defaults.
 const defaultFlavor = 'rain';
 const defaultFlavorDef = getFlavor(defaultFlavor);
-const defaultFlavorType = defaultFlavorDef?.isDark ? 'dark' : 'light';
 
 let initialFlavor = defaultFlavor;
-let initialFlavorType = defaultFlavorType;
+let initialFlavorType = defaultFlavorDef?.isDark ? 'dark' : 'light';
 
 if (typeof window !== 'undefined') {
-  try {
-    const storedFlavor = localStorage.getItem('flavor');
-    const storedFlavorType = localStorage.getItem('flavorType');
-    const storedFlavorDef = storedFlavor ? getFlavor(storedFlavor) : undefined;
+	try {
+		const storedFlavor = localStorage.getItem('flavor');
+		const storedFlavorType = localStorage.getItem('flavorType');
+		const storedFlavorDef = storedFlavor ? getFlavor(storedFlavor) : undefined;
 
-    if (storedFlavor) {
-      if (storedFlavorDef) {
-        initialFlavorType = storedFlavorDef.isDark ? 'dark' : 'light';
-      }
-    }
-
-    if (storedFlavorType === 'dark' || storedFlavorType === 'light') {
-      initialFlavorType = storedFlavorType;
-    }
-  } catch (e) {
-    console.error(e);
-  }
+		if (storedFlavor) initialFlavor = storedFlavor;
+		if (storedFlavorDef) initialFlavorType = storedFlavorDef.isDark ? 'dark' : 'light';
+		if (storedFlavorType === 'dark' || storedFlavorType === 'light') {
+			initialFlavorType = storedFlavorType;
+		}
+	} catch {
+		// Storage can be unavailable in privacy modes; in-memory theming still works.
+	}
 }
 
-export const flavor = writable<string>(initialFlavor);
+export const flavor = writable(initialFlavor);
 export const flavorType = writable(initialFlavorType);
 
-// persist changes to localStorage and keep flavorType in sync.
-// guard with typeof window so this runs only in the browser.
 let didInit = false;
 
-flavor.subscribe(value => {
-  if (!didInit) {
-    didInit = true;
-    return;
-  }
+flavor.subscribe((value) => {
+	if (!didInit) {
+		didInit = true;
+		return;
+	}
 
-  if (typeof window !== 'undefined' && value) {
-    try {
-      const flavorDef = getFlavor(value);
-      if (!flavorDef) {
-        console.error(`Flavor "${value}" not found in registry`);
-        return;
-      }
+	if (typeof window === 'undefined' || !value) return;
 
-      console.log('setting flavor to ' + value);
-      localStorage.setItem('flavor', value);
-      const newFlavorType = flavorDef.isDark ? 'dark' : 'light';
-      flavorType.set(newFlavorType);
-      localStorage.setItem('flavorType', newFlavorType);
+	try {
+		const flavorDef = getFlavor(value);
+		if (!flavorDef) return;
 
-      applyFlavor(value);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+		localStorage.setItem('flavor', value);
+		const newFlavorType = flavorDef.isDark ? 'dark' : 'light';
+		flavorType.set(newFlavorType);
+		localStorage.setItem('flavorType', newFlavorType);
+		applyFlavor(value);
+	} catch {
+		// Storage can be unavailable in privacy modes; applying the flavor is best effort.
+	}
 });

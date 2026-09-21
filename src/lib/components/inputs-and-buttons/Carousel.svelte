@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CarouselItem from './CarouselItem.svelte';
 	import { onMount } from 'svelte';
-	import RightArrow from '@iconify-svelte/hugeicons/arrow-right-01';
-	import LeftArrow from '@iconify-svelte/hugeicons/arrow-left-01';
+	import RightArrow from '../icons/arrow-right.svelte';
+	import LeftArrow from '../icons/arrow-left.svelte';
 	import type { CarouselItemType } from '../../types/carousel.js';
 
 	let {
@@ -16,13 +16,9 @@
 		onSelect?: (item: CarouselItemType) => void;
 		defaultSelected?: number;
 	} = $props();
-	
-	let activeItem = $state(0);
-	let carousel: HTMLElement;
 
-	$effect(() => {
-		activeItem = defaultSelected;
-	});
+	let activeItem = $derived(defaultSelected);
+	let carousel: HTMLElement;
 
 	let showLeftScroll = $state(false);
 	let showRightScroll = $state(false);
@@ -44,7 +40,6 @@
 
 	const scroll = (direction: 'left' | 'right') => {
 		const currentPos = carousel.scrollLeft;
-		const maxPos = carousel.scrollWidth - carousel.clientWidth;
 		const step = carousel.querySelector<HTMLElement>('.carousel-item')?.offsetWidth ?? 250;
 
 		const newPos = direction === 'left' ? currentPos - step : currentPos + step;
@@ -58,7 +53,7 @@
 
 <div class="carousel" {id}>
 	<div class="carousel-items" bind:this={carousel} onscroll={updateScrollState}>
-		{#each items as item, index}
+		{#each items as item, index (item)}
 			<CarouselItem
 				{item}
 				onSelect={() => {

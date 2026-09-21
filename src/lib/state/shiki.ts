@@ -1,4 +1,5 @@
 import { writable, get } from 'svelte/store';
+import type { BundledLanguage } from 'shiki';
 
 type HighlightedCode = {
 	code: string;
@@ -6,10 +7,14 @@ type HighlightedCode = {
 	highlightedCode: string;
 };
 
-export const highlighterInstance = writable<any>(null);
 export const highlightedCache = writable<HighlightedCode[]>([]);
 
-let initPromise: Promise<any> | null = null;
+type ShikiBundle = typeof import('shiki/dist/bundle-full.mjs');
+type Highlighter = Awaited<ReturnType<ShikiBundle['createHighlighter']>>;
+
+export const highlighterInstance = writable<Highlighter | null>(null);
+
+let initPromise: Promise<Highlighter> | null = null;
 
 function initHighlighter() {
 	if (initPromise) return initPromise;
@@ -47,14 +52,15 @@ export const highlightCode = async (code: string, language: string) => {
 		// 3. ✅ LAZY-LOADING: Check if Shiki already knows this language. If not, fetch it on-the-fly!
 		const loadedLangs = highlighter.getLoadedLanguages();
 		if (!loadedLangs.includes(lang)) {
-			await highlighter.loadLanguage(lang);
+			await highlighter.loadLanguage(lang as BundledLanguage);
 		}
 
 		const highlightedCode = await highlighter.codeToHtml(code, { lang, theme: 'dark-plus' });
 
 		highlightedCache.update((arr) => [...arr, { code, language: lang, highlightedCode }]);
 		return highlightedCode;
-	} catch (error: any) {
-		return `error highlighting code: ${error.message}\n\n<pre><code>${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
+	} catch (error: unknown) {
+		const message = error instanceof Error ? error.message : String(error);
+		return `error highlighting code: ${message}\n\n<pre><code>${code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
 	}
 };

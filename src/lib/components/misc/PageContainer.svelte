@@ -2,7 +2,12 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	let {containerId, pageId, maxWidth, children}: { containerId: string; pageId: string; maxWidth: string; children: Snippet } = $props();
+	let {
+		containerId,
+		pageId,
+		maxWidth,
+		children
+	}: { containerId: string; pageId: string; maxWidth: string; children: Snippet } = $props();
 </script>
 
 <div id={containerId} class="page-container">

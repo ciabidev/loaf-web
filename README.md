@@ -8,11 +8,28 @@ A cozy, extensible component library for Svelte 5.
 npm install @ciabi/loaf-web
 ```
 
-Import the shared stylesheet once near the root of your app:
+just import the component stylesheet once near the root of your app to get started
 
 ```ts
 import '@ciabi/loaf-web/styles.css';
 ```
+
+The core stylesheet defines component tokens and shared component classes without changing page
+sizing, overflow, resets, scrollbars, or loading web fonts. Optional styles are separate:
+
+```ts
+import '@ciabi/loaf-web/reset.css'; // Full-page shell, element reset, and scrollbar styling
+import '@ciabi/loaf-web/fonts.css'; // Opt-in Google Fonts request
+```
+
+Applications that want the complete opinionated setup can import the bundle instead:
+
+```ts
+import '@ciabi/loaf-web/app.css'; // Core components + reset + hosted fonts
+```
+
+Without `fonts.css`, `--loaf-text-font` and `--loaf-code-font` use system font stacks. Override
+either custom property to use self-hosted fonts.
 
 Then import components from the package root:
 
@@ -34,15 +51,8 @@ The layout pieces are composable. Add only the features an app needs:
 
 ```svelte
 <script lang="ts">
-	import {
-		Basket,
-		DialogHolder,
-		FlavorPicker,
-		Loaf,
-		Navbar,
-		NavTab
-	} from '@ciabi/loaf-web';
-	import '@ciabi/loaf-web/styles.css';
+	import { Basket, DialogHolder, FlavorPicker, Loaf, Navbar, NavTab } from '@ciabi/loaf-web';
+	import '@ciabi/loaf-web/app.css';
 
 	let { children } = $props();
 </script>
@@ -85,6 +95,30 @@ registerFlavor({
 });
 ```
 
+`registerFlavor` stores a copy of the definition. Use `getFlavor` or `listFlavors` to inspect
+registered flavors, `applyFlavor` to apply one to the document root, and `unregisterFlavor` for
+cleanup. Returned definitions are copies, so consumers cannot mutate the registry accidentally.
+
+## Supported public API
+
+- Layout: `Basket`, `Loaf`, `PageContainer`
+- Navigation: `FlavorPicker`, `Navbar`, `NavbarLogo`, `NavTab`
+- Inputs: `Carousel`, `Input`, `Selector`, `Switcher`, `Toggle`, `URLButton`
+- Content: `Card`, `Codeblock`, `Contact`, `Emoticon`, `FormField`, `Markdown`, `Popover`, `Profile`, `Tags`
+- Dialogs: `DialogHolder`, `createDialog`, `killDialog`
+- Flavors: `registerFlavor`, `registerFlavors`, `getFlavor`, `listFlavors`, `applyFlavor`, `unregisterFlavor`, `flavor`, `flavorType`
+- Flavor picker state: `flavorPickerVisible`, `openFlavorPicker`
+- Public prop/configuration types: `CarouselItemType`, `DialogButton`, `DialogInfo`, `DialogPickerItem`, `PickerDialog`, `SmallDialog`, `SmallDialogIcons`, `Emotion`, `FlavorDefinition`, `Tag`
+
+Only package-root exports and the documented stylesheet subpaths are supported. Files below
+`dist/` are implementation details and should not be imported directly.
+
+## Versioning
+
+This project follows SemVer. While the package is in `0.x`, breaking public API changes may ship in
+a minor release and fixes in a patch release. Starting with `1.0.0`, breaking changes require a new
+major version. See [CHANGELOG.md](./CHANGELOG.md) for release notes.
+
 ## Development
 
 ```sh
@@ -100,4 +134,5 @@ Build and validate the publishable package with:
 npm run package
 npx publint
 npm pack --dry-run
+npm run smoke:consumer
 ```

@@ -24,7 +24,7 @@
 	import NavbarLogo from '$components/nav/NavbarLogo.svelte';
 	import NavTab from '$components/nav/NavTab.svelte';
 	import { createDialog } from '$lib/state/dialogs';
-	import { flavors } from '$lib/state/flavor-registry';
+	import { listFlavors } from '$lib/state/flavor-registry';
 	type CardVariant = 'flat' | 'bordered' | 'elevated' | 'ghost';
 
 	const cardVariants: Array<{ variant: CardVariant; description: string }> = [
@@ -41,8 +41,8 @@
 		'right-bottom'
 	] as const;
 
-	const flavorItems = Array.from(flavors, ([name, definition]) => ({
-		title: name,
+	const flavorItems = listFlavors().map((definition) => ({
+		title: definition.name,
 		description: definition.description,
 		image: definition.iconPath
 	}));
@@ -52,12 +52,15 @@
 	let activeSegment = $state(0);
 	let fullActiveSegment = $state(0);
 	let selectedOption = $state('second');
-	let selectedEdgeOption = $state('alpha');
 	let toggleEnabled = $state(false);
 	let lockedToggle = $state(false);
 	let popoverVisible = $state(false);
 	let cardClicks = $state(0);
 	let episodePlaying = $state(false);
+	let selectedPickerItem = $state('None');
+	const markdownExample =
+		'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three\n\nSpacing stays consistent after a list, too.';
+	const codeExample = '<Card variant="elevated">\n  Hello from a card\n</Card>';
 
 	const openSmallDialog = () => {
 		createDialog({
@@ -82,7 +85,7 @@
 			],
 			buttons: [{ text: 'Done', main: true, action: () => {} }],
 			onSelect: (item) => {
-				console.log('Selected gallery item:', item);
+				selectedPickerItem = item.text ?? item.url ?? 'Unnamed item';
 			}
 		});
 	};
@@ -107,7 +110,7 @@
 			<p>Variants, interactions, and custom slotted content.</p>
 		</div>
 		<div class="card-grid">
-			{#each cardVariants as card}
+			{#each cardVariants as card (card.variant)}
 				<Card
 					variant={card.variant}
 					name={`${card.variant[0].toUpperCase()}${card.variant.slice(1)} card`}
@@ -206,6 +209,7 @@
 			<p>text entry, segmented controls, and toggle states.</p>
 		</div>
 		<div class="stack">
+			<p class="subtext">Selectors support click, Enter/Space, arrow-key navigation, and Escape.</p>
 			<FormField
 				label="Text input"
 				id="gallery-text-input"
@@ -313,6 +317,7 @@
 				{popoverVisible ? 'Close popover' : 'Open popover'}
 			</button>
 		</div>
+		<p class="subtext">Last picker selection: {selectedPickerItem}</p>
 		<div class="popover-stage">
 			<Popover
 				id="gallery-popover"
@@ -351,15 +356,9 @@
 
 		<Profile name="Loaf" src="/favicon/favicon-96x96.png" />
 
-		<Markdown
-			source={'## Markdown example\nThis component renders **formatted text**, links, and lists.\n- One\n- Two\n- Three\n\nSpacing stays consistent after a list, too.'}
-		/>
+		<Markdown source={markdownExample} />
 
-		<Codeblock
-			title="card-example.svelte"
-			language="svelte"
-			code={'<Card variant="elevated" onclick={() => console.log("clicked")} >\n  Hello from a card\n</Card>'}
-		/>
+		<Codeblock title="card-example.svelte" language="svelte" code={codeExample} />
 
 		<Carousel id="gallery-carousel" items={flavorItems} />
 	</section>
@@ -391,7 +390,7 @@
 			<p>Resize below 600px to see each side navbar move to its named top or bottom edge.</p>
 		</div>
 		<div class="responsive-nav-grid">
-			{#each responsiveNavbarPositions as position}
+			{#each responsiveNavbarPositions as position (position)}
 				<div class="responsive-nav-example">
 					<code>{position}</code>
 					<div class="responsive-nav-preview">
@@ -423,15 +422,6 @@
 
 	.section-heading {
 		gap: 0.25rem;
-	}
-
-	.selector-edge-example {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-end;
-		gap: 0.5rem;
-		min-height: 12rem;
 	}
 
 	.card-grid {

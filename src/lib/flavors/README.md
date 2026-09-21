@@ -11,16 +11,20 @@ the flavor system consists of:
 - **Built-in Flavors**: Pre-configured themes that ship with the app
 
 ## `flavor-registry.ts` Functions
- 
+
 Functions for managing registration and retrieval of flavors:
 
 ```typescript
 registerFlavor(definition): Register a single flavor
 registerFlavors(definitions): Register multiple flavors
 getFlavor(name): Get a flavor by name
+listFlavors(): Get copies of every registered flavor
 applyFlavor(name): Apply flavor CSS to DOM
 unregisterFlavor(name): Remove a flavor from registry
 ```
+
+The registry itself is intentionally private. Definitions returned by `getFlavor` and
+`listFlavors` are copies; update a flavor by registering a new definition with the same name.
 
 ## Using Custom Flavors
 
@@ -30,25 +34,25 @@ unregisterFlavor(name): Remove a flavor from registry
 import { registerFlavor } from '@ciabi/loaf-web';
 
 registerFlavor({
-  name: 'midnight',
-  description: '🌙 deep blue night theme',
-  iconPath: '/flavor_icons/midnight.png',
-  isDark: true,
-  cssVariables: {
-    '--loaf-surface': '#0f1419',
-    '--loaf-text': '#e8eaed',
-    '--loaf-text-on-accent': '#ffffff',
-    '--loaf-accent': '#8ab4f8',
-    '--loaf-accent-secondary': '#aecbfa',
-    '--loaf-surface-secondary': '#202124',
-    '--loaf-success': '#81c995',
-    '--loaf-warning': '#fcc934',
-    '--loaf-error': '#f28482',
-    '--loaf-nav-hover-bg': '#8ab4f833',
-    '--loaf-nav-bg': '#202124',
-    '--loaf-nav-highlight': '#aecbfa',
-    '--loaf-nav-active-highlight': '#ffffff'
-  }
+	name: 'midnight',
+	description: '🌙 deep blue night theme',
+	iconPath: '/flavor_icons/midnight.png',
+	isDark: true,
+	cssVariables: {
+		'--loaf-surface': '#0f1419',
+		'--loaf-text': '#e8eaed',
+		'--loaf-text-on-accent': '#ffffff',
+		'--loaf-accent': '#8ab4f8',
+		'--loaf-accent-secondary': '#aecbfa',
+		'--loaf-surface-secondary': '#202124',
+		'--loaf-success': '#81c995',
+		'--loaf-warning': '#fcc934',
+		'--loaf-error': '#f28482',
+		'--loaf-nav-hover-bg': '#8ab4f833',
+		'--loaf-nav-bg': '#202124',
+		'--loaf-nav-highlight': '#aecbfa',
+		'--loaf-nav-active-highlight': '#ffffff'
+	}
 });
 ```
 
@@ -82,12 +86,16 @@ Each flavor must define CSS custom properties that are applied to the document r
 - `--loaf-nav-active-highlight`: Active navigation item color
 
 ## Registering Flavors at Startup
+
 To ensure custom flavors are available throughout the application, register them early. Create a file that auto-registers on import:
+
 ```typescript
 // lib/customFlavors.ts
 import { registerFlavors } from '@ciabi/loaf-web';
-export const myCustomFlavors = [/* ... */];
+export const myCustomFlavors = [
+	/* ... */
+];
 registerFlavors(myCustomFlavors);
 ```
 
-Then import this module in `+layout.svelte` to trigger registration at startup:
+Then import this module in the consuming app's root layout to trigger registration at startup.

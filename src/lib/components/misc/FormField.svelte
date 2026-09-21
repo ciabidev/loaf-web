@@ -10,7 +10,7 @@
 		value: string;
 		children: Snippet;
 	}
-	
+
 	let { label, id, hint, long, required, value, children }: Props = $props();
 </script>
 

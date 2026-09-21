@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { highlightCode } from '../../state/shiki.js';
 
 	let {
 		code = '',
 		language = 'plaintext',
-		title = 'code',
+		title = 'code'
 	}: { code?: string; language?: string; title?: string } = $props();
 
 	let copyText = $state('Copy');
@@ -33,16 +32,17 @@
 </script>
 
 <div class="block-wrapper">
-		<div class="header">
-			<div class="code-title">{title}</div>
-			<button class="copy-btn" onclick={copyCode}>
-				<span class="icon">📋</span>
-				{copyText}
-			</button>
-		</div>
-		<div class="block-container">
-			{@html highlighted}
-		</div>
+	<div class="header">
+		<div class="code-title">{title}</div>
+		<button class="copy-btn" onclick={copyCode}>
+			<span class="icon">📋</span>
+			{copyText}
+		</button>
+	</div>
+	<div class="block-container">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- Shiki escapes source code and returns highlighted markup. -->
+		{@html highlighted}
+	</div>
 </div>
 
 <style>
@@ -57,8 +57,6 @@
 		display: flex;
 		flex-direction: column;
 	}
-
-
 
 	.header {
 		display: flex;
@@ -102,13 +100,12 @@
 	:global(.shiki) {
 		background: var(--loaf-code-bg) !important;
 		margin: 0;
-		padding: 0.75rem;
+		padding: 1.5rem;
 		color-scheme: dark;
 		font-size: 0.9rem;
 		line-height: inherit;
 		overflow-x: auto;
-				border-radius: var(--loaf-radius-md);
-
+		border-radius: var(--loaf-radius-md);
 	}
 
 	:global(.shiki code) {

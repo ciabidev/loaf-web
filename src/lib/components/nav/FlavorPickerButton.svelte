@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { flavor } from '../../state/flavors.js';
 	import { flavorPickerVisible } from '../../state/flavor-picker-visibility.js';
-	import IceCream from '@iconify-svelte/hugeicons/ice-cream-01';
+	import IceCream from '../icons/ice-cream.svelte';
 </script>
 
 <button id="flavor-picker-button" onclick={() => ($flavorPickerVisible = !$flavorPickerVisible)}>

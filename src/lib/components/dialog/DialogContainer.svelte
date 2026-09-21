@@ -1,78 +1,89 @@
 <script lang="ts">
-    /**
-     * DialogContainer - Core dialog wrapper component
-     *
-     * This component provides the foundation for all dialogs in the application.
-     * It handles the native HTML <dialog> element, manages open/close state,
-     * and provides animation support.
-     *
-     * Features:
-     * - Native HTML dialog element for accessibility
-     * - Smooth open/close animations
-     * - Backdrop click to close (when dismissable)
-     * - Bindable close function for parent components
-     *
-     * Usage:
-     * ```svelte
-     * <DialogContainer id="my-dialog" dismissable={true} bind:close={closeFunc}>
-     *   <div class="dialog-body">
-     *     Dialog content here
-     *   </div>
-     * </DialogContainer>
-     * ```
-     */
+	/**
+	 * DialogContainer - Core dialog wrapper component
+	 *
+	 * This component provides the foundation for all dialogs in the application.
+	 * It handles the native HTML <dialog> element, manages open/close state,
+	 * and provides animation support.
+	 *
+	 * Features:
+	 * - Native HTML dialog element for accessibility
+	 * - Smooth open/close animations
+	 * - Backdrop click to close (when dismissable)
+	 * - Bindable close function for parent components
+	 *
+	 * Usage:
+	 * ```svelte
+	 * <DialogContainer id="my-dialog" dismissable={true} bind:close={closeFunc}>
+	 *   <div class="dialog-body">
+	 *     Dialog content here
+	 *   </div>
+	 * </DialogContainer>
+	 * ```
+	 */
 
-    import { tick, type Snippet } from "svelte";
-    import { killDialog } from '../../state/dialogs.js';
-    import DialogBackdropClose from './DialogBackdropClose.svelte';
+	import { onDestroy, tick, type Snippet } from 'svelte';
+	import { killDialog } from '../../state/dialogs.js';
+	import DialogBackdropClose from './DialogBackdropClose.svelte';
 
-    // Props
-    let { id, dismissable = true, close = $bindable(() => {}), children }: {
-        id: string;
-        dismissable?: boolean;
-        close?: () => void;
-        children: Snippet;
-    } = $props();
+	// Props
+	let {
+		id,
+		dismissable = true,
+		close = $bindable(() => {}),
+		children
+	}: {
+		id: string;
+		dismissable?: boolean;
+		close?: () => void;
+		children: Snippet;
+	} = $props();
 
-    // State
-    let dialogParent: HTMLDialogElement;
-    let open = $state(false);
-    let closing = $state(false);
-    /**
-     * Closes the dialog with animation
-     */
-    const closeDialog = () => {
-        if (dialogParent) {
-            closing = true;
-            open = false;
+	// State
+	let dialogParent: HTMLDialogElement;
+	let open = $state(false);
+	let closing = $state(false);
+	let closeTimer: ReturnType<typeof setTimeout> | undefined;
+	/**
+	 * Closes the dialog with animation
+	 */
+	const closeDialog = () => {
+		if (dialogParent) {
+			closing = true;
+			open = false;
 
-            // Wait 150ms for the closing animation to finish
-            setTimeout(() => {
-                if (dialogParent) {
-                    dialogParent.close();
-                    killDialog();
-                }
-            }, 150);
-        }
-    };
+			// Wait 150ms for the closing animation to finish
+			closeTimer = setTimeout(() => {
+				if (dialogParent) {
+					dialogParent.close();
+					killDialog();
+				}
+			}, 150);
+		}
+	};
 
-    // Update the bindable close function
-    $effect(() => {
-        close = closeDialog;
-    });
+	// Update the bindable close function
+	$effect(() => {
+		close = closeDialog;
+	});
 
-    // Show modal and trigger open animation when dialog element is ready
-    $effect(() => {
-        if (dialogParent) {
-            dialogParent.showModal();
-            tick().then(() => {
-                open = true;
-            });
-        }
-    });
+	// Show modal and trigger open animation when dialog element is ready
+	$effect(() => {
+		if (dialogParent) {
+			dialogParent.showModal();
+			tick().then(() => {
+				open = true;
+			});
+		}
+	});
+
+	onDestroy(() => {
+		if (closeTimer) clearTimeout(closeTimer);
+		if (dialogParent?.open) dialogParent.close();
+	});
 </script>
 
 <dialog id="dialog-{id}" bind:this={dialogParent} class:closing class:open>
-    {@render children()}
-    <DialogBackdropClose closeFunc={dismissable ? closeDialog : () => {}} />
+	{@render children()}
+	<DialogBackdropClose closeFunc={dismissable ? closeDialog : () => {}} />
 </dialog>
