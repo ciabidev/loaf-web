@@ -253,6 +253,7 @@
 			</Switcher>
 
 			<Selector
+				id="gallery-selector"
 				title="selector"
 				options={[
 					{ value: 'first', text: 'first option' },

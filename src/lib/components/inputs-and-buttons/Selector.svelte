@@ -24,7 +24,8 @@
 		locked = false,
 		full = true,
 		selected = $bindable(''),
-		onSelect
+		onSelect,
+		id
 	}: Props = $props();
 
 	let isOpen = $state(false);
@@ -78,6 +79,7 @@
 
 <div bind:this={selectorWrapper} class="selector-wrapper" class:full>
 	<button
+		{id}
 		type="button"
 		class="selector-button"
 		class:locked
