@@ -48,6 +48,7 @@
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/package": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@types/dompurify": "^3.0.5",
 		"@types/node": "^24.3.0",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -76,6 +77,7 @@
 	"dependencies": {
 		"@iconify-svelte/hugeicons": "github:iconify/icons-svelte#hugeicons",
 		"dompurify": "^3.4.15",
+		"isomorphic-dompurify": "^3.19.0",
 		"marked": "^16.4.2",
 		"shiki": "^3.12.0"
 	}

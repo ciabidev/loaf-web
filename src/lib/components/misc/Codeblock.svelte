@@ -27,7 +27,7 @@
 	}
 
 	// Delay highlighting to avoid interfering with page loading animations
-	onMount(() => {
+	$effect(() => {
 		highlight();
 	});
 </script>

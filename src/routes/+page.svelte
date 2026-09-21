@@ -96,17 +96,9 @@
 	<header class="hero paragraph-text">
 		<div>
 			<h1>loaf-web test page</h1>
-			<p>
-				the web in a cozy bread basket
-			</p>
+			<p>the web in a cozy bread basket</p>
 		</div>
-		<Tags
-			tags={[
-				{ name: 'Svelte 5' },
-				{ name: 'responsive' },
-				{ name: 'interactive' }
-			]}
-		/>
+		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
 	</header>
 
 	<section class="gallery-section">
@@ -231,8 +223,9 @@
 				/>
 			</FormField>
 
-			<Input placeholder="Long-form input" long bind:value={longInput} />
-
+			<Input placeholder="Enter markdownhere" long bind:value={longInput} />
+			<h3 class="paragraph-text">see live markdown rendering below!</h3>
+			<Markdown source={longInput} />
 			<Switcher description="Content-width segmented control">
 				<button class:active={activeSegment === 0} onclick={() => (activeSegment = 0)}>First</button
 				>
@@ -264,7 +257,16 @@
 				]}
 				bind:selected={selectedOption}
 			/>
-
+			<Selector
+				title="Compact selector"
+				full={false}
+				options={[
+					{ value: 'first', text: 'First option' },
+					{ value: 'second', text: 'Second option' },
+					{ value: 'third', text: 'Third option' }
+				]}
+				bind:selected={selectedOption}
+			/>
 			<div class="component-row">
 				<Toggle
 					enabled={toggleEnabled}
@@ -400,36 +402,6 @@
 					</div>
 				</div>
 			{/each}
-		</div>
-	</section>
-
-	<section class="gallery-section">
-		<div class="section-heading paragraph-text">
-			<h2>Dropdown menu</h2>
-		</div>
-		<Selector
-			title="Compact selector"
-			full={false}
-			options={[
-				{ value: 'first', text: 'First option' },
-				{ value: 'second', text: 'Second option' },
-				{ value: 'third', text: 'Third option' }
-			]}
-			bind:selected={selectedOption}
-		/>
-
-		<div class="selector-edge-example">
-			<p class="paragraph-text">near the viewport edge, this selector opens upward when needed.</p>
-			<Selector
-				title="a flipping selector"
-				full={false}
-				options={[
-					{ value: 'alpha', text: 'Alpha option' },
-					{ value: 'beta', text: 'Beta option' },
-					{ value: 'gamma', text: 'Gamma option' }
-				]}
-				bind:selected={selectedEdgeOption}
-			/>
 		</div>
 	</section>
 </PageContainer>
