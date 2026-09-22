@@ -49,12 +49,20 @@
 
 <style>
 	.picker-dialog {
-		--picker-item-size: 7.5rem;
+		--picker-item-size: clamp(
+			4rem,
+			calc(
+				(100dvw - var(--loaf-safe-area-left) - var(--loaf-safe-area-right) -
+						var(--loaf-popup-padding) - var(--loaf-popup-padding) -
+						var(--picker-item-gap) - var(--picker-item-gap)) / 3
+			),
+			7.5rem
+		);
 		--picker-item-gap: 0.25rem;
 		--picker-item-area: calc(var(--picker-item-size) + var(--picker-item-gap));
 
 		gap: var(--loaf-padding-md);
-		max-height: calc(90% - env(safe-area-inset-bottom) - env(safe-area-inset-top));
+		max-height: 100%;
 		width: auto;
 	}
 
@@ -85,10 +93,11 @@
 	}
 
 	.picker-body {
-		overflow-y: scroll;
+		min-height: 0;
+		overflow-y: auto;
 		display: grid;
 		justify-items: center;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: repeat(4, var(--picker-item-size));
 		gap: var(--picker-item-gap);
 	}
 
@@ -115,79 +124,4 @@
 		}
 	}
 
-	@media screen and (max-width: 25.625rem) {
-		.picker-dialog {
-			--picker-item-size: 7.375rem;
-		}
-	}
-
-	@media screen and (max-width: 25.3125rem) {
-		.picker-dialog {
-			--picker-item-size: 7.25rem;
-		}
-	}
-
-	@media screen and (max-width: 24.875rem) {
-		.picker-dialog {
-			--picker-item-size: 7.1875rem;
-		}
-	}
-
-	@media screen and (max-width: 24.25rem) {
-		.picker-dialog {
-			--picker-item-size: 6.875rem;
-		}
-	}
-
-	@media screen and (max-width: 23.625rem) {
-		.picker-dialog {
-			--picker-item-size: 6.5625rem;
-		}
-	}
-
-	@media screen and (max-width: 22.8125rem) {
-		.picker-dialog {
-			--picker-item-size: 6.25rem;
-		}
-	}
-
-	@media screen and (max-width: 22rem) {
-		.picker-dialog {
-			--picker-item-size: 5.9375rem;
-		}
-	}
-
-	@media screen and (max-width: 20.875rem) {
-		.picker-dialog {
-			--picker-item-size: 8.125rem;
-		}
-
-		.picker-body,
-		.three-columns .picker-body {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	@media screen and (max-width: 18.75rem) {
-		.picker-dialog {
-			--picker-item-size: 7.5rem;
-		}
-	}
-
-	@media screen and (max-width: 17.5rem) {
-		.picker-dialog {
-			--picker-item-size: 6.875rem;
-		}
-	}
-
-	@media screen and (max-width: 15.9375rem) {
-		.picker-dialog {
-			--picker-item-size: 8.75rem;
-		}
-
-		.picker-body,
-		.three-columns .picker-body {
-			grid-template-columns: 1fr;
-		}
-	}
 </style>

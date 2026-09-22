@@ -247,8 +247,10 @@
 		box-shadow: none;
 	}
 
-	.menu-item:hover {
-		color: var(--loaf-text);
+	@media (hover: hover) {
+		.menu-item:hover {
+			color: var(--loaf-text);
+		}
 	}
 	.menu-item[aria-selected='true'] {
 		background: var(--loaf-accent);

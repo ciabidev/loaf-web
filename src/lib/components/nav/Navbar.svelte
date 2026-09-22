@@ -156,6 +156,18 @@
 			overflow-y: hidden;
 			padding-bottom: var(--loaf-navbar-inner-padding);
 		}
+
+		.navbar[data-position='top'],
+		.navbar[data-position$='-top'] {
+			height: var(--loaf-mobile-navbar-top-safe-height);
+			padding-top: var(--loaf-safe-area-top);
+		}
+
+		.navbar[data-position='bottom'],
+		.navbar[data-position$='-bottom'] {
+			height: var(--loaf-mobile-navbar-bottom-safe-height);
+			padding-bottom: var(--loaf-safe-area-bottom);
+		}
 	}
 
 	@media screen and (max-height: 500px) {

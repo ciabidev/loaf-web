@@ -52,6 +52,7 @@
 		background: none;
 		max-width: 8.125rem;
 		color: var(--loaf-text);
+		scroll-snap-align: start;
 	}
 
 	.carousel-item img {

@@ -71,11 +71,14 @@
 		padding: 7px 9px;
 		width: max-content;
 		text-decoration: none;
+		touch-action: manipulation;
 		transition: background 0.2s ease;
 		border: var(--loaf-button-stroke) solid 0.0625rem;
 	}
 
-	a.url-button:hover {
-		background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
+	@media (hover: hover) {
+		a.url-button:hover {
+			background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
+		}
 	}
 </style>

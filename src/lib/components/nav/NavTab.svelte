@@ -94,6 +94,7 @@
 		font-size: var(--loaf-navbar-font-size);
 		opacity: 0.75;
 		text-decoration: none;
+		touch-action: manipulation;
 		overflow-x: hidden;
 		overflow-y: hidden;
 		user-select: none;
@@ -127,7 +128,7 @@
 	}
 
 	/* shrinks down for a little then scales back up once it gains the .active class */
-	.navbar-tab:active:hover:not(.active) {
+	.navbar-tab:active:not(.active) {
 		transform: scale(0.85, 0.85);
 		border: var(--loaf-button-stroke) solid 1px;
 	}
@@ -142,7 +143,7 @@
 		--icon-color: var(--loaf-nav-active-highlight);
 	}
 
-	@media not all and (hover: none) {
+	@media (hover: hover) {
 		.navbar-tab:hover:not(.active) {
 			background: var(--loaf-nav-hover-bg);
 		}

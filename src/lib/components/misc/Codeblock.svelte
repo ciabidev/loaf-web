@@ -87,8 +87,10 @@
 		font-size: 1rem;
 	}
 
-	.copy-btn:hover {
-		filter: brightness(1.25);
+	@media (hover: hover) {
+		.copy-btn:hover {
+			filter: brightness(1.25);
+		}
 	}
 
 	.code-title {

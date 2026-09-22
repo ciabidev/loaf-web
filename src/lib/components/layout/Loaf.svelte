@@ -78,19 +78,24 @@
 	}
 
 	@media screen and (max-width: 600px) {
+		:global(#basket:has(> .navbar[data-position='top']:not(.test))) #loaf-wrapper,
 		:global(#basket:has(> .navbar[data-position$='-top']:not(.test))) #loaf-wrapper,
+		:global(#basket:has(> .navbar[data-position='bottom']:not(.test))) #loaf-wrapper,
 		:global(#basket:has(> .navbar[data-position$='-bottom']:not(.test))) #loaf-wrapper {
 			width: 100%;
-			height: calc(100% - var(--loaf-mobile-navbar-height));
 			margin-left: 0;
 		}
 
+		:global(#basket:has(> .navbar[data-position='top']:not(.test))) #loaf-wrapper,
 		:global(#basket:has(> .navbar[data-position$='-top']:not(.test))) #loaf-wrapper {
-			margin-top: var(--loaf-mobile-navbar-height);
+			height: calc(100% - var(--loaf-mobile-navbar-top-safe-height));
+			margin-top: var(--loaf-mobile-navbar-top-safe-height);
 			border-radius: calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2) 0 0;
 		}
 
+		:global(#basket:has(> .navbar[data-position='bottom']:not(.test))) #loaf-wrapper,
 		:global(#basket:has(> .navbar[data-position$='-bottom']:not(.test))) #loaf-wrapper {
+			height: calc(100% - var(--loaf-mobile-navbar-bottom-safe-height));
 			margin-top: 0;
 			border-radius: 0 0 calc(var(--loaf-radius-md) * 2) calc(var(--loaf-radius-md) * 2);
 		}

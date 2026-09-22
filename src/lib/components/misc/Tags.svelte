@@ -9,13 +9,13 @@
 
 <div class="tags-container">
 	{#each tags as tag (tag)}
-		<button
+		<span
 			class="tag"
 			style:--tag-background={tag.color ?? 'var(--loaf-surface)'}
 			style:--tag-text={tag.textColor}
 		>
-			<span>{tag.name}</span>
-		</button>
+			{tag.name}
+		</span>
 	{/each}
 </div>
 
@@ -44,7 +44,9 @@
 		transition: transform 0.2s ease;
 	}
 
-	button.tag:hover {
-		transform: translateY(-2px);
+	@media (hover: hover) {
+		.tag:hover {
+			transform: translateY(-2px);
+		}
 	}
 </style>

@@ -120,6 +120,7 @@
 				</Card>
 			{/each}
 		</div>
+		<p class="subtext">interactive cards keep their colors while pressed. tap or click one to test it.</p>
 		<div class="paragraph-text">
 			<h3>make cards your own</h3>
 			<p>put whatever you want inside a card: images, videos, or even more cards.</p>
@@ -308,7 +309,7 @@
 	<section class="gallery-section">
 		<div class="section-heading paragraph-text">
 			<h2>dialogs and popovers</h2>
-			<p>overlay entry points and inline expanded/collapsed states.</p>
+			<p>overlay entry points, phone-friendly picker options, and inline expanded/collapsed states.</p>
 		</div>
 		<div class="component-row">
 			<button onclick={openSmallDialog}>open small dialog</button>
@@ -358,6 +359,7 @@
 
 		<Codeblock title="card-example.svelte" language="svelte" code={codeExample} />
 
+		<p class="subtext">on touch screens, swipe through flavors; each card snaps into place.</p>
 		<Carousel id="gallery-carousel" items={flavorItems} />
 	</section>
 

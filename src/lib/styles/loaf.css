@@ -57,6 +57,16 @@
 	--loaf-navbar-height: 4rem;
 	--loaf-navbar-width: 5rem;
 	--loaf-mobile-navbar-height: 4rem;
+	--loaf-safe-area-top: env(safe-area-inset-top, 0px);
+	--loaf-safe-area-right: env(safe-area-inset-right, 0px);
+	--loaf-safe-area-bottom: env(safe-area-inset-bottom, 0px);
+	--loaf-safe-area-left: env(safe-area-inset-left, 0px);
+	--loaf-mobile-navbar-top-safe-height: calc(
+		var(--loaf-mobile-navbar-height) + var(--loaf-safe-area-top)
+	);
+	--loaf-mobile-navbar-bottom-safe-height: calc(
+		var(--loaf-mobile-navbar-height) + var(--loaf-safe-area-bottom)
+	);
 	--loaf-navbar-inner-padding: 0.25rem;
 	--loaf-navbar-tab-padding: 0.625rem;
 	--loaf-navbar-font-size: 11px;
@@ -276,12 +286,20 @@ button,
 	font-size: 0.95rem;
 	text-align: center;
 	cursor: pointer;
+	touch-action: manipulation;
 	transition:
 		transform 0.2s ease,
 		filter 0.2s ease;
 	border: var(--loaf-button-stroke) solid 0.0625rem;
 	background-color: var(--loaf-button-default);
 	color: var(--loaf-text);
+}
+
+@media (pointer: coarse) {
+	button,
+	.button {
+		min-height: 2.75rem;
+	}
 }
 /* dont mix up the :active and .active classes. they are different */
 /* :active - buttons that are currently pressed	*/
@@ -316,10 +334,12 @@ button:active:not(.disabled, :disabled),
 	cursor: not-allowed;
 }
 
-button:hover,
-.button:hover {
-	filter: var(--loaf-button-hover-filter);
-	-webkit-filter: var(--loaf-button-hover-filter);
+@media (hover: hover) {
+	button:hover,
+	.button:hover {
+		filter: var(--loaf-button-hover-filter);
+		-webkit-filter: var(--loaf-button-hover-filter);
+	}
 }
 
 /* Button Variants */
@@ -366,4 +386,10 @@ select:focus-visible {
 
 svg {
 	display: block;
+}
+
+@media screen and (max-width: 37.5rem) {
+	:root {
+		--loaf-navbar-font-size: 0.8125rem;
+	}
 }

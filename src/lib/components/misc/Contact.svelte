@@ -24,8 +24,17 @@
 	-ms-user-select: none;
  }
 
- .contact:hover {
-	background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
+ @media (pointer: coarse) {
+	.contact {
+		min-width: 2.75rem;
+		min-height: 2.75rem;
+	}
+ }
+
+ @media (hover: hover) {
+	.contact:hover {
+		background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
+	}
  }
 
 

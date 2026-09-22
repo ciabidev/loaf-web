@@ -22,8 +22,10 @@
 		will-change: transform;
 	}
 
-	#flavor-picker-button:hover {
-		transform: scale(1.1);
+	@media (hover: hover) {
+		#flavor-picker-button:hover {
+			transform: scale(1.1);
+		}
 	}
 	#flavor-picker-button:active {
 		transform: scale(0.9);

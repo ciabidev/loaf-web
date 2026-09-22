@@ -71,9 +71,11 @@
 
 	#dialog-holder {
 		position: fixed;
-		padding-top: env(safe-area-inset-top);
-		height: 100vh;
-		width: 100vw;
+		inset: 0;
+		padding: var(--loaf-safe-area-top) var(--loaf-safe-area-right)
+			var(--loaf-safe-area-bottom) var(--loaf-safe-area-left);
+		height: 100dvh;
+		width: 100dvw;
 		z-index: 100000;
 
 		display: flex;
@@ -150,10 +152,7 @@
 		}
 
 		:global(dialog .dialog-body) {
-			margin-bottom: calc(
-				var(--loaf-padding-md) +
-					calc(env(safe-area-inset-bottom) - 0.9375rem * sign(env(safe-area-inset-bottom)))
-			) !important;
+			margin-bottom: var(--loaf-padding-md) !important;
 			box-shadow: 0 0 0 0.125rem var(--loaf-popup-stroke) inset;
 		}
 	}

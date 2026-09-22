@@ -126,12 +126,14 @@
 			border-color 0.2s ease;
 	}
 
-	.switcher :global(button.active:hover) {
-		filter: none;
-	}
+	@media (hover: hover) {
+		.switcher :global(button.active:hover) {
+			filter: none;
+		}
 
-	.switcher :global(button:not(.active):hover) {
-		font-weight: 600;
+		.switcher :global(button:not(.active):hover) {
+			font-weight: 600;
+		}
 	}
 
 	.switcher :global(button:active:not(.active)) {

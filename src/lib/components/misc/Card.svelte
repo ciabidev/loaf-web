@@ -131,18 +131,22 @@
 		cursor: pointer;
 	}
 
-	.card.interactive:hover {
+	.card.interactive:active {
 		filter: none;
 	}
 
-/* CHANGE THIS HOVER RULE */
-.card.interactive:hover .banner {
-	transform: scale(1.08);          /* CHANGE THIS (scales up by 8%, adjust as needed) */
-}
+	@media (hover: hover) {
+		.card.interactive:hover {
+			filter: none;
+		}
 
+		.card.interactive:hover .banner {
+			transform: scale(1.08);
+		}
 
-	.card.interactive.elevated:hover {
-		box-shadow: var(--loaf-shadow-lg)
+		.card.interactive.elevated:hover {
+			box-shadow: var(--loaf-shadow-lg);
+		}
 	}
 	.card-content {
 		display: flex;

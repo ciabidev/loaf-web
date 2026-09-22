@@ -110,8 +110,11 @@
 		align-items: flex-start;
 		justify-content: flex-start;
 		/* */
-		overflow-x: scroll;
+		overflow-x: auto;
 		overflow-y: hidden;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		touch-action: pan-x;
 		scroll-padding-left: 6rem;
 		scroll-padding-right: 6rem;
 		mask-image: linear-gradient(
@@ -167,5 +170,11 @@
 
 	.carousel-arrow.right {
 		right: 0.625rem;
+	}
+
+	@media (pointer: coarse) {
+		.carousel-arrow {
+			min-width: 2.75rem;
+		}
 	}
 </style>
