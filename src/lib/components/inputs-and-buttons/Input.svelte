@@ -58,7 +58,7 @@
 		border-radius: var(--loaf-radius-lg);
 		width: var(--width);
 		background: var(--loaf-surface-secondary);
-		box-shadow: var(--loaf-shadow-main);
+		box-shadow: var(--loaf-shadow-md);
 		min-width: var(--min-width);
 		max-height: fit-content;
 		display: flex;

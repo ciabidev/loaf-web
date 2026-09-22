@@ -2,28 +2,32 @@
 	let { Icon, href } = $props();
 </script>
 
-<a class="contact" {href} target="_blank">
+<a class="contact button" {href} target="_blank">
 	<Icon style=" flex-shrink: 0; font-size: 1.1rem" />
 </a>
 
 <style>
-	.contact {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		vertical-align: center;
-		flex-direction: row;
-		padding: 0.6rem;
-		border-radius: var(--loaf-radius-md);
-		text-decoration: none;
-		color: var(--loaf-text);
-		box-shadow: var(--loaf-card-stroke) 0 0 0 1px;
-		user-select: none;
-		-webkit-user-select: none; /* Safari / iOS */
-		-ms-user-select: none;
-	}
+ .contact {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: center;
+	flex-direction: row;
+	padding: 0.6rem;
+	border-radius: var(--loaf-radius-md);
+	background: transparent;
+	transition: background 0.2s ease;
+	max-width: fit-content;
+	box-shadow: var(--loaf-shadow-md);
+	user-select: none;
+	-webkit-user-select: none; /* Safari / iOS */
+	-ms-user-select: none;
+ }
 
-	.contact:hover {
-		background: var(--loaf-button-default);
-	}
+ .contact:hover {
+	background: color-mix(in srgb, var(--loaf-text) 6%, transparent);
+ }
+
+
+
 </style>

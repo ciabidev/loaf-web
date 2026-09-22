@@ -63,14 +63,14 @@ body {
 ::selection {
 	background: var(--loaf-accent);
 	color: var(--loaf-text-on-accent);
-	color: var(--loaf-on-accent, contrast-color(var(--loaf-accent)));
+	color: var(--loaf-text-on-accent, contrast-color(var(--loaf-accent)));
 }
 
 a:not(:has(img)):not(.button) {
 	background-color: transparent;
 	color: var(--loaf-accent-secondary);
 	text-decoration-skip-ink: none;
-	text-decoration-thickness: 0.3125rem;
+	text-decoration-thickness: 0.125rem;
 	transition: filter 0.2s ease-in-out;
 }
 

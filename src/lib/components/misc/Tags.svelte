@@ -36,7 +36,7 @@
 		border-radius: var(--loaf-radius-md);
 		background: var(--tag-background);
 		border: var(--loaf-button-stroke) solid 0.0625rem;
-		box-shadow: var(--loaf-shadow-main);
+		box-shadow: var(--loaf-shadow-md);
 		font-size: 0.875rem;
 		/* Keep the inherited theme color as a fallback for older browsers. */
 		color: var(--loaf-text);

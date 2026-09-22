@@ -135,9 +135,12 @@
 	.options-menu {
 		background: var(--loaf-button-default);
 		border: var(--loaf-button-stroke) solid 0.0625rem;
-		box-shadow: var(--loaf-shadow-main);
 		border-radius: var(--loaf-radius-md);
 		padding: var(--loaf-switcher-padding);
+	}
+
+	.selector-button:active {
+		transform: none;
 	}
 
 	.selector-wrapper.full {
@@ -249,7 +252,7 @@
 	}
 	.menu-item[aria-selected='true'] {
 		background: var(--loaf-accent);
-		color: var(--loaf-on-accent, contrast-color(var(--loaf-accent)));
+		color: var(--loaf-text-on-accent, contrast-color(var(--loaf-accent)));
 		pointer-events: none;
 	}
 </style>

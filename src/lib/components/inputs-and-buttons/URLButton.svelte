@@ -71,6 +71,7 @@
 		padding: 7px 9px;
 		width: max-content;
 		text-decoration: none;
+		transition: background 0.2s ease;
 		border: var(--loaf-button-stroke) solid 0.0625rem;
 	}
 

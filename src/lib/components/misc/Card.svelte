@@ -35,7 +35,9 @@
 
 {#snippet cardContents()}
 	{#if banner}
-		<div class="banner-container" style:background-image={`url(${banner})`}></div>
+	<div class="banner-container">
+		<div class="banner" style:background-image={`url(${banner})`}></div>
+	</div>
 	{/if}
 
 	<div class="card-content" class:pad>
@@ -81,14 +83,27 @@
 		font: inherit;
 		text-align: left;
 		padding: 0;
-		transition:
-			transform 0.2s ease,
-			filter 0.2s ease;
+		transition: all 0.2s ease;
 	}
 
 	a.card {
 		text-decoration: none;
 	}
+.banner-container {
+	width: 100%;
+	height: 9.375rem;
+	overflow: hidden; 
+}
+
+.banner {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;         
+	transform: scale(1);           
+		transition: transform 0.45s ease;
+}
 
 	.card.flat {
 		background: var(--loaf-card);
@@ -117,9 +132,18 @@
 	}
 
 	.card.interactive:hover {
-		filter: var(--loaf-button-hover-filter);
+		filter: none;
 	}
 
+/* CHANGE THIS HOVER RULE */
+.card.interactive:hover .banner {
+	transform: scale(1.08);          /* CHANGE THIS (scales up by 8%, adjust as needed) */
+}
+
+
+	.card.interactive.elevated:hover {
+		box-shadow: var(--loaf-shadow-lg)
+	}
 	.card-content {
 		display: flex;
 		flex-direction: column;
@@ -143,11 +167,5 @@
 		font-size: 0.75rem;
 	}
 
-	.banner-container {
-		width: 100%;
-		height: 9.375rem;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
+
 </style>

@@ -99,7 +99,7 @@
 	.switcher {
 		background: var(--loaf-button-default);
 		border: var(--loaf-button-stroke) solid 0.0625rem;
-		box-shadow: var(--loaf-shadow-main);
+		box-shadow: var(--loaf-shadow-md);
 		padding: var(--loaf-switcher-padding);
 		gap: calc(var(--loaf-switcher-padding) - 0.0938rem);
 	}
@@ -108,7 +108,7 @@
 		pointer-events: none;
 		background-color: transparent;
 		color: var(--loaf-text-on-accent);
-		color: var(--loaf-on-accent, contrast-color(var(--loaf-accent)));
+		color: var(--loaf-text-on-accent, contrast-color(var(--loaf-accent)));
 	}
 
 	.switcher :global(button) {

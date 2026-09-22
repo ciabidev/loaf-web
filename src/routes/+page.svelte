@@ -1,5 +1,6 @@
 <script lang="ts">
 	import GridIcon from '$components/icons/grid.svelte';
+	import Link from '$components/misc/Link.svelte';
 	import LinkIcon from '$components/icons/link.svelte';
 	import PlayIcon from '$components/icons/play.svelte';
 	import SearchIcon from '$components/icons/search.svelte';
@@ -91,10 +92,7 @@
 	};
 </script>
 
-<PageContainer
-	pageId="component-gallery"
-	maxWidth="68rem"
->
+<PageContainer pageId="component-gallery" maxWidth="68rem">
 	<header class="hero paragraph-text">
 		<div>
 			<h1>loaf-web component gallery</h1>
@@ -180,18 +178,17 @@
 		<div class="component-row">
 			<button>default</button>
 			<button class="button--primary">primary</button>
-			<button class="button--loaf-success">success</button>
+			<button class=".button--success">success</button>
 			<button class="button--danger">danger</button>
-			<button class="button--loaf-elevated">elevated</button>
+			<button class=".button--elevated">elevated</button>
 			<button disabled>disabled</button>
-			<a class="button button--link" href="#inputs">link button</a>
 		</div>
 		<div class="effect-samples">
 			<div class="effect-samples__item effect-samples__item--border">border only</div>
 			<div class="effect-samples__item effect-samples__item--shadow">shadow only</div>
 			<div class="effect-samples__item effect-samples__item--both">border and shadow</div>
 		</div>
-		<div class="component-row">
+		<div style="display: flex; gap: 1rem; align-items: center;">
 			<URLButton
 				url="https://github.com/ciabidev/loaf-web"
 				urlshort="github.com/ciabidev/loaf-web"
@@ -200,6 +197,9 @@
 			/>
 			<Contact Icon={LinkIcon} href="https://github.com/ciabidev/loaf-web" />
 		</div>
+		<p class="subtext inline-link-example">
+			inline links should sit naturally in a sentence, like <Link url="https://github.com/ciabidev/loaf-web">the loaf-web repository</Link>.
+		</p>
 	</section>
 
 	<section class="gallery-section" id="inputs">
@@ -434,6 +434,10 @@
 
 	.section-heading {
 		gap: 0.25rem;
+	}
+
+	.inline-link-example {
+		margin: 0;
 	}
 
 	.card-grid {

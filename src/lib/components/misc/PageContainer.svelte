@@ -2,7 +2,8 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	let { pageId, maxWidth, children }: { pageId: string; maxWidth: string; children: Snippet } = $props();
+	let { pageId, maxWidth, children }: { pageId: string; maxWidth: string; children: Snippet } =
+		$props();
 </script>
 
 <main id={pageId} class="page-container" style="--max-width: {maxWidth}">
@@ -20,5 +21,4 @@
 		gap: 1.25rem;
 		flex-direction: column;
 	}
-
 </style>
