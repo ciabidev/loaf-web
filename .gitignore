@@ -13,6 +13,7 @@ cobalt/*
 /.svelte-kit
 /build
 /dist
+/.release
 
 # OS
 .DS_Store

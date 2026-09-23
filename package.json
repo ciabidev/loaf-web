@@ -1,7 +1,7 @@
 {
-	"name": "@ciabi/loaf-web",
-	"version": "0.2.0",
-	"description": "a cozy, extensible Svelte component library.",
+	"name": "@ciabi/loafkit-ui",
+	"version": "0.2.1",
+	"description": "Loafkit UI, a cozy, extensible Svelte 5 component library.",
 	"author": "wheatwhole",
 	"license": "MIT",
 	"repository": {
@@ -23,6 +23,7 @@
 		"build": "vite build",
 		"package": "svelte-package",
 		"package:watch": "svelte-package --watch",
+		"stage:packages": "node scripts/stage-packages.mjs",
 		"prepublishOnly": "npm run quality && npm run smoke:consumer",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",

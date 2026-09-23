@@ -28,4 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run quality
       - run: npm run smoke:consumer
-      - run: npm publish
+      - name: Publish Loafkit
+        run: npm publish .release/loafkit-ui --access public
+      - name: Publish legacy name
+        run: npm publish .release/loaf-web --access public

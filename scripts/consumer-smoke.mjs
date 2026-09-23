@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import {
 	existsSync,
 	mkdtempSync,
@@ -14,7 +15,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const fixtureRoot = mkdtempSync(join(tmpdir(), 'loaf-web-consumer-'));
+const fixtureRoot = mkdtempSync(join(tmpdir(), 'loafkit-consumer-'));
 const consumerRoot = join(fixtureRoot, 'consumer');
 const forbiddenImport =
 	/(?:from\s*|import\s*\(\s*|import\s+)["'](?:\$app|\$lib|\$components)(?:\/|["'])/;
@@ -102,15 +103,19 @@ function findForbiddenImports(directory) {
 }
 
 try {
-	run('npm', ['run', 'package']);
-	const packResult = JSON.parse(
-		execFileSync('npm', ['pack', '--json', '--pack-destination', fixtureRoot], {
-			cwd: projectRoot,
-			encoding: 'utf8',
-			shell: process.platform === 'win32'
-		})
-	)[0];
-	const tarballPath = join(fixtureRoot, packResult.filename);
+	run('npm', ['run', 'stage:packages']);
+	const packageNames = ['loafkit-ui', 'loaf-web'];
+	const packages = packageNames.map((name) => {
+		const directory = join(projectRoot, '.release', name);
+		const packResult = JSON.parse(
+			execFileSync('npm', ['pack', '--json', '--pack-destination', fixtureRoot], {
+				cwd: directory,
+				encoding: 'utf8',
+				shell: process.platform === 'win32'
+			})
+		)[0];
+		return { name, directory, packResult, tarballPath: join(fixtureRoot, packResult.filename) };
+	});
 
 	const expectedFiles = [
 		'dist/index.js',
@@ -122,10 +127,24 @@ try {
 		'dist/components/icons/LICENSE.md',
 		'CHANGELOG.md'
 	];
-	const packedFiles = new Set(packResult.files.map((file) => file.path));
-	for (const expectedFile of expectedFiles) {
-		if (!packedFiles.has(expectedFile)) throw new Error(`Tarball is missing ${expectedFile}`);
+	for (const { name, packResult } of packages) {
+		const packedFiles = new Set(packResult.files.map((file) => file.path));
+		for (const expectedFile of expectedFiles) {
+			if (!packedFiles.has(expectedFile))
+				throw new Error(`${name} tarball is missing ${expectedFile}`);
+		}
 	}
+	const fileHashes = ({ directory, packResult }) =>
+		packResult.files
+			.filter((file) => file.path !== 'package.json')
+			.map((file) => [
+				file.path,
+				createHash('sha256')
+					.update(readFileSync(join(directory, file.path)))
+					.digest('hex')
+			]);
+	if (JSON.stringify(fileHashes(packages[0])) !== JSON.stringify(fileHashes(packages[1])))
+		throw new Error('The two packages contain different library files');
 
 	mkdirSync(consumerRoot, { recursive: true });
 	write(
@@ -139,7 +158,12 @@ try {
 					build: 'vite build'
 				},
 				dependencies: {
-					'@ciabi/loaf-web': `file:${tarballPath.replaceAll('\\', '/')}`,
+					...Object.fromEntries(
+						packages.map(({ name, tarballPath }) => [
+							`@ciabi/${name}`,
+							`file:${tarballPath.replaceAll('\\', '/')}`
+						])
+					),
 					...offlineDependencies
 				},
 				devDependencies: offline
@@ -180,6 +204,10 @@ try {
 	write(
 		'src/routes/+layout.svelte',
 		`<script lang="ts">
+	import '@ciabi/loafkit-ui/styles.css';
+	import '@ciabi/loafkit-ui/reset.css';
+	import '@ciabi/loafkit-ui/fonts.css';
+	import '@ciabi/loafkit-ui/app.css';
 	import '@ciabi/loaf-web/styles.css';
 	import '@ciabi/loaf-web/reset.css';
 	import '@ciabi/loaf-web/fonts.css';
@@ -207,7 +235,13 @@ try {
 		registerFlavor,
 		Selector,
 		type FlavorDefinition
-	} from '@ciabi/loaf-web';
+	} from '@ciabi/loafkit-ui';
+	import { Card as LegacyCard, type FlavorDefinition as LegacyFlavorDefinition } from '@ciabi/loaf-web';
+	const legacyFlavor: LegacyFlavorDefinition = {
+		name: 'legacy', description: 'legacy import', iconPath: '/theme.png', isDark: false,
+		cssVariables: { '--loaf-accent': '#b45f37' }
+	};
+	void legacyFlavor;
 
 	const smokeFlavor: FlavorDefinition = {
 		name: 'consumer smoke',
@@ -228,6 +262,7 @@ try {
 	<DialogHolder />
 	<Loaf>
 		<Card name="Packed consumer">{registeredFlavor?.description} ({flavorCount})</Card>
+		<LegacyCard name="Legacy import">same component API</LegacyCard>
 		<Selector options={[{ value: 'one', text: 'One' }]} bind:selected />
 	</Loaf>
 </Basket>
@@ -242,7 +277,8 @@ try {
 	Loaf,
 	Selector,
 	type FlavorDefinition
-} from '@ciabi/loaf-web';
+} from '@ciabi/loafkit-ui';
+import { Basket as LegacyBasket, type FlavorDefinition as LegacyFlavorDefinition } from '@ciabi/loaf-web';
 
 const publicComponents = [Basket, Card, DialogHolder, Loaf, Selector];
 const flavor: FlavorDefinition = {
@@ -255,6 +291,10 @@ const flavor: FlavorDefinition = {
 
 void publicComponents;
 void flavor;
+const legacyComponents = [LegacyBasket];
+const legacyFlavor: LegacyFlavorDefinition = flavor;
+void legacyComponents;
+void legacyFlavor;
 `
 	);
 
@@ -262,28 +302,36 @@ void flavor;
 	run('npm', ['run', 'check'], consumerRoot);
 	run('npm', ['run', 'build'], consumerRoot);
 
-	const installedPackageRoot = join(consumerRoot, 'node_modules', '@ciabi', 'loaf-web');
-	const installedManifest = JSON.parse(
-		readFileSync(join(installedPackageRoot, 'package.json'), 'utf8')
-	);
-	for (const exportName of ['./styles.css', './reset.css', './fonts.css', './app.css']) {
-		if (!installedManifest.exports?.[exportName])
-			throw new Error(`Missing package export ${exportName}`);
+	for (const name of packageNames) {
+		const installedPackageRoot = join(consumerRoot, 'node_modules', '@ciabi', name);
+		const installedManifest = JSON.parse(
+			readFileSync(join(installedPackageRoot, 'package.json'), 'utf8')
+		);
+		if (installedManifest.name !== `@ciabi/${name}`)
+			throw new Error(`Incorrect installed package name: ${installedManifest.name}`);
+		for (const exportName of ['.', './styles.css', './reset.css', './fonts.css', './app.css']) {
+			if (!installedManifest.exports?.[exportName])
+				throw new Error(`Missing ${name} package export ${exportName}`);
+		}
 	}
 
 	const forbiddenMatches = [
 		...findForbiddenImports(join(projectRoot, 'dist')),
-		...findForbiddenImports(join(installedPackageRoot, 'dist')),
+		...packageNames.flatMap((name) =>
+			findForbiddenImports(join(consumerRoot, 'node_modules', '@ciabi', name, 'dist'))
+		),
 		...findForbiddenImports(join(consumerRoot, '.svelte-kit', 'output'))
 	];
 	if (forbiddenMatches.length) {
 		throw new Error(`Repository-only imports found:\n${forbiddenMatches.join('\n')}`);
 	}
 
-	const tarballSize = statSync(tarballPath).size;
-	console.log(
-		`Consumer smoke test passed: ${packResult.files.length} files, ${tarballSize} byte tarball, ${packResult.size} packed bytes.`
-	);
+	for (const { name, packResult, tarballPath } of packages) {
+		console.log(
+			`@ciabi/${name}: ${packResult.files.length} files, ${statSync(tarballPath).size} byte tarball.`
+		);
+	}
+	console.log('Consumer smoke test passed for both package names.');
 } finally {
 	rmSync(fixtureRoot, { recursive: true, force: true });
 }

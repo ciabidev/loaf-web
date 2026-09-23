@@ -95,7 +95,7 @@
 <PageContainer pageId="component-gallery" maxWidth="68rem">
 	<header class="hero paragraph-text">
 		<div>
-			<h1>loaf-web component gallery</h1>
+			<h1>Loafkit UI component gallery</h1>
 			<p>the web in a cozy bread basket</p>
 		</div>
 		<Tags tags={[{ name: 'Svelte 5' }, { name: 'responsive' }, { name: 'interactive' }]} />
@@ -193,13 +193,13 @@
 			<URLButton
 				url="https://github.com/ciabidev/loaf-web"
 				urlshort="github.com/ciabidev/loaf-web"
-				name="loaf web"
+				name="Loafkit UI"
 				img="/favicon/favicon-96x96.png"
 			/>
 			<Contact Icon={LinkIcon} href="https://github.com/ciabidev/loaf-web" />
 		</div>
 		<p class="subtext inline-link-example">
-			inline links should sit naturally in a sentence, like <Link url="https://github.com/ciabidev/loaf-web">the loaf-web repository</Link>.
+			inline links should sit naturally in a sentence, like <Link url="https://github.com/ciabidev/loaf-web">the Loafkit UI repository</Link>.
 		</p>
 	</section>
 

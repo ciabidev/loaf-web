@@ -32,7 +32,7 @@ copies; update a flavor by registering a new definition with the same name.
 ### basic example
 
 ```typescript
-import { registerFlavor } from '@ciabi/loaf-web';
+import { registerFlavor } from '@ciabi/loafkit-ui';
 
 registerFlavor({
 	name: 'midnight',
@@ -94,7 +94,7 @@ when imported:
 
 ```typescript
 // lib/customFlavors.ts
-import { registerFlavors } from '@ciabi/loaf-web';
+import { registerFlavors } from '@ciabi/loafkit-ui';
 export const myCustomFlavors = [
 	/* ... */
 ];
