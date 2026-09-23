@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Emotion } from '../../types/emoticon.js';
+	import type { Emotion } from '../../types/emoticon.ts';
 	import angry from '../../assets/emotions/angry.png';
 	import awkward from '../../assets/emotions/awkward.png';
 	import confused from '../../assets/emotions/confused.png';

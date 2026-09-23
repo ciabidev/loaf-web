@@ -32,7 +32,7 @@
 	import type { DialogButton, SmallDialogIcons } from '../../types/dialog.js';
 	import DialogContainer from './DialogContainer.svelte';
 	import DialogButtons from './DialogButtons.svelte';
-	import type { Emotion } from '../../types/emoticon.js';
+	import type { Emotion } from '../../types/emoticon.ts';
 	import Emoticon from '../misc/Emoticon.svelte';
 
 	// Props with defaults
