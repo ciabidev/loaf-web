@@ -1,22 +1,26 @@
-# Loafkit UI
+# Loafkit
 
-this repository contains Loafkit UI, a cozy, themeable component library for Svelte 5. install
-`@ciabi/loafkit-ui` to build your own site from scratch with its components and styles.
+**Loafkit** is a Svelte 5 ecosystem designed to help you build cozy, beautifully styled web applications quickly. 
+
+### The Ecosystem
+
+* **Loafkit** *(Coming Soon)* — A full SvelteKit starter template. It comes as a pre-configured, ready-to-build site for when you want the initial boilerplate and framework setup done for you.
+* **Loafkit UI** *(Available Now)* — A cozy, themeable component library for Svelte 5. It powers the Loafkit starter template, but you can use it on its own if you prefer building your project from scratch or adding components to an existing app.
+
+---
+
+## Loafkit UI
+
+This repository houses **Loafkit UI**. Install `@ciabi/loafkit-ui` to start using its components and styles:
 
 ```sh
 npm install @ciabi/loafkit-ui
 ```
 
-existing apps can keep using `@ciabi/loaf-web`. both npm names get the same library updates and
-support the same component imports and CSS subpaths. see the [package README](./package/README.md)
-for setup, examples, flavors, and the public API.
+> **Upgrading from `@ciabi/loaf-web`?**  
+> Existing projects using `@ciabi/loaf-web` do not need to change anything. Both package names receive identical updates, support the exact same component imports, and share CSS subpaths.
 
-## Loafkit and Loafkit UI
-
-Loafkit is a SvelteKit starter template planned for later. it'll come with a site already set up so
-you can start building from there. the starter will use Loafkit UI, so it won't have extra component
-capabilities that aren't available in this library. use Loafkit UI if you'd rather start your own
-site from scratch, or use the Loafkit starter later if you want the setup done for you.
+Check out the [Package README](./package/README.md) for full setup instructions. We dont have a documentation (yet)
 
 ## development
 
